@@ -93,6 +93,21 @@
 .organic-blob-2 {
     border-radius: 30% 70% 70% 30% / 50% 60% 40% 50%;
 }
+.organic-shape-1 {
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 25%);
+    border-radius: 6rem 3rem 8rem 4rem;
+}
 .text-editorial-spacing {
     letter-spacing: -0.02em;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    height: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #bfc8c8;
+    border-radius: 10px;
 }
