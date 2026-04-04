@@ -11,7 +11,7 @@ export default function FloatingChatButton() {
 
   // We might want to hide the FAB on the chat page itself since we're already there,
   // but let's keep it visible per standard AI app patterns (or hide it, let's hide it for cleanliness).
-  if (isChat) return null;
+  if (isChat || pathname?.startsWith('/admin')) return null;
 
   return (
     <Link href="/chat" className="fixed bottom-[88px] md:bottom-12 right-6 md:right-12 z-50 group">
