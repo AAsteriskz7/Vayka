@@ -11,8 +11,8 @@ export default function MobileNav() {
         <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/destinations' ? "'FILL' 1" : "" }}>explore</span>
         <span className="text-[10px] font-bold uppercase tracking-widest">Explore</span>
       </Link>
-      <Link href="/" className={`flex flex-col items-center gap-1 ${pathname === '/' || pathname === '/itineraries' ? 'text-primary' : 'text-outline/80'} hover:text-primary transition-colors`}>
-        <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/' || pathname === '/itineraries' ? "'FILL' 1" : "" }}>map</span>
+      <Link href="/itineraries" className={`flex flex-col items-center gap-1 ${pathname === '/itineraries' ? 'text-primary' : 'text-outline/80'} hover:text-primary transition-colors`}>
+        <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/itineraries' ? "'FILL' 1" : "" }}>map</span>
         <span className="text-[10px] font-bold uppercase tracking-widest">Trips</span>
       </Link>
       <Link href="/journal" className={`flex flex-col items-center gap-1 ${pathname === '/journal' ? 'text-primary' : 'text-outline/80'} hover:text-primary transition-colors`}>
