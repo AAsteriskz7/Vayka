@@ -15,9 +15,9 @@ export default function MobileNav() {
         <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/itineraries' ? "'FILL' 1" : "" }}>map</span>
         <span className="text-[10px] font-bold uppercase tracking-widest">Trips</span>
       </Link>
-      <Link href="/journal" className={`flex flex-col items-center gap-1 ${pathname === '/journal' ? 'text-primary' : 'text-outline/80'} hover:text-primary transition-colors`}>
-        <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/journal' ? "'FILL' 1" : "" }}>auto_stories</span>
-        <span className="text-[10px] font-bold uppercase tracking-widest">Journal</span>
+      <Link href="/chat" className={`flex flex-col items-center gap-1 ${pathname === '/chat' ? 'text-primary' : 'text-outline/80'} hover:text-primary transition-colors`}>
+        <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/chat' ? "'FILL' 1" : "" }}>chat_bubble</span>
+        <span className="text-[10px] font-bold uppercase tracking-widest">Chat</span>
       </Link>
       <Link href="/profile" className={`flex flex-col items-center gap-1 ${pathname === '/profile' ? 'text-primary' : 'text-outline/80'} hover:text-primary transition-colors`}>
         <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/profile' ? "'FILL' 1" : "" }}>person</span>
