@@ -1,3 +1,5 @@
+import Footer from '../../components/Footer';
+
 export default function Destinations() {
   return (
     <>
@@ -153,6 +155,8 @@ export default function Destinations() {
           <span className="material-symbols-outlined text-3xl group-hover:rotate-90 transition-transform">add</span>
         </button>
       </div>
+
+      <Footer />
     </>
   );
 }
