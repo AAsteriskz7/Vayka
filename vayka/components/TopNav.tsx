@@ -7,7 +7,7 @@ export default function TopNav() {
 
   const isDestinations = pathname === '/destinations';
   const isItineraries = pathname === '/itineraries';
-  const isJournal = pathname === '/journal';
+  const isSearch = pathname === '/search';
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center bg-white/60 dark:bg-teal-950/60 backdrop-blur-3xl rounded-full max-w-fit mx-auto mt-6 px-6 py-3 shadow-[0px_20px_40px_rgba(26,28,26,0.06)]">
@@ -27,10 +27,11 @@ export default function TopNav() {
             Itineraries
           </Link>
           <Link
-            href="/journal"
-            className={`${isJournal ? 'text-teal-900 dark:text-white font-bold' : 'text-teal-700/70 dark:text-teal-200/70'} font-body font-medium tracking-wide hover:bg-white/40 dark:hover:bg-teal-800/40 transition-all duration-300 px-3 py-1 rounded-full`}
+            href="/search"
+            className={`${isSearch ? 'text-teal-900 dark:text-white font-bold' : 'text-teal-700/70 dark:text-teal-200/70'} font-body font-medium tracking-wide hover:bg-white/40 dark:hover:bg-teal-800/40 transition-all duration-300 px-3 py-1 rounded-full flex items-center gap-1`}
           >
-            Journal
+            <span className="material-symbols-outlined text-[18px]">search</span>
+            Search
           </Link>
         </div>
       </div>
