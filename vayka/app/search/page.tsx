@@ -95,10 +95,10 @@ export default function Search() {
 
               {/* CTA */}
               <div className="md:col-span-2 flex justify-center pt-6">
-                <button className="px-12 py-5 rounded-full bg-gradient-to-br from-primary to-primary-container text-white text-lg font-bold shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-3">
+                <Link href="/search/results" className="px-12 py-5 rounded-full bg-gradient-to-br from-primary to-primary-container text-white text-lg font-bold shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-3">
                   Find Destinations
                   <span className="material-symbols-outlined">arrow_forward</span>
-                </button>
+                </Link>
               </div>
 
             </div>
