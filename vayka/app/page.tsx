@@ -1,153 +1,126 @@
-import SideNav from '../components/SideNav';
+import Footer from '../components/Footer';
 
-export default function Dashboard() {
+export default function Home() {
   return (
     <>
-      <SideNav />
-
-      {/* Main Content Shell */}
-      <main className="lg:ml-80 pt-28 px-6 pb-12 lg:px-12 flex flex-col md:flex-row gap-12 max-w-[1600px] mx-auto">
-        {/* Conversation Thread (The Curator) */}
-        <section className="flex-1 max-w-3xl space-y-12">
-          <header>
-            <h2 className="font-headline text-5xl text-primary font-bold leading-tight mb-4">Crafting your <br /><span className="italic text-secondary">Tuscan escape</span>.</h2>
-            <p className="text-on-surface-variant text-lg max-w-lg">Generating a 7-day immersion into the Chianti hills, focusing on slow-living and heritage estates.</p>
-          </header>
-
-          <div className="space-y-10">
-            {/* User Message */}
-            <div className="flex justify-end">
-              <div className="bg-secondary-container/30 p-6 rounded-xl rounded-tr-none max-w-md">
-                <p className="text-on-secondary-fixed-variant">I'd like to focus on boutique wineries that prioritize organic methods. Can we add a day in Siena?</p>
+      <main className="relative overflow-hidden min-h-screen pt-32 pb-24">
+        {/* Hero Section */}
+        <section className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Hero Content */}
+          <div className="lg:col-span-6 z-10">
+            <h1 className="font-headline text-6xl md:text-8xl text-primary text-editorial-spacing leading-[1.1] mb-8">
+              Where should your <span className="italic font-normal">curiosity</span> take you?
+            </h1>
+            
+            {/* Chatbot Input */}
+            <div className="relative group max-w-2xl">
+              <div className="absolute inset-0 bg-surface-container-highest/20 blur-2xl rounded-full -z-10 group-focus-within:bg-primary/5 transition-all duration-500"></div>
+              <div className="bg-surface-container-lowest shadow-[0px_20px_40px_rgba(26,28,26,0.06)] rounded-full p-2 flex items-center">
+                <span className="material-symbols-outlined ml-6 text-outline">explore</span>
+                <input className="w-full bg-transparent border-none focus:ring-0 px-4 py-4 text-lg font-body placeholder:text-outline/60 outline-none" placeholder="Imagine a getaway..." type="text"/>
+                <button className="bg-gradient-to-br from-primary to-primary-container text-white p-4 rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-300">
+                  <span className="material-symbols-outlined">auto_awesome</span>
+                </button>
               </div>
             </div>
 
-            {/* AI Response */}
-            <div className="flex gap-6 items-start">
-              <div className="w-12 h-12 bg-primary flex items-center justify-center rounded-full flex-shrink-0">
-                <span className="material-symbols-outlined text-white">auto_awesome</span>
+            {/* Action Chips */}
+            <div className="flex flex-wrap gap-4 mt-12">
+              <button className="bg-secondary-container text-on-secondary-container px-8 py-5 rounded-xl font-bold flex items-center gap-3 organic-blob-2 hover:scale-95 transition-all duration-300 shadow-sm">
+                <span className="material-symbols-outlined">map</span>
+                Discover Destinations
+              </button>
+              <button className="bg-gradient-to-r from-primary to-primary-container text-white px-8 py-5 rounded-xl font-bold flex items-center gap-3 organic-blob-1 hover:scale-105 transition-all duration-300 shadow-xl">
+                <span className="material-symbols-outlined">edit_calendar</span>
+                Plan My Trip
+              </button>
+            </div>
+          </div>
+
+          {/* Hero Image Visual */}
+          <div className="lg:col-span-6 relative flex justify-end">
+            <div className="relative w-full max-w-[500px]">
+              <div className="absolute -top-12 -left-12 w-48 h-48 bg-tertiary-fixed-dim/30 rounded-full blur-3xl opacity-60"></div>
+              <div className="absolute -bottom-12 -right-12 w-64 h-64 bg-secondary-fixed/20 rounded-full blur-3xl opacity-60"></div>
+              
+              <div className="relative z-10 overflow-hidden organic-blob-1 aspect-[4/5] shadow-2xl">
+                 {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="w-full h-full object-cover scale-110 hover:scale-100 transition-transform duration-[2000ms]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJvTFiTkRj_myPV-NsmARaP8e45KfUcxhN3vD3w4X1An9SsX7m5eOgPykMMgkd420t-HCcZfeNO1ljYl5T2KmetJaZH8VYut-NxiF7Dkr0sAchKizGuECNsyPnfzmIDKuUmQaVb2XJYYhOlykUmOPZMQRbe0x2N0P0xz3JyT2YSnGTDjNmG-bU3HSjmjSVknlhY3S1BeQPTEoSxqlKe5yzxTo_iVM1Jq8HPFntUInIZnXSd1fdKqhYRE_mvCE-NLAQKT9UIpExW4ym" alt="serene tropical infinity pool" />
               </div>
-              <div className="space-y-6 flex-grow">
-                <div className="bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/5">
-                  <p className="text-lg leading-relaxed mb-6">Absolutely. Incorporating Siena adds a wonderful medieval contrast to the rolling vineyards. I've curated three organic estates that align with your preference for slow-living.</p>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Citation Cards */}
-                    <div className="bg-surface-container-low p-4 rounded-lg flex items-center gap-4 hover:bg-surface-container-high transition-colors group">
-                      <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRpGINpJlDeZkIxHmt6CSdupqfemg2tv0xsBbaQ-I_r60vQm5VxfYRMjv9Nc3fbrs9iHnYl0s_WPPNwf2YUxCVzwI8tQBB7Wi-M6JOvgQqrZeZGomfuaXEJ4PwcgG1qQvAq9JlIbRX3L3e_r6S_6aBTKkcEI_mXfQBC3lbfFj7PpV15d45ALfpssB_Gsu6zR1wjGlpsVrPnFqaGnOrc2zrNcsHQfTsfxOK2DXGeHrDjLy_rYevwR9yd0g8MfXjh4IWaf2ahlXS-w8M" alt="Grapes in a Tuscan vineyard" />
-                      </div>
-                      <div>
-                        <p className="font-headline text-sm font-bold text-primary">Tenuta Casanuova</p>
-                        <p className="text-xs text-secondary italic">Sustainable Viticulture</p>
-                      </div>
-                      <span className="material-symbols-outlined ml-auto text-outline group-hover:text-primary transition-colors">arrow_outward</span>
-                    </div>
-
-                    <div className="bg-surface-container-low p-4 rounded-lg flex items-center gap-4 hover:bg-surface-container-high transition-colors group">
-                      <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ1jTTT3SuFL1gbRZZ2frO08qdAWG86Qec8d4h2aCJi53-91aIDsR0gx9kLorN6caLVV880OupgyO_Wc-SWb5Z6Gjd8BoCRFdMi4w3oeaAp8_dJLXHutpgXRvZGmDazRdiqfhWiDuCmy_NNNkENTJBZcupC222AhuZ0qVueqFUnLNLlcRJLNX38biwd6Av8FqDAIcJ4JU-eGL3ZsoyykQa9y3p5TeDvYbzEc77FqwXmSp5B7Rpmozp85DL8uX9IAepXQ6r-9H-0twG" alt="Stone farmhouse in Tuscany" />
-                      </div>
-                      <div>
-                        <p className="font-headline text-sm font-bold text-primary">Villa di Geggiano</p>
-                        <p className="text-xs text-secondary italic">Siena Heritage</p>
-                      </div>
-                      <span className="material-symbols-outlined ml-auto text-outline group-hover:text-primary transition-colors">arrow_outward</span>
-                    </div>
-                  </div>
+              
+              {/* Floating Source Card (Asymmetric) */}
+              <div className="absolute -bottom-8 -left-16 z-20 bg-white/80 backdrop-blur-xl p-6 rounded-xl shadow-2xl border-none max-w-xs group cursor-default">
+                <div className="flex items-center gap-4 mb-2">
+                  <span className="material-symbols-outlined text-tertiary">verified</span>
+                  <span className="font-headline text-lg italic text-primary">Maldives Reimagined</span>
                 </div>
-
-                {/* Chat Interaction */}
-                <div className="relative group">
-                  <input className="w-full bg-surface-container-high border-none py-5 px-8 rounded-xl focus:ring-2 focus:ring-surface-tint/20 text-on-surface placeholder:text-outline transition-all" placeholder="Ask about Siena's morning markets..." type="text" />
-                  <button className="absolute right-4 top-1/2 -translate-y-1/2 bg-primary text-white p-2 rounded-lg hover:scale-110 transition-transform">
-                    <span className="material-symbols-outlined">send</span>
-                  </button>
+                <p className="text-sm text-secondary leading-relaxed">Curated based on your preference for quiet coastal escapes and sustainable luxury architecture.</p>
+                <div className="mt-4 pt-4 border-t border-outline-variant/20 flex gap-2 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-[10px] uppercase tracking-widest text-outline px-2 py-1 bg-surface-container rounded-full">Source: Conde Nast</span>
+                  <span className="text-[10px] uppercase tracking-widest text-outline px-2 py-1 bg-surface-container rounded-full">Source: Travel+Leisure</span>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Itinerary Side Panel (The Journal View) */}
-        <section className="md:w-96 lg:w-[450px] space-y-8">
-          <div className="sticky top-28 bg-surface-container rounded-xl p-8 shadow-sm">
-            <div className="flex justify-between items-end mb-10">
-              <div>
-                <span className="text-secondary font-label text-sm uppercase tracking-widest font-bold">The Journey</span>
-                <h3 className="font-headline text-3xl text-primary font-bold italic">Siena &amp; Chianti</h3>
+        {/* Asymmetric Featured Content Section */}
+        <section className="mt-48 max-w-7xl mx-auto px-6 md:px-12">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div className="max-w-2xl">
+              <span className="text-secondary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Seasonal Edit</span>
+              <h2 className="font-headline text-5xl text-primary leading-tight">The Art of Wandering: <br/>Spring Collection {new Date().getFullYear()}</h2>
+            </div>
+            <div className="md:text-right">
+              <a className="text-primary font-bold flex items-center gap-2 group hover:opacity-80 transition-opacity" href="#">
+                View All Collections 
+                <span className="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+
+          <div className="relative grid grid-cols-1 md:grid-cols-12 gap-12">
+            {/* Bento-style Asymmetric Cards */}
+            <div className="md:col-span-7 group">
+              <div className="relative overflow-hidden rounded-xl aspect-video mb-6">
+                 {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNpbewApBRkvM-zkWtQulqRk3li4Srs5wKkeRNCkztTAHNET4p5pAcLxlky_x8a2P0jKDLFgGia7RstAUvJK_eFbPprs5-uA7uwZDo4lXDslFzLFTEQ2PJLZmmloqRg6ghZIzfnNYzdBHVkskPKilboqlKwkuvGGQm-3dZI6sUiP9Fa4FOER7SSdqjYydww3_bSkMTpkIiUBRC-ZCuRgFqEnBclh91ezqCdWFe-67cS4pv1oPsJYYt9XwxtDlzwS-NaHJ_gYJMNg8a" alt="cinematic view of colourful houses in Positano" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+                <div className="absolute bottom-8 left-8 text-white">
+                  <span className="text-xs font-bold tracking-widest uppercase mb-2 block">Region Focus</span>
+                  <h3 className="font-headline text-3xl">Amalfi Coastline</h3>
+                </div>
               </div>
-              <div className="text-right">
-                <span className="text-primary font-bold text-lg">7 Days</span>
-              </div>
+              <p className="text-secondary-fixed-dim text-lg italic font-headline pr-24">&quot;A vertical landscape where lemon groves meet the azure embrace of the Mediterranean.&quot;</p>
             </div>
 
-            {/* Vertical Timeline */}
-            <div className="relative pl-10 space-y-12 before:content-[''] before:absolute before:left-3 before:top-4 before:bottom-4 before:w-[1px] before:bg-outline-variant/30">
-              {/* Day 1 */}
-              <div className="relative group">
-                <div className="absolute -left-10 top-0 w-7 h-7 rounded-full bg-primary flex items-center justify-center z-10">
-                  <span className="text-white text-[10px] font-bold">01</span>
+            <div className="md:col-span-5 flex flex-col gap-12 mt-12 md:mt-24">
+              <div className="bg-surface-container-high organic-blob-2 p-12 relative overflow-hidden group">
+                <div className="relative z-10">
+                  <span className="material-symbols-outlined text-4xl text-primary mb-6">auto_stories</span>
+                  <h3 className="font-headline text-2xl text-primary mb-4">Curated Journal</h3>
+                  <p className="text-on-surface-variant mb-8 leading-loose">Deep dives into local cultures, written by those who breathe the mountain air.</p>
+                  <button className="text-primary font-bold border-b-2 border-primary/20 pb-1 hover:border-primary transition-all">Read Story</button>
                 </div>
-                <div className="space-y-4">
-                  <h4 className="font-headline text-xl text-primary">Arrival in Gaiole</h4>
-                  <div className="rounded-xl overflow-hidden shadow-lg h-48 group-hover:scale-[1.02] transition-transform duration-500">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVzbjQr1v39mrA-eaehOHIjXkCc8m0_6FqcX86VjVBaBLYROKw6cj01CBi0SELkxJu9ZOmP_PQuMU-6WROUeXEyW0YG8oDT5J7bBWtiUhe9O9RIJM6xM8ebkI1fAuLYUki3HE2vXRtTI0yFO3r1qWOUeX2DoggaeaymuPUDZkRbELNKzIoYxEJTH-hYRmyESi11Xmwd9o_fGsLl_EcgPyiCVjmz_jWbpyJp4cLWTZeW95qXDs6wg4T95EphifpN7UmrkD72mLwlaH6" alt="Aerial view of village" />
-                  </div>
-                  <div className="flex gap-2">
-                    <span className="bg-tertiary-container/10 text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-xs font-medium">Boutique Hotel</span>
-                    <span className="bg-secondary-container/20 text-on-secondary-fixed-variant px-3 py-1 rounded-full text-xs font-medium">Wine Tasting</span>
-                  </div>
-                </div>
+                <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-primary/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
               </div>
 
-              {/* Day 2 */}
-              <div className="relative group">
-                <div className="absolute -left-10 top-0 w-7 h-7 rounded-full bg-surface-container-highest border border-primary/20 flex items-center justify-center z-10">
-                  <span className="text-primary text-[10px] font-bold">02</span>
-                </div>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <h4 className="font-headline text-xl text-primary">Organic Harvest</h4>
-                    <span className="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 transition-opacity">more_horiz</span>
-                  </div>
-                  <p className="text-on-surface-variant text-sm leading-relaxed">Morning session at Tenuta Casanuova, followed by a farm-to-table lunch overlooking the valleys.</p>
-                </div>
-              </div>
-
-              {/* Day 3 */}
-              <div className="relative group">
-                <div className="absolute -left-10 top-0 w-7 h-7 rounded-full bg-surface-container-highest border border-primary/20 flex items-center justify-center z-10">
-                  <span className="text-primary text-[10px] font-bold">03</span>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="font-headline text-xl text-primary">The Siena Pulse</h4>
-                  <div className="rounded-xl overflow-hidden h-32 relative group-hover:h-48 transition-all duration-700">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi3qp3XMbcACzbCaXYvx606HSWI-39ya-TcgSUo7eju4QVbCA2UklSxlnsch8g_OZP3EstmGL100Joc2HtZ5HVdWU5Bdom96Up9W-MrJdbTQHZGGcLd0eCSjR7GXs4KbDqnx2msCE3LaqZflh42YUbDYGi-rFFUtwAaX_4f58DuclE2iM_QEizvuHTLHC1MoX6zPAbMWPhp630fHc8UmGY8rMueDX7zXAVAcdNEHwCJUUVdZCDUGaAcKVHk2UMkviy-Fq8Y6VIk71S" alt="Siena" />
-                    <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors"></div>
-                  </div>
-                </div>
+              <div className="relative rounded-xl overflow-hidden aspect-square self-end w-4/5 shadow-xl group">
+                 {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiVEK9HgS_0eWEQ1VTgjG1hjlkfUNbzqocdqAOg6mrhXjlSFM3yeqr3HidF2zXqxhkMn870n3h62O1huG-R6HsndvJomUJT75_4BoSLDjbJn0tOz_0vAIJ0IXpQmvlh8VdN1q6n9HdO0rUFaKguDwJmY4SiH2aZAVAcrqOxVs7eEwPteuFGz2EYIGgwGR2ErU12hhfhrvenjjPgEPKJg0SMe-3ftIX0wHxFbLeRn5ImoqG4sn7X9AXFXdLAlmB6u99MOgJCK--L-xD" alt="Eiffel tower through cherry blossoms" />
+                <div className="absolute inset-0 bg-secondary/10 backdrop-overlay"></div>
+                <div className="absolute top-6 left-6 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-xs font-bold text-primary">Trending Now</div>
               </div>
             </div>
-
-            <button className="w-full mt-12 py-5 bg-on-surface text-surface rounded-full font-bold tracking-tight hover:bg-primary transition-colors flex items-center justify-center gap-3">
-              Confirm Itinerary
-              <span className="material-symbols-outlined">auto_fix_high</span>
-            </button>
           </div>
         </section>
+
+        {/* Subtle Background Elements */}
+        <div className="fixed top-1/4 -right-64 w-[600px] h-[600px] bg-secondary-fixed/10 rounded-full blur-[120px] -z-20 pointer-events-none"></div>
+        <div className="fixed bottom-0 -left-64 w-[800px] h-[800px] bg-primary-fixed-dim/5 rounded-full blur-[160px] -z-20 pointer-events-none"></div>
       </main>
-
-      {/* Floating Action Element */}
-      <div className="fixed bottom-10 right-10 z-50">
-        <button className="bg-primary text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
-          <span className="material-symbols-outlined text-3xl">map</span>
-        </button>
-      </div>
+      
+      <Footer />
     </>
   );
 }
