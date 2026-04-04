@@ -1,12 +1,8 @@
-import SideNav from '../../components/SideNav';
-
 export default function Dashboard() {
   return (
     <>
-      <SideNav />
-
       {/* Main Content Shell */}
-      <main className="lg:ml-80 pt-28 px-6 pb-12 lg:px-12 flex flex-col md:flex-row gap-12 max-w-[1600px] mx-auto">
+      <main className="pt-28 px-6 pb-12 lg:px-12 flex flex-col md:flex-row gap-12 max-w-[1600px] mx-auto">
         {/* Conversation Thread (The Curator) */}
         <section className="flex-1 max-w-3xl space-y-12">
           <header>
