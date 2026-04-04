@@ -5,6 +5,9 @@ import { usePathname } from 'next/navigation';
 export default function MobileNav() {
   const pathname = usePathname();
 
+  // Hide global navigation on the admin dashboard
+  if (pathname?.startsWith('/admin')) return null;
+
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl flex justify-around p-4 z-50 border-t border-outline-variant/10 pb-6 pt-2">
       <Link href="/destinations" className={`flex flex-col items-center gap-1 ${pathname === '/destinations' || pathname === '/' ? 'text-primary' : 'text-outline/80'} hover:text-primary transition-colors`}>

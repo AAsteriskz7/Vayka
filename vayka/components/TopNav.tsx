@@ -5,6 +5,9 @@ import { usePathname } from 'next/navigation';
 export default function TopNav() {
   const pathname = usePathname();
 
+  // Hide global navigation on the admin dashboard
+  if (pathname?.startsWith('/admin')) return null;
+
   const isDestinations = pathname === '/destinations';
   const isItineraries = pathname === '/itineraries';
   const isSearch = pathname === '/search';
