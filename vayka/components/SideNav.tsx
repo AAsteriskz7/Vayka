@@ -16,7 +16,7 @@ export default function SideNav() {
           <span className="material-symbols-outlined">explore</span>
           <span className="font-body tracking-tight">Destinations</span>
         </Link>
-        <Link href="/" className={`flex items-center gap-4 ${pathname === '/' || pathname === '/itineraries' ? 'text-teal-900 dark:text-teal-50 font-bold border-l-4 border-teal-900 dark:border-teal-50 pl-4' : 'text-teal-700/60 dark:text-teal-200/60 pl-8'} hover:text-teal-900 transition-all`}>
+        <Link href="/itineraries" className={`flex items-center gap-4 ${pathname === '/itineraries' ? 'text-teal-900 dark:text-teal-50 font-bold border-l-4 border-teal-900 dark:border-teal-50 pl-4' : 'text-teal-700/60 dark:text-teal-200/60 pl-8'} hover:text-teal-900 transition-all`}>
           <span className="material-symbols-outlined">map</span>
           <span className="font-body tracking-tight">Itineraries</span>
         </Link>
