@@ -86,11 +86,11 @@ export default function SearchResults() {
 
           {/* Results Grid (Masonry Aesthetic) */}
           <div className="flex-1">
-            <div className="masonry-grid relative z-10">
+            <div className="columns-1 md:columns-2 gap-8 space-y-8 relative z-10">
               
               {/* Destination Card 1 */}
-              <Link href="/destinations/lofoten" className="masonry-item-tall flex flex-col group">
-                <div className="relative flex-1 rounded-xl overflow-hidden mb-6 bg-surface-container-low shadow-sm">
+              <Link href="/destinations/lofoten" className="break-inside-avoid flex flex-col group">
+                <div className="relative w-full aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-surface-container-low shadow-sm">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img alt="Lofoten Islands" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuFu1P719pF93_EI1H-k3JGWJFpUBcmNQdpMAhCdPtQ4t2hfSu5yc5zWgmliV-5fsDpp5YM9ZKwKO9I7gHGyCf_tjgJ_y2Mk73xy3y_Seahs594GEkZ5lK4JvBiM2fAdmDRj8fp2TeJmdtyL0GrAheNKo2CicJWpQ5Uer86C1g6ATmAv9FmwGTG-RLWrE785gnMX5UeQKz2UW6d3fXo--mh6o5Zh84Kc9hKQwAXsDag0Q9d6ZQxXVdN-sMeqa8slu8Dh_sdLHwyAkf" />
                   <div className="absolute top-6 right-6 px-4 py-2 bg-white/80 backdrop-blur-md rounded-full text-[10px] font-bold uppercase tracking-widest text-primary shadow-sm">
@@ -114,8 +114,8 @@ export default function SearchResults() {
               </Link>
 
               {/* Destination Card 2 */}
-              <Link href="/destinations/kyoto" className="masonry-item-short flex flex-col group">
-                <div className="relative flex-1 rounded-xl overflow-hidden mb-6 bg-surface-container-low shadow-sm">
+              <Link href="/destinations/kyoto" className="break-inside-avoid flex flex-col group">
+                <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-4 bg-surface-container-low shadow-sm">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img alt="Kyoto Temples" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8nfMq_ChUXQDkD-pKVZCX3t5Y40ZNDimt_AVg-CgVFH71Xh713K5W4M6Fi5A9RfRg61v3czQSH9ATiUBSDh51lCLrpvxh4t8BF6K4Br8ITYSrt2F0UfhvaOmMyMB8KJARzlkmTVfZ4I3vfC0_vzHBZHKnv71bBKJcHzn8eMr-gxOcFm2yTePb7HkJoHKn1i28rFmxeUD058A_0wQS261mU8Tmm4Eu022ZLcb41zQzesE3GhsJsi6iBh2p-_AY2YYIiLViDiIc1wHO" />
                 </div>
@@ -136,8 +136,8 @@ export default function SearchResults() {
               </Link>
 
               {/* Destination Card 3 */}
-              <Link href="/destinations/tuscany" className="masonry-item flex flex-col group">
-                <div className="relative flex-1 rounded-xl overflow-hidden mb-6 bg-surface-container-low shadow-sm">
+              <Link href="/destinations/tuscany" className="break-inside-avoid flex flex-col group">
+                <div className="relative w-full aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container-low shadow-sm">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img alt="Tuscany Hills" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoZCsLKdLYUX9eTUVc5EPCjxU7Z19ga7tnINTgXhIRctYTs4QTlew6Stm3jZLqjYYF-p-EiED_VcE0ny5989chCxkMtP-o94dmpaj5W2NSAI5MYBQUzTDv5mKxXgsi2J0zGum4PLaPm_TWTXjawaM9tNEGYVKp_aizfNuGofMUkNZ8u6Vx0GWnh0fezy3drzmY4sCo7UhWlk8dRaxshJCKPcscW-bT3gEwxOFHkiZ7DJvW_Up-hWOesBlN83xFYt3upHqMQZKi-EFP" />
                 </div>
@@ -158,8 +158,8 @@ export default function SearchResults() {
               </Link>
 
               {/* Destination Card 4 */}
-              <Link href="/destinations/ubud" className="masonry-item-tall flex flex-col group">
-                <div className="relative flex-1 rounded-xl overflow-hidden mb-6 bg-surface-container-low shadow-sm">
+              <Link href="/destinations/ubud" className="break-inside-avoid flex flex-col group">
+                <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden mb-4 bg-surface-container-low shadow-sm">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img alt="Bali Jungle" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqRVNHQVTQz3x-lXQoQ87dUWF_lJwUvnGzhnqvaMGYJVDr2fRATgvHIivx6uqjNcJY6fNs6GF1LPcf7DAaIInE04Xylq_T0aBnO7YooKb5g_Dt3eTZOp6ASlwqjUTHzm9yFB-ShL-DskuNXDGprLn7z6IuLzjek21H3H-dCj6QY-TtPeB1IwdNKUWFPumROd-s5gK-ouvo9Ty-QN3L_VS2Bqk-0qz_sF6hXvbbqLOQBoQpzs6x0WkQDQAmLfJ_y3u7VO2J7Nb_qTCy" />
                 </div>
@@ -180,8 +180,8 @@ export default function SearchResults() {
               </Link>
 
               {/* Destination Card 5 */}
-              <Link href="/destinations/santorini" className="masonry-item flex flex-col group">
-                <div className="relative flex-1 rounded-xl overflow-hidden mb-6 bg-surface-container-low shadow-sm">
+              <Link href="/destinations/santorini" className="break-inside-avoid flex flex-col group">
+                <div className="relative w-full aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-surface-container-low shadow-sm">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img alt="Santorini Coast" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4VubQuqqa22iLxHqoYBhmVQ7WkM2cIW5FoKRDOARHS2WuHZt6i6mNZ4yBjOxf8OSy7_IYdJzUKzJgrZgXPADe7gb_AfQvtJio0wUe2NcE0zGHFLIC-6dlve-CyuhTc3ivL-7sS4ZflEkIbH__LAvwyePzBGC6sDca6eKgUEWYQSG_7Sc8-2J99oFca22-Ayj0VsV2WhNkPpaNKMMtMa2AVAw5IvXfOYF-RbGw_g95fY93I8p0VqH-PbvS3ceUNjt8gPWIkgM62OUc" />
                 </div>

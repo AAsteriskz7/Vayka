@@ -30,9 +30,9 @@ export default function Destinations() {
         </header>
 
         {/* Discovery Masonry Grid */}
-        <div className="masonry-grid">
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
           {/* Destination Card 1 */}
-          <div className="masonry-item relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+          <div className="break-inside-avoid relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 w-full aspect-[4/5] mb-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD90HFg7qJzYZlwqaMCsBhyfUIguL8fMm9V-WIjIUfWpUQl_uASbVePJ_R1KFzJTmqk7I_klfcnRGvXeSy5kmMs7fxbEsJk3Bka-3iGawAot7G5U28QIzEnu7TT0AoEu51qJDw3HRghKT3drFVMiNEQMdaZ8lWEBJIaN9VVJFuozkefyZYCcE5H5vEzEHZ-fgNcdbdE__3lfGQnEFqEEUnHk0IFDKgzI-d3bqLxPMN8Y_NTxt61bpSO1PgXsFW2Ak8gFE7ayFGr5g72" alt="minimalist wooden villa in tropical jungle" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
@@ -47,7 +47,7 @@ export default function Destinations() {
           </div>
 
           {/* Destination Card 2 (Tall) */}
-          <div className="masonry-item-tall relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+          <div className="break-inside-avoid relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 w-full aspect-[3/4] mb-4">
              {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvq5BJlA1xYRYkY7VpRSfM7Ls6avsOSh-vt5GLXSUY50cJSRKyC54p_3vfY8e7pSoxoE3KisSc_i3IlGwGsLG91V2efPWF9esP_GDvEwvmYjj4lcklka2g5P2zCLHQpjaac5jecQ0rGJmQ_XDKdGSS0IoJiaPjXb9xMT2NJ7ilEXCwbjWDzFqpjg2vceGDHWbM1pYy0TEerIwPhKmps9RPBuvK3tsThv2Q2NykFop70foaRwWAv9wMiLwyLfNLJ_qdRap7uygRtgjF" alt="aerial view of turquoise ocean lagoons" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60"></div>
@@ -65,7 +65,7 @@ export default function Destinations() {
           </div>
 
           {/* Destination Card 3 */}
-          <div className="masonry-item relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+          <div className="break-inside-avoid relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 w-full aspect-square mb-4">
              {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeUCl1G9j4S0-V0SSIerRGY4VWKY0jR1dPP1YzBXW69gX69kjQt1XHFF1ObIW_JaiCAgo3iZ57NqNdfwhbSTJaMZqw1Vq3QbpzkziA-gs4EREyrk1qSy4hjn4JyV6dVURo76eSQltVUhUL1Q_UJPcafSWJKgcP6rIi6T1rC0b9cEGzOpEg6yJXrbumqhWNNphdaqZUIYO9dQpo0d4_gnJCnBxkiNLF2MrXtwcInBtJZ2XdF0-9FaP7WpmcT_sO1Go-nxHOE21lRFSe" alt="white-washed buildings in Santorini" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60"></div>
@@ -79,7 +79,7 @@ export default function Destinations() {
           </div>
 
           {/* Destination Card 4 (Short) */}
-          <div className="masonry-item-short relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+          <div className="break-inside-avoid relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 w-full aspect-video mb-4">
              {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA21P2UkM0Y8e-HqOkGJi7qB3m83ID6cIptkYCHtxJ822xvHP9OP1ONBOraty0X9xoob5fTo7eLtEgdoHp0eCXAYd2a79UURsaqc-1PaY2RWeNfbO8qQBKXlx2A0PUc_vMrJP-crbrbEZDT5WxCEHLkdzCloxsUHAhvxTx7tRtXtkewWA8cA6UidiREtg1SeZRjNldU4Iav59zsvd_57cYEiujfhvY4_jIK4c46lFx5ILx-XwicZoSu-6uOEAj3wgcwSH1tyG64ggbn" alt="narrow cobblestone street in Kyoto" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60"></div>
@@ -90,7 +90,7 @@ export default function Destinations() {
           </div>
 
           {/* Destination Card 5 */}
-          <div className="masonry-item relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+          <div className="break-inside-avoid relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 w-full aspect-[4/5] mb-4">
              {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTlCgV7JOF2ZvPymH-1AYF_JRweMJXPmw5AyLwpG5BLHvMpXLWiZ357MXub6yA5Alum3_1__om4F9ihg1va-vYb0L87rnCMwpbEMRc9ING7iaz2_5GYMC4HdezmrkOVL2k8mg4RzJ1bwpgh_iWj4E31f--N8U6fSZNf_BdHeXqZgUPFwV7j-0SG4gxKwlIjDItmJPASCtj-JfWnRseboTLxq10ohhHaC4ceczQcGyYXtfxRX5ptAXiveJ12L60gd5k6eDcEwnEaYx4" alt="lush vertical forest" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60"></div>
@@ -101,7 +101,7 @@ export default function Destinations() {
           </div>
 
           {/* Destination Card 6 (Tall) */}
-          <div className="masonry-item-tall relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+          <div className="break-inside-avoid relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 w-full aspect-[3/4] mb-4">
              {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYM45N4riCr5rCjETuLKptx-2okkrQ8jSqThgP9AyC4-i-PE9E55W8fIzjFUXzKJdxmS0J2llCQqAdcCdhiZBjsMzv22cH0VhhidjxTHNyBzORH6R7ulAcoxXJZCOXsoE8Z4QJxGcD_IWIhdhIi5KhVXOe8uU2DvtcKThTyTDinkAXjFvy__DhA58CLQjJRE8OIwZqC7jkNZyOZyjuDJc7_rx9C7eC2Rp84SMwd1M4fhDs4n5JbxZwiWTOO6-9a8FSMeW9NWR3bYgE" alt="lone traveler walking through vast golden sand desert dunes" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60"></div>
