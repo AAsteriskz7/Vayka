@@ -1,23 +1,28 @@
 
 import { NextRequest, NextResponse } from 'next/server';
-const HF_API_URL = 'https://router.huggingface.co/v1/inference/google/gemma-2b-it';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
 
 export async function POST(req: NextRequest) {
   const { message } = await req.json();
-  const apiKey = process.env.HUGGINGFACE_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    return NextResponse.json({ error: 'Missing Hugging Face API key' }, { status: 500 });
+    return NextResponse.json({ error: 'Missing Gemini API key' }, { status: 500 });
   }
-  const res = await fetch(HF_API_URL, {
+  const res = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
     },
     body: JSON.stringify({
-      inputs: message,
-      parameters: { max_new_tokens: 256, return_full_text: false },
+      contents: [
+        {
+          parts: [
+            {
+              text: message,
+            },
+          ],
+        },
+      ],
     }),
   });
   if (!res.ok) {
@@ -25,10 +30,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: err }, { status: 500 });
   }
   const data = await res.json();
-  // Hugging Face router returns { results: [{ generated_text: ... }] }
+  // Gemini returns { candidates: [{ content: { parts: [{ text: ... }] } }] }
   let response = 'No response.';
-  if (data && Array.isArray(data.results) && data.results[0]?.generated_text) {
-    response = data.results[0].generated_text;
+  if (data && Array.isArray(data.candidates) && data.candidates[0]?.content?.parts?.[0]?.text) {
+    response = data.candidates[0].content.parts[0].text;
   }
   return NextResponse.json({ response });
 }
