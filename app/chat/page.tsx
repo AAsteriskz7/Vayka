@@ -1,16 +1,20 @@
-
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Footer from '../../components/Footer';
 
 const SUGGESTED_PROMPTS = [
-  "Is Brussels far from where I am?",
-  "Best chocolate in Ghent?",
-  "Train schedules"
+  "John Smith's trip to London?",
+  "Korean travelers who went to Tokyo?",
+  "How much was Felipe Almeida's Airbnb?"
 ];
 
+interface ChatMessage {
+  role: "ai" | "user";
+  content: string;
+  sources?: string[];
+}
 
-async function fetchAIResponse(question: string): Promise<string> {
+async function fetchAIResponse(question: string): Promise<{ response: string, sources: string[] }> {
   try {
     const res = await fetch("/api/chat", {
       method: "POST",
@@ -18,17 +22,17 @@ async function fetchAIResponse(question: string): Promise<string> {
       body: JSON.stringify({ message: question })
     });
     const data = await res.json();
-    if (data.response) return data.response;
-    if (data.error) return `Error: ${data.error}`;
-    return "Sorry, I didn't get a response.";
+    if (data.response) return { response: data.response, sources: data.sources || [] };
+    if (data.error) return { response: `Error: ${data.error}`, sources: [] };
+    return { response: "Sorry, I didn't get a response.", sources: [] };
   } catch (e) {
-    return "Network error. Please try again.";
+    return { response: "Network error. Please try again.", sources: [] };
   }
 }
 
 export default function Chat() {
-  const [messages, setMessages] = useState([
-    { role: "ai", content: "Hi! Ask me anything about your Belgian adventure." }
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    { role: "ai", content: "Hi! Ask me anything about your travel records." }
   ]);
   const [input, setInput] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -51,13 +55,13 @@ export default function Chat() {
     ]);
     setInput("");
     textareaRef.current?.focus();
-    const aiResponse = await fetchAIResponse(msg);
+    const result = await fetchAIResponse(msg);
     setMessages((prev) => {
       // Replace the last "..." AI message with the real response
       const last = [...prev];
       for (let i = last.length - 1; i >= 0; i--) {
         if (last[i].role === "ai" && last[i].content === "...") {
-          last[i] = { role: "ai", content: aiResponse };
+          last[i] = { role: "ai", content: result.response, sources: result.sources };
           break;
         }
       }
@@ -91,12 +95,25 @@ export default function Chat() {
                   </div>
                 ) : (
                   <div key={i} className="flex gap-4 items-start max-w-[85%]">
-                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0 mt-1">
                       <span className="material-symbols-outlined text-white text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
                     </div>
-                    <div className="space-y-3">
+                    <div className="space-y-3 w-full">
                       <div className="bg-surface-container-lowest p-6 rounded-xl rounded-tl-none shadow-sm text-on-surface leading-relaxed">
                         <p>{msg.content}</p>
+                        
+                        {msg.sources && msg.sources.length > 0 && (
+                          <div className="mt-4 pt-4 border-t border-surface-variant/50">
+                            <p className="text-xs font-bold text-secondary mb-2 uppercase tracking-wide">Sources</p>
+                            <div className="flex flex-wrap gap-2">
+                              {msg.sources.map((src, idx) => (
+                                <span key={idx} className="px-2 py-1 bg-surface-container rounded-md text-xs text-secondary-container-on border border-outline-variant/30 shrink-0 truncate max-w-full" title={src}>
+                                  {src}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -124,7 +141,7 @@ export default function Chat() {
                 <textarea
                   ref={textareaRef}
                   className="w-full bg-surface-container-lowest border-none rounded-xl p-5 pr-16 focus:ring-2 focus:ring-surface-tint/20 min-h-[80px] resize-none text-on-surface placeholder:text-stone-400"
-                  placeholder="Ask anything about your Belgian adventure..."
+                  placeholder="Ask anything about the travel records..."
                   value={input}
                   onChange={e => setInput(e.target.value)}
                   onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(input); } }}
