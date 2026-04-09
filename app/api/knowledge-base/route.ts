@@ -3,6 +3,8 @@ import {
   clearKnowledgeBase,
   getKnowledgeBaseSummary,
   reloadKnowledgeBase,
+  getKnowledgeBaseSources,
+  deleteKnowledgeBaseSource
 } from '../../../lib/knowledge-base'
 import { recordRequestMetric } from '../../../lib/monitoring'
 import { safelyAppendUsageLog } from '../../../lib/usage-logs'
@@ -12,6 +14,7 @@ export async function GET() {
 
   try {
     const summary = await getKnowledgeBaseSummary()
+    const sources = await getKnowledgeBaseSources()
     recordRequestMetric({
       endpoint: '/api/knowledge-base',
       method: 'GET',
@@ -26,7 +29,7 @@ export async function GET() {
       ok: true,
       statusCode: 200,
     })
-    return NextResponse.json({ success: true, summary })
+    return NextResponse.json({ success: true, summary, sources })
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown knowledge base error.'
     recordRequestMetric({
@@ -49,11 +52,16 @@ export async function GET() {
   }
 }
 
-export async function DELETE() {
+export async function DELETE(req: Request) {
   const startedAt = Date.now()
 
   try {
-    const result = await clearKnowledgeBase()
+    const { searchParams } = new URL(req.url)
+    const source = searchParams.get('source')
+
+    const result = source
+      ? await deleteKnowledgeBaseSource(source)
+      : await clearKnowledgeBase()
     recordRequestMetric({
       endpoint: '/api/knowledge-base',
       method: 'DELETE',
