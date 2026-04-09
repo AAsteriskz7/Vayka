@@ -19,12 +19,12 @@ The system is designed around two distinct travel personas:
 ## 4. User Stories & Sprint Tracking
 
 ### Sprint 1 (Core Setup & Admin)
-* **[Story 1]** As an End User, I want to access the chatbot through a hosted web application, so I can interact with it from anywhere.
-* **[Story 2]** As an End User, I want to ask natural language questions about the selected topic, so I can receive relevant information.
-* **[Story 5]** As a Developer, I want to define and update the dataset used by the RAG system, so the chatbot's knowledge stays current.
-* **[Story 10]** As an Administrator, I want to monitor system performance (latency, failures), so the chatbot meets responsiveness requirements.
-* **[Story 11]** As an Administrator, I want to manually clear or reload the chatbot's knowledge base so I can recover from incorrect or outdated data.
-* **[Story 12]** As an Administrator, I want to view basic usage logs (e.g., number of queries, timestamps, response times) so I can understand how the chatbot is being used.
+* [x] **[Story 1]** As an End User, I want to access the chatbot through a hosted web application, so I can interact with it from anywhere.
+* [x] **[Story 2]** As an End User, I want to ask natural language questions about the selected topic, so I can receive relevant information.
+* [ ] **[Story 5]** As a Developer, I want to define and update the dataset used by the RAG system, so the chatbot's knowledge stays current.
+* [x] **[Story 10]** As an Administrator, I want to monitor system performance (latency, failures), so the chatbot meets responsiveness requirements.
+* [x] **[Story 11]** As an Administrator, I want to manually clear or reload the chatbot's knowledge base so I can recover from incorrect or outdated data.
+* [x] **[Story 12]** As an Administrator, I want to view basic usage logs (e.g., number of queries, timestamps, response times) so I can understand how the chatbot is being used.
 
 ### Sprint 2 (Advanced RAG, Validation, & Custom Features)
 * **[Story 3]** As an End User, I want responses to be grounded in the provided dataset, so I can trust their accuracy.
