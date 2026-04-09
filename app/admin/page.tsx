@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import KnowledgeBaseManager from '../../components/KnowledgeBaseManager';
 
 export default function AdminDashboard() {
   return (
@@ -192,6 +193,8 @@ export default function AdminDashboard() {
                 </button>
               </div>
             </div>
+
+            <KnowledgeBaseManager />
 
             {/* Responsive Table Wrapper */}
             <div className="overflow-x-auto pb-4">

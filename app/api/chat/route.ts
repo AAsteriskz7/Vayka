@@ -1,13 +1,17 @@
 
 import { NextRequest, NextResponse } from 'next/server';
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
 
 export async function POST(req: NextRequest) {
   const { message } = await req.json();
   const apiKey = process.env.GEMINI_API_KEY;
+  const chatModel = process.env.GEMINI_CHAT_MODEL || 'gemini-2.5-flash';
+
   if (!apiKey) {
     return NextResponse.json({ error: 'Missing Gemini API key' }, { status: 500 });
   }
+
+  const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${chatModel}:generateContent`;
+
   const res = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
     method: 'POST',
     headers: {
