@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { recordRequestMetric } from '../../../lib/monitoring'
 import { safelyAppendUsageLog } from '../../../lib/usage-logs'
+import { supabase } from '../../../lib/supabase'
+import { getGeminiEmbedding } from '../../../lib/embeddings'
 
-const CHAT_STYLE_INSTRUCTIONS = [
+const BASE_INSTRUCTIONS = [
   'You are Vayka, a concise travel assistant.',
   'Keep answers short, practical, and easy to scan.',
   'Default to 2 to 4 sentences unless the user asks for more detail.',
@@ -19,26 +21,57 @@ export async function POST(req: NextRequest) {
     const apiKey = process.env.GEMINI_API_KEY;
     const chatModel = process.env.GEMINI_CHAT_MODEL || 'gemini-2.5-flash';
 
-    if (!apiKey) {
-      recordRequestMetric({
-        endpoint: '/api/chat',
-        method: 'POST',
-        durationMs: Date.now() - startedAt,
-        ok: false,
-        statusCode: 500,
-        errorMessage: 'Missing Gemini API key',
-      })
-      await safelyAppendUsageLog({
-        endpoint: '/api/chat',
-        method: 'POST',
-        durationMs: Date.now() - startedAt,
-        ok: false,
-        statusCode: 500,
-        errorMessage: 'Missing Gemini API key',
-      })
-      return NextResponse.json({ error: 'Missing Gemini API key' }, { status: 500 });
+    if (!apiKey || !supabase) {
+      const err = !apiKey ? 'Missing Gemini API key' : 'Missing Supabase Config'
+      recordRequestMetric({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: err })
+      await safelyAppendUsageLog({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: err })
+      return NextResponse.json({ error: err }, { status: 500 });
     }
 
+    // 1. Semantic Search
+    let contextDocuments: { content: string, source: string, similarity: number }[] = [];
+    try {
+      const queryEmbedding = await getGeminiEmbedding(message);
+      const { data, error } = await supabase.rpc('match_documents', {
+        query_embedding: queryEmbedding,
+        match_threshold: 0.5,
+        match_count: 5
+      });
+      if (!error && data) {
+         contextDocuments = data;
+      }
+    } catch (e) {
+      console.warn("Vector search failed, proceeding without context. Ensure match_documents RPC is installed.", e);
+    }
+
+    // 2. Dynamic Prompt Construction
+    // Classify intent programmatically (a simple heuristic for Sprint 1)
+    let promptType = 'general';
+    const msgLower = message.toLowerCase();
+    if (msgLower.includes('how many') || msgLower.includes('cost') || msgLower.includes('who')) {
+      promptType = 'lookup';
+    }
+
+    let dynamicPrompt = BASE_INSTRUCTIONS;
+    if (promptType === 'lookup') {
+      dynamicPrompt += '\nThe user is asking for specific factual lookup. Prioritize citing exact numbers, names, and costs from the provided context if available.';
+    }
+
+    let promptContext = '';
+    const uniqueSources = new Set<string>();
+    
+    if (contextDocuments.length > 0) {
+      promptContext = '\n\nRelevant Information:\n';
+      contextDocuments.forEach((doc, idx) => {
+         promptContext += `[Source ${idx + 1}]: ${doc.content}\n`;
+         if (doc.source) uniqueSources.add(doc.source);
+      });
+      dynamicPrompt += '\n\nYou must base your answer ONLY on the Relevant Information provided below. If the information does not answer the question, state that you do not know based on your current knowledge base.';
+    }
+
+    const finalPromptText = `${dynamicPrompt}${promptContext}\n\nUser question: ${message}`;
+
+    // 3. Query Gemini
     const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${chatModel}:generateContent`;
 
     const res = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
@@ -48,14 +81,14 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         generationConfig: {
-          temperature: 0.4,
-          maxOutputTokens: 180,
+          temperature: promptType === 'lookup' ? 0.1 : 0.4,
+          maxOutputTokens: 250,
         },
         contents: [
           {
             parts: [
               {
-                text: `${CHAT_STYLE_INSTRUCTIONS}\n\nUser question: ${message}`,
+                text: finalPromptText,
               },
             ],
           },
@@ -64,65 +97,27 @@ export async function POST(req: NextRequest) {
     });
     if (!res.ok) {
       const err = await res.text();
-      recordRequestMetric({
-        endpoint: '/api/chat',
-        method: 'POST',
-        durationMs: Date.now() - startedAt,
-        ok: false,
-        statusCode: 500,
-        errorMessage: err,
-      })
-      await safelyAppendUsageLog({
-        endpoint: '/api/chat',
-        method: 'POST',
-        durationMs: Date.now() - startedAt,
-        ok: false,
-        statusCode: 500,
-        errorMessage: err,
-      })
+      recordRequestMetric({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: err })
+      await safelyAppendUsageLog({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: err })
       return NextResponse.json({ error: err }, { status: 500 });
     }
     const data = await res.json();
-    // Gemini returns { candidates: [{ content: { parts: [{ text: ... }] } }] }
     let response = 'No response.';
     if (data && Array.isArray(data.candidates) && data.candidates[0]?.content?.parts?.[0]?.text) {
       response = data.candidates[0].content.parts[0].text;
     }
 
-    recordRequestMetric({
-      endpoint: '/api/chat',
-      method: 'POST',
-      durationMs: Date.now() - startedAt,
-      ok: true,
-      statusCode: 200,
-    })
-    await safelyAppendUsageLog({
-      endpoint: '/api/chat',
-      method: 'POST',
-      durationMs: Date.now() - startedAt,
-      ok: true,
-      statusCode: 200,
-    })
+    recordRequestMetric({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: true, statusCode: 200 })
+    await safelyAppendUsageLog({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: true, statusCode: 200 })
 
-    return NextResponse.json({ response });
+    return NextResponse.json({ 
+      response,
+      sources: Array.from(uniqueSources)
+    });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown chat error'
-    recordRequestMetric({
-      endpoint: '/api/chat',
-      method: 'POST',
-      durationMs: Date.now() - startedAt,
-      ok: false,
-      statusCode: 500,
-      errorMessage: message,
-    })
-    await safelyAppendUsageLog({
-      endpoint: '/api/chat',
-      method: 'POST',
-      durationMs: Date.now() - startedAt,
-      ok: false,
-      statusCode: 500,
-      errorMessage: message,
-    })
+    recordRequestMetric({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: message })
+    await safelyAppendUsageLog({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: message })
     return NextResponse.json({ error: message }, { status: 500 })
   }
 }
