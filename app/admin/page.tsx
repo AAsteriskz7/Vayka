@@ -4,6 +4,8 @@ import KnowledgeBaseControls from '../../components/KnowledgeBaseControls';
 import UsageLogControls from '../../components/UsageLogControls';
 import { getMonitoringSnapshot } from '../../lib/monitoring'
 import { getUsageLogsSnapshot } from '../../lib/usage-logs'
+import { getKnowledgeBaseSources } from '../../lib/knowledge-base'
+import KnowledgeBaseList from '../../components/KnowledgeBaseList'
 
 export const dynamic = 'force-dynamic'
 
@@ -21,6 +23,7 @@ export default async function AdminDashboard() {
   const metrics = getMonitoringSnapshot()
   const systemStatus = getSystemStatus(metrics.totals.failureRate)
   const usageLogs = await getUsageLogsSnapshot()
+  const sources = await getKnowledgeBaseSources()
 
   return (
     <div className="min-h-screen bg-surface text-on-surface">
@@ -246,97 +249,9 @@ export default async function AdminDashboard() {
 
             <KnowledgeBaseManager />
 
-            {/* Responsive Table Wrapper */}
-            <div className="overflow-x-auto pb-4">
-              <div className="min-w-[800px] space-y-3">
-                {/* Table Header */}
-                <div className="grid grid-cols-12 px-6 py-4 text-xs font-label font-bold text-secondary uppercase tracking-[0.2em] opacity-80 border-b border-surface-variant">
-                  <div className="col-span-5">Source Name</div>
-                  <div className="col-span-2">Type</div>
-                  <div className="col-span-2">Last Updated</div>
-                  <div className="col-span-2">Status</div>
-                  <div className="col-span-1 text-right">Action</div>
-                </div>
-                
-                {/* Row 1 */}
-                <div className="grid grid-cols-12 px-6 py-5 bg-surface-container-low rounded-2xl items-center transition-all hover:bg-surface-container-high group border border-transparent hover:border-black/5 hover:shadow-sm cursor-pointer">
-                  <div className="col-span-5 flex items-center gap-4">
-                    <div className="w-12 h-12 bg-secondary-container rounded-2xl flex items-center justify-center text-primary shadow-sm">
-                      <span className="material-symbols-outlined">description</span>
-                    </div>
-                    <div>
-                      <p className="font-bold text-primary">Mediterranean_Destinations_2024.pdf</p>
-                      <p className="text-xs text-secondary font-medium mt-1">3,420 vectors indexed</p>
-                    </div>
-                  </div>
-                  <div className="col-span-2 text-sm text-secondary font-medium">PDF Document</div>
-                  <div className="col-span-2 text-sm text-secondary font-medium bg-surface px-3 py-1.5 rounded-full inline-block max-w-fit">2 hours ago</div>
-                  <div className="col-span-2">
-                    <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-tertiary-container/10 text-tertiary-container rounded-full text-xs font-bold border border-tertiary-container/20">
-                      <span className="w-2 h-2 rounded-full bg-tertiary-container"></span>
-                      Synced
-                    </span>
-                  </div>
-                  <div className="col-span-1 text-right">
-                    <button className="opacity-0 group-hover:opacity-100 transition-opacity p-2 hover:bg-surface-container rounded-full outline-none">
-                      <span className="material-symbols-outlined text-secondary">more_vert</span>
-                    </button>
-                  </div>
-                </div>
+            <KnowledgeBaseManager />
 
-                {/* Row 2 */}
-                <div className="grid grid-cols-12 px-6 py-5 bg-transparent rounded-2xl items-center transition-all hover:bg-surface-container-low group cursor-pointer border border-transparent hover:border-black/5">
-                  <div className="col-span-5 flex items-center gap-4">
-                    <div className="w-12 h-12 bg-tertiary-fixed-dim rounded-2xl flex items-center justify-center text-tertiary shadow-sm">
-                      <span className="material-symbols-outlined">public</span>
-                    </div>
-                    <div>
-                      <p className="font-bold text-primary">Kyoto_Tourism_Portal_Crawler</p>
-                      <p className="text-xs text-secondary font-medium mt-1">Automated Web Sync</p>
-                    </div>
-                  </div>
-                  <div className="col-span-2 text-sm text-secondary font-medium">Web Crawler</div>
-                  <div className="col-span-2 text-sm text-secondary font-medium bg-surface px-3 py-1.5 rounded-full inline-block max-w-fit">Just now</div>
-                  <div className="col-span-2">
-                    <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 text-primary rounded-full text-xs font-bold border border-primary/20">
-                      <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                      Updating
-                    </span>
-                  </div>
-                  <div className="col-span-1 text-right">
-                    <button className="opacity-0 group-hover:opacity-100 transition-opacity p-2 hover:bg-surface-container rounded-full outline-none">
-                      <span className="material-symbols-outlined text-secondary">more_vert</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Row 3 */}
-                <div className="grid grid-cols-12 px-6 py-5 bg-surface-container-low rounded-2xl items-center transition-all hover:bg-surface-container-high group cursor-pointer border border-transparent hover:border-black/5">
-                  <div className="col-span-5 flex items-center gap-4">
-                    <div className="w-12 h-12 bg-secondary-container rounded-2xl flex items-center justify-center text-primary shadow-sm">
-                      <span className="material-symbols-outlined">csv</span>
-                    </div>
-                    <div>
-                      <p className="font-bold text-primary">Luxury_Hotel_Feedback_2023.csv</p>
-                      <p className="text-xs text-secondary font-medium mt-1">Sentiment analysis layer enabled</p>
-                    </div>
-                  </div>
-                  <div className="col-span-2 text-sm text-secondary font-medium">Structured Data</div>
-                  <div className="col-span-2 text-sm text-secondary font-medium bg-surface px-3 py-1.5 rounded-full inline-block max-w-fit">Oct 12, 2023</div>
-                  <div className="col-span-2">
-                    <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-tertiary-container/10 text-tertiary-container rounded-full text-xs font-bold border border-tertiary-container/20">
-                      <span className="w-2 h-2 rounded-full bg-tertiary-container"></span>
-                      Synced
-                    </span>
-                  </div>
-                  <div className="col-span-1 text-right">
-                    <button className="opacity-0 group-hover:opacity-100 transition-opacity p-2 hover:bg-surface-container rounded-full outline-none">
-                      <span className="material-symbols-outlined text-secondary">more_vert</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <KnowledgeBaseList initialSources={sources} />
 
             <div className="mt-8 flex justify-center border-t border-surface-variant pt-8">
               <button className="text-primary font-label text-sm uppercase tracking-widest font-bold hover:bg-primary/5 px-6 py-3 rounded-full transition-all flex items-center gap-2">
