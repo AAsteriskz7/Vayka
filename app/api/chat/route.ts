@@ -2,6 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { recordRequestMetric } from '../../../lib/monitoring'
 import { safelyAppendUsageLog } from '../../../lib/usage-logs'
 
+const CHAT_STYLE_INSTRUCTIONS = [
+  'You are Vayka, a concise travel assistant.',
+  'Keep answers short, practical, and easy to scan.',
+  'Default to 2 to 4 sentences unless the user asks for more detail.',
+  'Do not add filler, long introductions, or unnecessary disclaimers.',
+  'Use bullets only when they make the answer clearer.',
+  'If you are unsure, say so briefly.',
+].join(' ')
+
 export async function POST(req: NextRequest) {
   const startedAt = Date.now()
 
@@ -38,11 +47,15 @@ export async function POST(req: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        generationConfig: {
+          temperature: 0.4,
+          maxOutputTokens: 180,
+        },
         contents: [
           {
             parts: [
               {
-                text: message,
+                text: `${CHAT_STYLE_INSTRUCTIONS}\n\nUser question: ${message}`,
               },
             ],
           },
