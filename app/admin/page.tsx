@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import KnowledgeBaseManager from '../../components/KnowledgeBaseManager';
+import KnowledgeBaseControls from '../../components/KnowledgeBaseControls';
 import { getMonitoringSnapshot } from '../../lib/monitoring'
 
 export const dynamic = 'force-dynamic'
@@ -227,17 +228,9 @@ export default async function AdminDashboard() {
                 <h3 className="font-headline text-3xl text-primary font-bold">Knowledge Base</h3>
                 <p className="text-secondary mt-2 font-medium">Curate and monitor the fluid data feeding the Vayka AI engine.</p>
               </div>
-              <div className="flex flex-wrap gap-4 w-full lg:w-auto">
-                <button className="flex-1 lg:flex-none px-6 lg:px-8 py-3.5 bg-surface-container text-on-surface-variant rounded-full font-bold text-sm tracking-wide hover:bg-surface-container-high transition-colors flex items-center justify-center gap-2">
-                  <span className="material-symbols-outlined text-base">delete_sweep</span>
-                  Clear Index
-                </button>
-                <button className="flex-1 lg:flex-none px-6 lg:px-8 py-3.5 bg-gradient-to-br from-primary to-primary-container text-white rounded-full font-bold text-sm tracking-wide shadow-md shadow-primary/20 hover:shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2">
-                  <span className="material-symbols-outlined text-base">add_circle</span>
-                  Add Source
-                </button>
-              </div>
             </div>
+
+            <KnowledgeBaseControls />
 
             <KnowledgeBaseManager />
 
