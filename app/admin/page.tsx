@@ -1,7 +1,23 @@
 import Link from 'next/link';
 import KnowledgeBaseManager from '../../components/KnowledgeBaseManager';
+import { getMonitoringSnapshot } from '../../lib/monitoring'
 
-export default function AdminDashboard() {
+export const dynamic = 'force-dynamic'
+
+function formatTimestamp(value: string) {
+  return new Date(value).toLocaleString()
+}
+
+function getSystemStatus(failureRate: number) {
+  if (failureRate >= 25) return 'Degraded'
+  if (failureRate > 0) return 'Warning'
+  return 'Operational'
+}
+
+export default async function AdminDashboard() {
+  const metrics = getMonitoringSnapshot()
+  const systemStatus = getSystemStatus(metrics.totals.failureRate)
+
   return (
     <div className="min-h-screen bg-surface text-on-surface">
       {/* Sidebar Navigation */}
@@ -51,7 +67,7 @@ export default function AdminDashboard() {
               <span className="font-label text-xs text-secondary">System Status</span>
               <span className="font-medium text-tertiary-container flex items-center justify-end gap-2 mt-1">
                 <span className="w-2.5 h-2.5 rounded-full bg-tertiary-container shadow-[0_0_8px_rgba(0,80,43,0.5)] animate-pulse"></span>
-                Operational
+                {systemStatus}
               </span>
             </div>
             <div className="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden shadow-sm">
@@ -78,7 +94,7 @@ export default function AdminDashboard() {
               <div className="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-black/5 flex flex-col justify-between">
                 <div>
                   <p className="text-secondary text-sm font-medium mb-1">Latency</p>
-                  <h4 className="text-4xl font-headline text-primary font-bold">124<span className="text-lg opacity-50 ml-1 font-body">ms</span></h4>
+                  <h4 className="text-4xl font-headline text-primary font-bold">{Math.round(metrics.totals.averageLatencyMs)}<span className="text-lg opacity-50 ml-1 font-body">ms</span></h4>
                 </div>
                 <div className="mt-8 h-12 w-full flex items-end gap-1.5">
                   <div className="w-full bg-primary/20 rounded-t-sm h-1/2 rounded-full"></div>
@@ -93,8 +109,8 @@ export default function AdminDashboard() {
               {/* Stat Card 2 */}
               <div className="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-black/5 flex flex-col justify-between">
                 <div>
-                  <p className="text-secondary text-sm font-medium mb-1">Error Rate</p>
-                  <h4 className="text-4xl font-headline text-primary font-bold">0.02<span className="text-lg opacity-50 ml-1 font-body">%</span></h4>
+                  <p className="text-secondary text-sm font-medium mb-1">Failure Rate</p>
+                  <h4 className="text-4xl font-headline text-primary font-bold">{metrics.totals.failureRate.toFixed(1)}<span className="text-lg opacity-50 ml-1 font-body">%</span></h4>
                 </div>
                 <div className="mt-8 h-12 w-full flex items-end">
                   <svg className="w-full h-full drop-shadow-md" viewBox="0 0 100 40">
@@ -106,8 +122,8 @@ export default function AdminDashboard() {
               {/* Stat Card 3 */}
               <div className="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-black/5 flex flex-col justify-between">
                 <div>
-                  <p className="text-secondary text-sm font-medium mb-1">Total Queries</p>
-                  <h4 className="text-4xl font-headline text-primary font-bold">48.2<span className="text-lg opacity-50 ml-1 font-body">k</span></h4>
+                  <p className="text-secondary text-sm font-medium mb-1">Requests Observed</p>
+                  <h4 className="text-4xl font-headline text-primary font-bold">{metrics.totals.requestCount}<span className="text-lg opacity-50 ml-1 font-body">req</span></h4>
                 </div>
                 <div className="mt-8 h-12 w-full flex items-end gap-1.5">
                   <div className="w-full bg-secondary-container rounded-t-sm h-1/2 rounded-full"></div>
@@ -121,22 +137,33 @@ export default function AdminDashboard() {
             </div>
 
             <div className="mt-12">
-              <h4 className="text-sm font-label text-secondary font-bold mb-4 uppercase tracking-widest">Active Model Instances</h4>
+              <h4 className="text-sm font-label text-secondary font-bold mb-4 uppercase tracking-widest">Endpoint Health</h4>
               <div className="space-y-3">
-                <div className="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl border border-black/5 shadow-sm">
-                  <div className="flex items-center gap-3">
-                    <span className="material-symbols-outlined text-primary bg-primary/5 p-2 rounded-lg">neurology</span>
-                    <span className="font-bold text-primary">GPT-4-Turbo Curated</span>
+                {metrics.endpointMetrics.length > 0 ? (
+                  metrics.endpointMetrics.map((endpointMetric) => (
+                    <div
+                      key={`${endpointMetric.method}-${endpointMetric.endpoint}`}
+                      className="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl border border-black/5 shadow-sm"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="material-symbols-outlined text-primary bg-primary/5 p-2 rounded-lg">monitoring</span>
+                        <div>
+                          <span className="font-bold text-primary block">{endpointMetric.method} {endpointMetric.endpoint}</span>
+                          <span className="text-xs text-secondary">
+                            {endpointMetric.requestCount} req, avg {Math.round(endpointMetric.averageLatencyMs)} ms
+                          </span>
+                        </div>
+                      </div>
+                      <span className="text-xs font-label font-bold text-tertiary-container bg-tertiary-fixed-dim px-4 py-1.5 rounded-full">
+                        {endpointMetric.failureCount} fail
+                      </span>
+                    </div>
+                  ))
+                ) : (
+                  <div className="p-4 bg-surface-container-lowest rounded-xl border border-black/5 shadow-sm text-sm text-secondary">
+                    No API activity recorded yet. Use the chat, ingestion, or test endpoints to populate monitoring data.
                   </div>
-                  <span className="text-xs font-label font-bold text-tertiary-container bg-tertiary-fixed-dim px-4 py-1.5 rounded-full">Optimal</span>
-                </div>
-                <div className="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl border border-black/5 shadow-sm">
-                  <div className="flex items-center gap-3">
-                    <span className="material-symbols-outlined text-primary bg-primary/5 p-2 rounded-lg">translate</span>
-                    <span className="font-bold text-primary">Claude 3.5 Sonnet Base</span>
-                  </div>
-                  <span className="text-xs font-label font-bold text-tertiary-container bg-tertiary-fixed-dim px-4 py-1.5 rounded-full">Optimal</span>
-                </div>
+                )}
               </div>
             </div>
           </section>
@@ -147,29 +174,47 @@ export default function AdminDashboard() {
             <div className="flex-1 space-y-10">
               <div>
                 <div className="flex justify-between text-sm mb-3">
-                  <span className="text-secondary font-medium">Token Usage</span>
-                  <span className="font-bold text-primary">72%</span>
+                  <span className="text-secondary font-medium">Failed Requests</span>
+                  <span className="font-bold text-primary">{metrics.totals.failureCount}</span>
                 </div>
                 <div className="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
-                  <div className="h-full bg-primary w-[72%] rounded-full"></div>
+                  <div
+                    className="h-full bg-primary rounded-full"
+                    style={{ width: `${Math.min(metrics.totals.failureRate, 100)}%` }}
+                  ></div>
                 </div>
               </div>
               
               <div>
                 <div className="flex justify-between text-sm mb-3">
-                  <span className="text-secondary font-medium">Storage Capacity</span>
-                  <span className="font-bold text-primary">2.4 TB / 5 TB</span>
+                  <span className="text-secondary font-medium">Latest Request</span>
+                  <span className="font-bold text-primary">
+                    {metrics.latestRequest ? `${metrics.latestRequest.method} ${metrics.latestRequest.endpoint}` : 'No traffic'}
+                  </span>
                 </div>
                 <div className="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
-                  <div className="h-full bg-secondary w-[48%] rounded-full"></div>
+                  <div className="h-full bg-secondary w-full rounded-full"></div>
                 </div>
               </div>
               
               <div className="pt-6">
-                <h4 className="text-sm font-label text-secondary font-bold mb-4 uppercase tracking-widest">Global Heatmap</h4>
-                <div className="h-48 rounded-2xl bg-surface-container overflow-hidden grayscale contrast-125 opacity-80 border-4 border-white shadow-inner mix-blend-multiply">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img className="w-full h-full object-cover scale-110" data-alt="abstract world map with glowing dots indicating data traffic and global connectivity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUSX3WVpOIn8FKcZUWF-KKKIDktmSG8Xx7jT2UB6Z4JCrziJPKHq1ovU72qPSMPhl8JqLxpx5RBJWGU1L2eH1UJkiUUquniFyDSN3MlcuTSd2Pan8xtDNxwpOhNKzFHgPIQ53Hgy0Oe8gpkQqpq4jWTyY4Rv4NWx7-kC8Y--GkDiKlhllpnwLu_e5mLz3LYaxai72m582rrQ4JtKBw2ykUgmCgCfe0-8Ja0wCMxl2EFv3DvQh9lxUzTI5yChSd0aZ24vLZS9uAO_bE" alt="Heatmap" />
+                <h4 className="text-sm font-label text-secondary font-bold mb-4 uppercase tracking-widest">Recent Failures</h4>
+                <div className="rounded-2xl bg-surface-container p-5 border border-white shadow-inner">
+                  {metrics.recentFailures.length > 0 ? (
+                    <div className="space-y-4">
+                      {metrics.recentFailures.map((failure) => (
+                        <div key={`${failure.timestamp}-${failure.endpoint}`} className="rounded-2xl bg-surface-container-lowest p-4">
+                          <p className="font-bold text-primary text-sm">{failure.method} {failure.endpoint}</p>
+                          <p className="text-xs text-secondary mt-1">
+                            {failure.statusCode} at {formatTimestamp(failure.timestamp)} in {Math.round(failure.durationMs)} ms
+                          </p>
+                          <p className="text-xs text-secondary mt-2">{failure.errorMessage || 'Unknown error'}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-secondary">No failures recorded in the current monitoring window.</p>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,9 +1,19 @@
 import { NextResponse } from 'next/server'
+import { recordRequestMetric } from '../../../lib/monitoring'
 
 export async function GET() {
+  const startedAt = Date.now()
   const apiKey = process.env.GEMINI_API_KEY
 
   if (!apiKey) {
+    recordRequestMetric({
+      endpoint: '/api/list-models',
+      method: 'GET',
+      durationMs: Date.now() - startedAt,
+      ok: false,
+      statusCode: 500,
+      errorMessage: 'Missing GEMINI_API_KEY',
+    })
     return NextResponse.json(
       { error: 'Missing GEMINI_API_KEY' },
       { status: 500 }
@@ -17,6 +27,14 @@ export async function GET() {
 
     if (!response.ok) {
       const err = await response.text()
+      recordRequestMetric({
+        endpoint: '/api/list-models',
+        method: 'GET',
+        durationMs: Date.now() - startedAt,
+        ok: false,
+        statusCode: response.status,
+        errorMessage: err,
+      })
       return NextResponse.json(
         { error: `ListModels failed: ${response.status} ${err}` },
         { status: response.status }
@@ -24,24 +42,46 @@ export async function GET() {
     }
 
     const data = await response.json()
-    const models = data.models || []
+    const models = Array.isArray(data.models) ? data.models : []
 
     // Filter for embedding models
-    const embeddingModels = models.filter((m: any) =>
-      m.name.toLowerCase().includes('embed')
+    const embeddingModels = models.filter((model: { name?: string }) =>
+      model.name?.toLowerCase().includes('embed')
     )
+
+    recordRequestMetric({
+      endpoint: '/api/list-models',
+      method: 'GET',
+      durationMs: Date.now() - startedAt,
+      ok: true,
+      statusCode: 200,
+    })
 
     return NextResponse.json({
       totalModels: models.length,
-      embeddingModels: embeddingModels.map((m: any) => ({
-        name: m.name,
-        displayName: m.displayName,
-        supportedMethods: m.supportedGenerationMethods || [],
-      })),
-      allModelNames: models.map((m: any) => m.name),
+      embeddingModels: embeddingModels.map(
+        (model: {
+          name?: string
+          displayName?: string
+          supportedGenerationMethods?: string[]
+        }) => ({
+          name: model.name,
+          displayName: model.displayName,
+          supportedMethods: model.supportedGenerationMethods || [],
+        })
+      ),
+      allModelNames: models.map((model: { name?: string }) => model.name),
     })
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
+    recordRequestMetric({
+      endpoint: '/api/list-models',
+      method: 'GET',
+      durationMs: Date.now() - startedAt,
+      ok: false,
+      statusCode: 500,
+      errorMessage: message,
+    })
     return NextResponse.json(
       { error: `Failed to list models: ${message}` },
       { status: 500 }
