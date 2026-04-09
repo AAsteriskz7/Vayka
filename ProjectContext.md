@@ -21,7 +21,7 @@ The system is designed around two distinct travel personas:
 ### Sprint 1 (Core Setup & Admin)
 * [x] **[Story 1]** As an End User, I want to access the chatbot through a hosted web application, so I can interact with it from anywhere.
 * [x] **[Story 2]** As an End User, I want to ask natural language questions about the selected topic, so I can receive relevant information.
-* [ ] **[Story 5]** As a Developer, I want to define and update the dataset used by the RAG system, so the chatbot's knowledge stays current.
+* [x] **[Story 5]** As a Developer, I want to define and update the dataset used by the RAG system, so the chatbot's knowledge stays current.
 * [x] **[Story 10]** As an Administrator, I want to monitor system performance (latency, failures), so the chatbot meets responsiveness requirements.
 * [x] **[Story 11]** As an Administrator, I want to manually clear or reload the chatbot's knowledge base so I can recover from incorrect or outdated data.
 * [x] **[Story 12]** As an Administrator, I want to view basic usage logs (e.g., number of queries, timestamps, response times) so I can understand how the chatbot is being used.
