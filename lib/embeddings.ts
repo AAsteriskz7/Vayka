@@ -1,8 +1,5 @@
-const HUGGINGFACE_API_TOKEN = process.env.HUGGINGFACE_API_TOKEN
-const HUGGINGFACE_MODEL =
-  process.env.HUGGINGFACE_MODEL || 'thenlper/gte-base'
-const HUGGINGFACE_API_URL =
-  `https://router.huggingface.co/hf-inference/models/${HUGGINGFACE_MODEL}/pipeline/feature-extraction`
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2-preview:embedContent'
 
 export function chunkText(text: string, chunkSize = 800, chunkOverlap = 100) {
   const cleaned = text.replace(/\s+/g, ' ').trim()
@@ -33,72 +30,44 @@ export function chunkText(text: string, chunkSize = 800, chunkOverlap = 100) {
   return chunks
 }
 
-async function fetchEmbedding(text: string) {
-  if (!HUGGINGFACE_API_TOKEN) {
-    throw new Error('Missing HUGGINGFACE_API_TOKEN environment variable')
+export async function getGeminiEmbedding(text: string) {
+  if (!GEMINI_API_KEY) {
+    throw new Error('Missing GEMINI_API_KEY environment variable')
   }
 
-  const response = await fetch(HUGGINGFACE_API_URL, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${HUGGINGFACE_API_TOKEN}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      inputs: text,
-    }),
-  })
-
-  if (!response.ok) {
-    const body = await response.text()
-    throw new Error(`HuggingFace embedding request failed: ${response.status} ${body}`)
-  }
-
-  return response.json()
-}
-
-function extractEmbedding(data: unknown) {
-  if (Array.isArray(data) && Array.isArray(data[0])) {
-    return data[0]
-  }
-
-  if (Array.isArray(data) && typeof data[0] === 'number') {
-    return data
-  }
-
-  if (
-    data &&
-    typeof data === 'object' &&
-    'embeddings' in data &&
-    Array.isArray(data.embeddings)
-  ) {
-    const embeddings = data.embeddings
-    if (Array.isArray(embeddings[0])) {
-      return embeddings[0]
-    }
-    if (typeof embeddings[0] === 'number') {
-      return embeddings
-    }
-  }
-
-  return null
-}
-
-export async function getHuggingFaceEmbedding(text: string) {
   try {
-    const data = await fetchEmbedding(text)
-    const embedding = extractEmbedding(data)
+    const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'models/gemini-embedding-2-preview',
+        content: {
+          parts: [{ text }],
+        },
+        outputDimensionality: 768
+      }),
+    })
 
-    if (!Array.isArray(embedding) || embedding.length === 0) {
-      throw new Error('Unexpected embedding response structure from HuggingFace')
+    if (!response.ok) {
+      const body = await response.text()
+      throw new Error(`Gemini embedding request failed: ${response.status} ${body}`)
+    }
+
+    const data = await response.json()
+    const embedding = data.embedding?.values
+
+    if (!Array.isArray(embedding) || embedding.length !== 768) {
+      throw new Error(`Unexpected embedding response structure or dimensions from Gemini API. Expected 768, got ${embedding?.length}`)
     }
 
     return embedding
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
-    throw new Error(`HuggingFace embedding failed: ${message}`)
+    throw new Error(`Gemini embedding failed: ${message}`)
   }
 }
 
-export const getGeminiEmbedding = getHuggingFaceEmbedding
+// Keep the old name as an alias so we don't break existing imports right away
+export const getHuggingFaceEmbedding = getGeminiEmbedding
