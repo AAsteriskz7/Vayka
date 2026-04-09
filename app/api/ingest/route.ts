@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { ingestDocument } from '../../../lib/ingest'
 import { recordRequestMetric } from '../../../lib/monitoring'
+import { safelyAppendUsageLog } from '../../../lib/usage-logs'
 
 export async function POST(req: Request) {
   const startedAt = Date.now()
@@ -12,6 +13,14 @@ export async function POST(req: Request) {
 
     if (!supabaseUrl || !supabaseAnonKey || !geminiApiKey) {
       recordRequestMetric({
+        endpoint: '/api/ingest',
+        method: 'POST',
+        durationMs: Date.now() - startedAt,
+        ok: false,
+        statusCode: 500,
+        errorMessage: 'Missing required environment variables for Supabase or Gemini.',
+      })
+      await safelyAppendUsageLog({
         endpoint: '/api/ingest',
         method: 'POST',
         durationMs: Date.now() - startedAt,
@@ -40,6 +49,14 @@ export async function POST(req: Request) {
         statusCode: 400,
         errorMessage: 'Source and content are required for ingestion.',
       })
+      await safelyAppendUsageLog({
+        endpoint: '/api/ingest',
+        method: 'POST',
+        durationMs: Date.now() - startedAt,
+        ok: false,
+        statusCode: 400,
+        errorMessage: 'Source and content are required for ingestion.',
+      })
       return NextResponse.json(
         {
           success: false,
@@ -57,10 +74,25 @@ export async function POST(req: Request) {
       ok: true,
       statusCode: 200,
     })
+    await safelyAppendUsageLog({
+      endpoint: '/api/ingest',
+      method: 'POST',
+      durationMs: Date.now() - startedAt,
+      ok: true,
+      statusCode: 200,
+    })
     return NextResponse.json(result)
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown ingestion error.'
     recordRequestMetric({
+      endpoint: '/api/ingest',
+      method: 'POST',
+      durationMs: Date.now() - startedAt,
+      ok: false,
+      statusCode: 500,
+      errorMessage: message,
+    })
+    await safelyAppendUsageLog({
       endpoint: '/api/ingest',
       method: 'POST',
       durationMs: Date.now() - startedAt,

@@ -101,6 +101,7 @@ This project expects Supabase to store:
 
 - Document chunks in a `documents` table
 - Embedding vectors in an `embeddings` table
+- Persistent request history in a `usage_logs` table
 
 The ingestion flow:
 
@@ -166,6 +167,8 @@ from embeddings
 order by created_at desc
 limit 10;
 ```
+
+For persistent admin usage logs, run the SQL in [supabase/usage_logs.sql](/Users/asumi/Desktop/local_school/CS2340/Vayka/supabase/usage_logs.sql#L1) inside the Supabase SQL Editor.
 
 ## API Notes
 

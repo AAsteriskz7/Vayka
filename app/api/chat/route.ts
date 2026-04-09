@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { recordRequestMetric } from '../../../lib/monitoring'
+import { safelyAppendUsageLog } from '../../../lib/usage-logs'
 
 export async function POST(req: NextRequest) {
   const startedAt = Date.now()
@@ -11,6 +12,14 @@ export async function POST(req: NextRequest) {
 
     if (!apiKey) {
       recordRequestMetric({
+        endpoint: '/api/chat',
+        method: 'POST',
+        durationMs: Date.now() - startedAt,
+        ok: false,
+        statusCode: 500,
+        errorMessage: 'Missing Gemini API key',
+      })
+      await safelyAppendUsageLog({
         endpoint: '/api/chat',
         method: 'POST',
         durationMs: Date.now() - startedAt,
@@ -50,6 +59,14 @@ export async function POST(req: NextRequest) {
         statusCode: 500,
         errorMessage: err,
       })
+      await safelyAppendUsageLog({
+        endpoint: '/api/chat',
+        method: 'POST',
+        durationMs: Date.now() - startedAt,
+        ok: false,
+        statusCode: 500,
+        errorMessage: err,
+      })
       return NextResponse.json({ error: err }, { status: 500 });
     }
     const data = await res.json();
@@ -66,11 +83,26 @@ export async function POST(req: NextRequest) {
       ok: true,
       statusCode: 200,
     })
+    await safelyAppendUsageLog({
+      endpoint: '/api/chat',
+      method: 'POST',
+      durationMs: Date.now() - startedAt,
+      ok: true,
+      statusCode: 200,
+    })
 
     return NextResponse.json({ response });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown chat error'
     recordRequestMetric({
+      endpoint: '/api/chat',
+      method: 'POST',
+      durationMs: Date.now() - startedAt,
+      ok: false,
+      statusCode: 500,
+      errorMessage: message,
+    })
+    await safelyAppendUsageLog({
       endpoint: '/api/chat',
       method: 'POST',
       durationMs: Date.now() - startedAt,

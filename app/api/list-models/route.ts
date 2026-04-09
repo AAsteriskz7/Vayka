@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { recordRequestMetric } from '../../../lib/monitoring'
+import { safelyAppendUsageLog } from '../../../lib/usage-logs'
 
 export async function GET() {
   const startedAt = Date.now()
@@ -7,6 +8,14 @@ export async function GET() {
 
   if (!apiKey) {
     recordRequestMetric({
+      endpoint: '/api/list-models',
+      method: 'GET',
+      durationMs: Date.now() - startedAt,
+      ok: false,
+      statusCode: 500,
+      errorMessage: 'Missing GEMINI_API_KEY',
+    })
+    await safelyAppendUsageLog({
       endpoint: '/api/list-models',
       method: 'GET',
       durationMs: Date.now() - startedAt,
@@ -35,6 +44,14 @@ export async function GET() {
         statusCode: response.status,
         errorMessage: err,
       })
+      await safelyAppendUsageLog({
+        endpoint: '/api/list-models',
+        method: 'GET',
+        durationMs: Date.now() - startedAt,
+        ok: false,
+        statusCode: response.status,
+        errorMessage: err,
+      })
       return NextResponse.json(
         { error: `ListModels failed: ${response.status} ${err}` },
         { status: response.status }
@@ -50,6 +67,13 @@ export async function GET() {
     )
 
     recordRequestMetric({
+      endpoint: '/api/list-models',
+      method: 'GET',
+      durationMs: Date.now() - startedAt,
+      ok: true,
+      statusCode: 200,
+    })
+    await safelyAppendUsageLog({
       endpoint: '/api/list-models',
       method: 'GET',
       durationMs: Date.now() - startedAt,
@@ -75,6 +99,14 @@ export async function GET() {
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
     recordRequestMetric({
+      endpoint: '/api/list-models',
+      method: 'GET',
+      durationMs: Date.now() - startedAt,
+      ok: false,
+      statusCode: 500,
+      errorMessage: message,
+    })
+    await safelyAppendUsageLog({
       endpoint: '/api/list-models',
       method: 'GET',
       durationMs: Date.now() - startedAt,

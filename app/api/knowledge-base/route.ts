@@ -5,6 +5,7 @@ import {
   reloadKnowledgeBase,
 } from '../../../lib/knowledge-base'
 import { recordRequestMetric } from '../../../lib/monitoring'
+import { safelyAppendUsageLog } from '../../../lib/usage-logs'
 
 export async function GET() {
   const startedAt = Date.now()
@@ -18,10 +19,25 @@ export async function GET() {
       ok: true,
       statusCode: 200,
     })
+    await safelyAppendUsageLog({
+      endpoint: '/api/knowledge-base',
+      method: 'GET',
+      durationMs: Date.now() - startedAt,
+      ok: true,
+      statusCode: 200,
+    })
     return NextResponse.json({ success: true, summary })
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown knowledge base error.'
     recordRequestMetric({
+      endpoint: '/api/knowledge-base',
+      method: 'GET',
+      durationMs: Date.now() - startedAt,
+      ok: false,
+      statusCode: 500,
+      errorMessage: message,
+    })
+    await safelyAppendUsageLog({
       endpoint: '/api/knowledge-base',
       method: 'GET',
       durationMs: Date.now() - startedAt,
@@ -45,10 +61,25 @@ export async function DELETE() {
       ok: true,
       statusCode: 200,
     })
+    await safelyAppendUsageLog({
+      endpoint: '/api/knowledge-base',
+      method: 'DELETE',
+      durationMs: Date.now() - startedAt,
+      ok: true,
+      statusCode: 200,
+    })
     return NextResponse.json(result)
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown clear error.'
     recordRequestMetric({
+      endpoint: '/api/knowledge-base',
+      method: 'DELETE',
+      durationMs: Date.now() - startedAt,
+      ok: false,
+      statusCode: 500,
+      errorMessage: message,
+    })
+    await safelyAppendUsageLog({
       endpoint: '/api/knowledge-base',
       method: 'DELETE',
       durationMs: Date.now() - startedAt,
@@ -76,6 +107,14 @@ export async function POST(req: Request) {
         statusCode: 400,
         errorMessage: 'Unsupported action.',
       })
+      await safelyAppendUsageLog({
+        endpoint: '/api/knowledge-base',
+        method: 'POST',
+        durationMs: Date.now() - startedAt,
+        ok: false,
+        statusCode: 400,
+        errorMessage: 'Unsupported action.',
+      })
       return NextResponse.json(
         { success: false, message: 'Unsupported action.' },
         { status: 400 }
@@ -90,10 +129,25 @@ export async function POST(req: Request) {
       ok: true,
       statusCode: 200,
     })
+    await safelyAppendUsageLog({
+      endpoint: '/api/knowledge-base',
+      method: 'POST',
+      durationMs: Date.now() - startedAt,
+      ok: true,
+      statusCode: 200,
+    })
     return NextResponse.json(result)
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown reload error.'
     recordRequestMetric({
+      endpoint: '/api/knowledge-base',
+      method: 'POST',
+      durationMs: Date.now() - startedAt,
+      ok: false,
+      statusCode: 500,
+      errorMessage: message,
+    })
+    await safelyAppendUsageLog({
       endpoint: '/api/knowledge-base',
       method: 'POST',
       durationMs: Date.now() - startedAt,

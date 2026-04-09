@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import KnowledgeBaseManager from '../../components/KnowledgeBaseManager';
 import KnowledgeBaseControls from '../../components/KnowledgeBaseControls';
+import UsageLogControls from '../../components/UsageLogControls';
 import { getMonitoringSnapshot } from '../../lib/monitoring'
+import { getUsageLogsSnapshot } from '../../lib/usage-logs'
 
 export const dynamic = 'force-dynamic'
 
@@ -18,6 +20,7 @@ function getSystemStatus(failureRate: number) {
 export default async function AdminDashboard() {
   const metrics = getMonitoringSnapshot()
   const systemStatus = getSystemStatus(metrics.totals.failureRate)
+  const usageLogs = await getUsageLogsSnapshot()
 
   return (
     <div className="min-h-screen bg-surface text-on-surface">
@@ -175,22 +178,24 @@ export default async function AdminDashboard() {
             <div className="flex-1 space-y-10">
               <div>
                 <div className="flex justify-between text-sm mb-3">
-                  <span className="text-secondary font-medium">Failed Requests</span>
-                  <span className="font-bold text-primary">{metrics.totals.failureCount}</span>
+                  <span className="text-secondary font-medium">Persisted Log Rows</span>
+                  <span className="font-bold text-primary">{usageLogs.available ? usageLogs.totalCount : 0}</span>
                 </div>
                 <div className="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
                   <div
                     className="h-full bg-primary rounded-full"
-                    style={{ width: `${Math.min(metrics.totals.failureRate, 100)}%` }}
+                    style={{
+                      width: `${usageLogs.available ? Math.min((usageLogs.totalCount / Math.max(usageLogs.totalCount, 1)) * 100, 100) : 0}%`,
+                    }}
                   ></div>
                 </div>
               </div>
               
               <div>
                 <div className="flex justify-between text-sm mb-3">
-                  <span className="text-secondary font-medium">Latest Request</span>
+                  <span className="text-secondary font-medium">Average Logged Latency</span>
                   <span className="font-bold text-primary">
-                    {metrics.latestRequest ? `${metrics.latestRequest.method} ${metrics.latestRequest.endpoint}` : 'No traffic'}
+                    {usageLogs.available ? `${Math.round(usageLogs.averageLatencyMs)} ms` : 'Unavailable'}
                   </span>
                 </div>
                 <div className="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
@@ -199,22 +204,29 @@ export default async function AdminDashboard() {
               </div>
               
               <div className="pt-6">
-                <h4 className="text-sm font-label text-secondary font-bold mb-4 uppercase tracking-widest">Recent Failures</h4>
+                <h4 className="text-sm font-label text-secondary font-bold mb-4 uppercase tracking-widest">Usage Logs</h4>
+                <div className="mb-4">
+                  <UsageLogControls />
+                </div>
                 <div className="rounded-2xl bg-surface-container p-5 border border-white shadow-inner">
-                  {metrics.recentFailures.length > 0 ? (
+                  {!usageLogs.configured ? (
+                    <p className="text-sm text-secondary">Supabase is not configured for this environment.</p>
+                  ) : !usageLogs.available ? (
+                    <p className="text-sm text-secondary">{usageLogs.errorMessage}</p>
+                  ) : usageLogs.recentLogs.length > 0 ? (
                     <div className="space-y-4">
-                      {metrics.recentFailures.map((failure) => (
-                        <div key={`${failure.timestamp}-${failure.endpoint}`} className="rounded-2xl bg-surface-container-lowest p-4">
-                          <p className="font-bold text-primary text-sm">{failure.method} {failure.endpoint}</p>
+                      {usageLogs.recentLogs.map((log) => (
+                        <div key={log.id} className="rounded-2xl bg-surface-container-lowest p-4">
+                          <p className="font-bold text-primary text-sm">{log.method} {log.endpoint}</p>
                           <p className="text-xs text-secondary mt-1">
-                            {failure.statusCode} at {formatTimestamp(failure.timestamp)} in {Math.round(failure.durationMs)} ms
+                            {log.status_code} at {formatTimestamp(log.created_at)} in {Math.round(log.duration_ms)} ms
                           </p>
-                          <p className="text-xs text-secondary mt-2">{failure.errorMessage || 'Unknown error'}</p>
+                          <p className="text-xs text-secondary mt-2">{log.error_message || 'Request completed successfully.'}</p>
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <p className="text-sm text-secondary">No failures recorded in the current monitoring window.</p>
+                    <p className="text-sm text-secondary">No usage logs recorded yet.</p>
                   )}
                 </div>
               </div>

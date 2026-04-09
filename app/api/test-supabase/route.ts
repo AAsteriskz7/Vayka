@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { recordRequestMetric } from '../../../lib/monitoring'
+import { safelyAppendUsageLog } from '../../../lib/usage-logs'
 
 export async function GET() {
   const startedAt = Date.now()
@@ -11,6 +12,15 @@ export async function GET() {
 
     if (!supabaseUrl || !supabaseAnonKey) {
       recordRequestMetric({
+        endpoint: '/api/test-supabase',
+        method: 'GET',
+        durationMs: Date.now() - startedAt,
+        ok: false,
+        statusCode: 500,
+        errorMessage:
+          'Supabase not configured. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY environment variables.',
+      })
+      await safelyAppendUsageLog({
         endpoint: '/api/test-supabase',
         method: 'GET',
         durationMs: Date.now() - startedAt,
@@ -36,10 +46,26 @@ export async function GET() {
       statusCode: result.success ? 200 : 500,
       errorMessage: result.success ? undefined : result.message,
     })
+    await safelyAppendUsageLog({
+      endpoint: '/api/test-supabase',
+      method: 'GET',
+      durationMs: Date.now() - startedAt,
+      ok: result.success,
+      statusCode: result.success ? 200 : 500,
+      errorMessage: result.success ? undefined : result.message,
+    })
     return NextResponse.json(result, { status: result.success ? 200 : 500 })
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error'
     recordRequestMetric({
+      endpoint: '/api/test-supabase',
+      method: 'GET',
+      durationMs: Date.now() - startedAt,
+      ok: false,
+      statusCode: 500,
+      errorMessage,
+    })
+    await safelyAppendUsageLog({
       endpoint: '/api/test-supabase',
       method: 'GET',
       durationMs: Date.now() - startedAt,
