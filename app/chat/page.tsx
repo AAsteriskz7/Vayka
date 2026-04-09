@@ -3,12 +3,13 @@ import { useState, useRef, useEffect } from "react";
 import Footer from '../../components/Footer';
 
 const SUGGESTED_PROMPTS = [
-  "John Smith's trip to London?",
-  "Korean travelers who went to Tokyo?",
-  "How much was Felipe Almeida's Airbnb?"
+  "What should I pack for a 2-week trip to Japan?",
+  "How to deal with severe jet lag?",
+  "What are your top budget travel tips?"
 ];
 
 interface ChatMessage {
+  id?: string;
   role: "ai" | "user";
   content: string;
   sources?: string[];
@@ -48,25 +49,20 @@ export default function Chat() {
 
   async function sendMessage(msg: string) {
     if (!msg.trim()) return;
+    const placeholderId = Date.now().toString() + Math.random().toString();
     setMessages((prev) => [
       ...prev,
       { role: "user", content: msg },
-      { role: "ai", content: "..." }
+      { role: "ai", content: "...", id: placeholderId }
     ]);
     setInput("");
     textareaRef.current?.focus();
     const result = await fetchAIResponse(msg);
-    setMessages((prev) => {
-      // Replace the last "..." AI message with the real response
-      const last = [...prev];
-      for (let i = last.length - 1; i >= 0; i--) {
-        if (last[i].role === "ai" && last[i].content === "...") {
-          last[i] = { role: "ai", content: result.response, sources: result.sources };
-          break;
-        }
-      }
-      return last;
-    });
+    setMessages((prev) => 
+      prev.map(m => 
+        m.id === placeholderId ? { ...m, content: result.response, sources: result.sources } : m
+      )
+    );
   }
 
   function handleSend(e: React.FormEvent) {

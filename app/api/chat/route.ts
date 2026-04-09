@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
       const queryEmbedding = await getGeminiEmbedding(message);
       const { data, error } = await supabase.rpc('match_documents', {
         query_embedding: queryEmbedding,
-        match_threshold: 0.5,
+        match_threshold: 0.4,
         match_count: 5
       });
       if (!error && data) {
@@ -46,16 +46,7 @@ export async function POST(req: NextRequest) {
 
     // 2. Dynamic Prompt Construction
     // Classify intent programmatically (a simple heuristic for Sprint 1)
-    let promptType = 'general';
-    const msgLower = message.toLowerCase();
-    if (msgLower.includes('how many') || msgLower.includes('cost') || msgLower.includes('who')) {
-      promptType = 'lookup';
-    }
-
-    let dynamicPrompt = BASE_INSTRUCTIONS;
-    if (promptType === 'lookup') {
-      dynamicPrompt += '\nThe user is asking for specific factual lookup. Prioritize citing exact numbers, names, and costs from the provided context if available.';
-    }
+    let dynamicPrompt = "You are Vayka, an intelligent, conversational travel assistant. You will be provided with some context from a database. If the context answers the user's question, use it! If the context is empty or doesn't have the exact answer, just provide a friendly, helpful answer using your general knowledge. Never apologize for missing data, just do your best to help the user plan their travels.";
 
     let promptContext = '';
     const uniqueSources = new Set<string>();
@@ -81,7 +72,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         generationConfig: {
-          temperature: promptType === 'lookup' ? 0.1 : 0.4,
+          temperature: 0.4,
           maxOutputTokens: 250,
         },
         contents: [
