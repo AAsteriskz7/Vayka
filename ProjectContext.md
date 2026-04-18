@@ -33,5 +33,5 @@ The system is designed around two distinct travel personas:
 * **[Story 7]** As a Developer, I want to clean and preprocess data before ingestion, so retrieval results are accurate and relevant.
 * **[Story 8]** As a Developer, I want the system to dynamically select or construct prompts based on the type of user question, so I can control the chatbot's behavior for different intents (e.g., factual lookup vs. explanation vs. creative response).
 * **[Story 9]** As a Developer, I want to test response accuracy against known questions, so I can validate system correctness.
-* **[Custom Story 13]** As an End User coordinating a group, I want to filter my itinerary queries by party size, so the chatbot only recommends activities and dining venues capable of accommodating large groups.
-* **[Custom Story 14]** As an End User with a tight schedule, I want to input my exact layover duration and target landmark, so the chatbot can calculate transit times and determine the logistical feasibility of the excursion.
+* **[Custom Story 13]** As an End User, I want to discover affordable weekend destinations from my host city so that I can quickly decide where to travel.
+* **[Custom Story 14]** As an End User,  I want a simple weekend itinerary for a destination so that I can maximize my time without spending hours researching.
