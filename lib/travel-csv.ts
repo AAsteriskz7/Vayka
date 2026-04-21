@@ -1,4 +1,5 @@
 import { parse } from 'csv-parse/sync'
+import { cleanCsvHeader, cleanCsvValue, cleanTextForIngestion } from './preprocess'
 
 export type GenericCsvRecord = Record<string, string>
 
@@ -39,14 +40,16 @@ export function buildGenericCsvIngestItem(
   rowIndex: number
 ): TravelCsvIngestItem | null {
   const entries = Object.entries(record)
-    .map(([key, value]) => [key.trim(), String(value ?? '').trim()] as const)
+    .map(([key, value]) => [cleanCsvHeader(key), cleanCsvValue(value)] as const)
     .filter(([key, value]) => key.length > 0 && value.length > 0)
 
-  if (entries.length === 0) {
+  if (entries.length < 2) {
     return null
   }
 
-  const content = entries.map(([key, value]) => `${key}: ${value}.`).join(' ')
+  const content = cleanTextForIngestion(
+    entries.map(([key, value]) => `${key}: ${value}.`).join(' ')
+  )
 
   return {
     content,
@@ -62,27 +65,32 @@ export function buildGenericCsvIngestItem(
 export function buildTravelCsvIngestItem(
   record: TravelCsvRecord
 ): TravelCsvIngestItem | null {
-  const destination = record.Destination?.trim()
-  const travelerName = record['Traveler name']?.trim()
+  const destination = cleanCsvValue(record.Destination)
+  const travelerName = cleanCsvValue(record['Traveler name'])
 
   if (!destination && !travelerName) {
     return null
   }
 
-  const content =
-    `Traveler ${record['Traveler name']} (Age: ${record['Traveler age']}, Gender: ${record['Traveler gender']}, Nationality: ${record['Traveler nationality']}) took a trip to ${record.Destination}. ` +
-    `The trip started on ${record['Start date']} and ended on ${record['End date']} with a duration of ${record['Duration (days)']} days. ` +
-    `They stayed in a ${record['Accommodation type']} which cost ${record['Accommodation cost']}. ` +
-    `Transportation was via ${record['Transportation type']} costing ${record['Transportation cost']}.`
+  const content = cleanTextForIngestion(
+    `Traveler ${travelerName} (Age: ${cleanCsvValue(record['Traveler age'])}, Gender: ${cleanCsvValue(record['Traveler gender'])}, Nationality: ${cleanCsvValue(record['Traveler nationality'])}) took a trip to ${destination}. ` +
+      `The trip started on ${cleanCsvValue(record['Start date'])} and ended on ${cleanCsvValue(record['End date'])} with a duration of ${cleanCsvValue(record['Duration (days)'])} days. ` +
+      `They stayed in a ${cleanCsvValue(record['Accommodation type'])} which cost ${cleanCsvValue(record['Accommodation cost'])}. ` +
+      `Transportation was via ${cleanCsvValue(record['Transportation type'])} costing ${cleanCsvValue(record['Transportation cost'])}.`
+  )
+
+  if (!content) {
+    return null
+  }
 
   return {
     content,
     metadata: {
-      tripId: record['Trip ID'],
-      destination: record.Destination,
-      startDate: record['Start date'],
-      endDate: record['End date'],
-      travelerName: record['Traveler name'],
+      tripId: cleanCsvValue(record['Trip ID']),
+      destination,
+      startDate: cleanCsvValue(record['Start date']),
+      endDate: cleanCsvValue(record['End date']),
+      travelerName,
     },
   }
 }

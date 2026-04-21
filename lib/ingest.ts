@@ -1,5 +1,6 @@
 import { supabase } from './supabase'
 import { chunkText, getGeminiEmbedding } from './embeddings'
+import { cleanTextForIngestion } from './preprocess'
 
 export interface IngestDocumentPayload {
   source: string
@@ -13,7 +14,7 @@ export async function ingestDocument(payload: IngestDocumentPayload) {
   }
 
   const source = payload.source?.trim()
-  const content = payload.content?.trim()
+  const content = cleanTextForIngestion(payload.content ?? '')
 
   if (!source) {
     throw new Error('Source name is required.')
@@ -40,6 +41,7 @@ export async function ingestDocument(payload: IngestDocumentPayload) {
           content: chunk,
           metadata: {
             ...payload.metadata,
+            originalContentLength: content.length,
             chunkIndex: index,
           },
           source,
