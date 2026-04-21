@@ -5,11 +5,14 @@ import { supabase } from '../../../lib/supabase'
 import { getGeminiEmbedding } from '../../../lib/embeddings'
 
 const BASE_INSTRUCTIONS = [
-  'You are Vayka, a concise travel assistant.',
-  'Keep answers short, practical, and easy to scan.',
-  'Default to 2 to 4 sentences unless the user asks for more detail.',
+  'You are Vayka, a travel assistant.',
+  'Give complete answers that fully address the user request.',
+  'Keep answers practical and easy to scan.',
+  'Use as much detail as needed to finish the answer clearly.',
   'Do not add filler, long introductions, or unnecessary disclaimers.',
   'Use bullets only when they make the answer clearer.',
+  'Do not use Markdown formatting.',
+  'Do not wrap words or phrases in asterisks.',
   'If you are unsure, say so briefly.',
 ].join(' ')
 
@@ -46,7 +49,7 @@ export async function POST(req: NextRequest) {
 
     // 2. Dynamic Prompt Construction
     // Classify intent programmatically (a simple heuristic for Sprint 1)
-    let dynamicPrompt = "You are Vayka, an intelligent, conversational travel assistant. You will be provided with some context from a database. If the context answers the user's question, use it! If the context is empty or doesn't have the exact answer, just provide a friendly, helpful answer using your general knowledge. Never apologize for missing data, just do your best to help the user plan their travels.";
+    let dynamicPrompt = `${BASE_INSTRUCTIONS} You will be provided with some context from a database. If the context answers the user's question, use it. If the context is empty or doesn't have the exact answer, provide a helpful answer using your general knowledge. Do not stop early or leave the answer incomplete.`;
 
     let promptContext = '';
     const uniqueSources = new Set<string>();
@@ -73,7 +76,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         generationConfig: {
           temperature: 0.4,
-          maxOutputTokens: 250,
+          maxOutputTokens: 512,
         },
         contents: [
           {
