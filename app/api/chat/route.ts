@@ -48,17 +48,16 @@ export async function POST(req: NextRequest) {
     }
 
     // 2. Dynamic Prompt Construction
-    // Classify intent programmatically (a simple heuristic for Sprint 1)
     let dynamicPrompt = `${BASE_INSTRUCTIONS} You will be provided with some context from a database. If the context answers the user's question, use it. If the context is empty or doesn't have the exact answer, provide a helpful answer using your general knowledge. Do not stop early or leave the answer incomplete.`;
 
     let promptContext = '';
     const uniqueSources = new Set<string>();
-    
+
     if (contextDocuments.length > 0) {
       promptContext = '\n\nRelevant Information:\n';
       contextDocuments.forEach((doc, idx) => {
-         promptContext += `[Source ${idx + 1}]: ${doc.content}\n`;
-         if (doc.source) uniqueSources.add(doc.source);
+        promptContext += `[Source ${idx + 1}]: ${doc.content}\n`;
+        if (doc.source) uniqueSources.add(doc.source);
       });
       dynamicPrompt += '\n\nYou must base your answer ONLY on the Relevant Information provided below. If the information does not answer the question, state that you do not know based on your current knowledge base.';
     }
