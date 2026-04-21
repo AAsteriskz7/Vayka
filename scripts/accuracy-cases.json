@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Tokyo factual lookup",
+    "question": "What kind of experience is Tokyo best for in the knowledge base?",
+    "expectedSubstrings": ["Tokyo", "shopping", "food", "nightlife"],
+    "requireSources": true,
+    "expectedIntent": "factual"
+  },
+  {
+    "name": "Kyoto recommendation fit",
+    "question": "Recommend a destination for Japanese history, temples, and a slower cultural pace.",
+    "expectedSubstrings": ["Kyoto"],
+    "requireSources": true,
+    "expectedIntent": "recommendation"
+  },
+  {
+    "name": "Paris comparison candidate",
+    "question": "Compare Paris and Bordeaux for art, landmarks, and food.",
+    "expectedSubstrings": ["Paris", "Bordeaux"],
+    "requireSources": true,
+    "expectedIntent": "comparison"
+  },
+  {
+    "name": "Rome itinerary style",
+    "question": "Plan me a short day focused on ancient Rome and major landmarks.",
+    "expectedSubstrings": ["Rome"],
+    "requireSources": true,
+    "expectedIntent": "itinerary"
+  },
+  {
+    "name": "Barcelona attribute check",
+    "question": "Which destination in the knowledge base is known for Gaudi architecture and the Gothic Quarter?",
+    "expectedSubstrings": ["Barcelona"],
+    "requireSources": true,
+    "expectedIntent": "factual"
+  }
+]
