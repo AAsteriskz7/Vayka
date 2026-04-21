@@ -15,6 +15,7 @@ function normalizeWhitespace(value: string) {
   return value.replace(/\r\n/g, '\n').replace(/\t/g, ' ').replace(/[ ]{2,}/g, ' ').trim()
 }
 
+// story 7
 export function cleanTextForIngestion(text: string) {
   const lines = text
     .replace(/\r\n/g, '\n')

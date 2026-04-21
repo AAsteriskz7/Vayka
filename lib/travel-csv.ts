@@ -35,6 +35,7 @@ export function parseTravelCsv(csvText: string): TravelCsvRecord[] {
   return parseCsvRecords(csvText) as TravelCsvRecord[]
 }
 
+// story 6, csv
 export function buildGenericCsvIngestItem(
   record: GenericCsvRecord,
   rowIndex: number

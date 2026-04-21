@@ -18,6 +18,7 @@ const BASE_INSTRUCTIONS = [
 
 type ChatIntent = 'factual' | 'recommendation' | 'itinerary' | 'comparison'
 
+// story 8
 function detectIntent(message: string): ChatIntent {
   const normalized = message.toLowerCase()
 
