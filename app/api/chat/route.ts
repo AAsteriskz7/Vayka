@@ -16,6 +16,61 @@ const BASE_INSTRUCTIONS = [
   'If you are unsure, say so briefly.',
 ].join(' ')
 
+type ChatIntent = 'factual' | 'recommendation' | 'itinerary' | 'comparison'
+
+function detectIntent(message: string): ChatIntent {
+  const normalized = message.toLowerCase()
+
+  if (
+    normalized.includes('itinerary') ||
+    normalized.includes('plan me') ||
+    normalized.includes('plan a trip') ||
+    normalized.includes('weekend in') ||
+    normalized.includes('day trip') ||
+    normalized.includes('3-day') ||
+    normalized.includes('7-day')
+  ) {
+    return 'itinerary'
+  }
+
+  if (
+    normalized.includes('compare') ||
+    normalized.includes('versus') ||
+    normalized.includes('vs') ||
+    normalized.includes('better than') ||
+    normalized.includes('difference between')
+  ) {
+    return 'comparison'
+  }
+
+  if (
+    normalized.includes('recommend') ||
+    normalized.includes('suggest') ||
+    normalized.includes('where should i go') ||
+    normalized.includes('best place') ||
+    normalized.includes('affordable') ||
+    normalized.includes('budget')
+  ) {
+    return 'recommendation'
+  }
+
+  return 'factual'
+}
+
+function buildIntentInstructions(intent: ChatIntent) {
+  switch (intent) {
+    case 'itinerary':
+      return 'The user wants an itinerary or plan. Structure the answer as a practical sequence of steps, days, or time blocks.'
+    case 'comparison':
+      return 'The user wants a comparison. Compare the options directly across the most relevant criteria and end with a concise takeaway.'
+    case 'recommendation':
+      return 'The user wants recommendations. Suggest the strongest options first and explain why they fit the request.'
+    case 'factual':
+    default:
+      return 'The user wants factual information. Answer directly and lead with the most relevant facts.'
+  }
+}
+
 export async function POST(req: NextRequest) {
   const startedAt = Date.now()
 
@@ -48,7 +103,9 @@ export async function POST(req: NextRequest) {
     }
 
     // 2. Dynamic Prompt Construction
-    let dynamicPrompt = `${BASE_INSTRUCTIONS} You will be provided with some context from a database. If the context answers the user's question, use it. If the context is empty or doesn't have the exact answer, provide a helpful answer using your general knowledge. Do not stop early or leave the answer incomplete.`;
+    const intent = detectIntent(message)
+    const intentInstructions = buildIntentInstructions(intent)
+    let dynamicPrompt = `${BASE_INSTRUCTIONS} ${intentInstructions} You will be provided with some context from a database. If the context answers the user's question, use it. If the context is empty or doesn't have the exact answer, provide a helpful answer using your general knowledge. Do not stop early or leave the answer incomplete.`;
 
     let promptContext = '';
     const uniqueSources = new Set<string>();
@@ -105,6 +162,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ 
       response,
+      intent,
       sources: Array.from(uniqueSources)
     });
   } catch (error) {
