@@ -1,5 +1,5 @@
 import { supabase } from './supabase'
-import { chunkText, getHuggingFaceEmbedding } from './embeddings'
+import { chunkText, getGeminiEmbedding } from './embeddings'
 
 export interface IngestDocumentPayload {
   source: string
@@ -31,7 +31,7 @@ export async function ingestDocument(payload: IngestDocumentPayload) {
 
   for (let index = 0; index < chunks.length; index += 1) {
     const chunk = chunks[index]
-    const embedding = await getHuggingFaceEmbedding(chunk)
+    const embedding = await getGeminiEmbedding(chunk)
 
     const { data: documentData, error: documentError } = await supabase
       .from('documents')

@@ -21,7 +21,7 @@ Planned later work includes full retrieval grounding, citations, more ingestion 
 - TypeScript
 - Supabase
 - Gemini API for chat responses
-- Hugging Face Inference for embeddings
+- Gemini embeddings
 
 ## Requirements
 
@@ -31,7 +31,6 @@ Before running the project, make sure you have:
 - npm
 - A Supabase project
 - A Gemini API key
-- A Hugging Face API token
 
 ## Environment Setup
 
@@ -45,8 +44,7 @@ Required environment variables:
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 - `GEMINI_API_KEY`
 - `GEMINI_CHAT_MODEL`
-- `HUGGINGFACE_API_TOKEN`
-- `HUGGINGFACE_MODEL`
+- `GEMINI_EMBEDDING_MODEL`
 
 Example:
 
@@ -88,7 +86,7 @@ Use this order on a fresh machine:
 
 1. Pull the repo.
 2. Create `.env.local` from `.env.example`.
-3. Add the real Supabase, Gemini, and Hugging Face keys.
+3. Add the real Supabase and Gemini keys.
 4. Run `npm install`.
 5. Run `npm run dev`.
 6. Visit `/api/test-supabase` in the browser to confirm Supabase is connected.
@@ -111,7 +109,7 @@ The ingestion flow:
 4. Inserts the chunk into `documents`
 5. Inserts the vector into `embeddings`
 
-If embeddings fail with a dimension mismatch, make sure your Supabase vector column matches the configured embedding model. The current default model is `thenlper/gte-base`, which produces 768-dimensional embeddings.
+If embeddings fail with a dimension mismatch, make sure your Supabase vector column matches the configured embedding model. The current default embedding model is `gemini-embedding-2-preview`, which is configured for 768-dimensional embeddings.
 
 ## How To Use The Project
 
@@ -201,24 +199,24 @@ Request body:
 
 ### Missing environment variables
 
-If the app says Supabase, Gemini, or Hugging Face is not configured:
+If the app says Supabase or Gemini is not configured:
 
 - confirm `.env.local` exists
 - confirm the variable names match exactly
 - restart `npm run dev`
 
-### Hugging Face embedding errors
+### Gemini embedding errors
 
 If ingestion fails during embedding:
 
-- confirm `HUGGINGFACE_API_TOKEN` is valid
-- confirm `HUGGINGFACE_MODEL` is set
+- confirm `GEMINI_API_KEY` is valid
+- confirm `GEMINI_EMBEDDING_MODEL` is set
 - confirm the model and your Supabase vector dimension match
 
 The current default model is:
 
 ```text
-thenlper/gte-base
+gemini-embedding-2-preview
 ```
 
 ### Supabase insert errors

@@ -68,6 +68,3 @@ export async function getGeminiEmbedding(text: string) {
     throw new Error(`Gemini embedding failed: ${message}`)
   }
 }
-
-// Keep the old name as an alias so we don't break existing imports right away
-export const getHuggingFaceEmbedding = getGeminiEmbedding
