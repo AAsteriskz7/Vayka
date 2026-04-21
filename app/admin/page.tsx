@@ -249,8 +249,6 @@ export default async function AdminDashboard() {
 
             <KnowledgeBaseManager />
 
-            <KnowledgeBaseManager />
-
             <KnowledgeBaseList initialSources={sources} />
 
             <div className="mt-8 flex justify-center border-t border-surface-variant pt-8">
