@@ -12,13 +12,15 @@ This document outlines the comprehensive path to transforming Vayka from a visua
 - [ ] **1.7 Smooth Scroll:** Implement smooth scroll behavior across all containers.
 - [ ] **1.8 Responsive Audit:** Fix layout breaking on iPad Pro/Tablet widths in the `Compare` table.
 
-## 2. Admin Dashboard (Functional Restoration)
-- [ ] **2.1 Tab Switching:** Fix the broken click handlers in `KnowledgeBaseControls.tsx` to allow switching between "Knowledge Base", "Analytics", and "Settings".
-- [ ] **2.2 Real Analytics:** Replace the mockup charts in the Admin dashboard with real data from the `usage_logs` table.
-- [ ] **2.3 Functional DB Upload:** Implement the logic for the "Upload DB" button to allow bulk JSON/CSV uploads via the browser.
-- [ ] **2.4 Source Deletion:** Add a confirmation modal to the `deleteKnowledgeBaseSource` action.
-- [ ] **2.5 Re-indexing Progress:** Add a real-time progress bar when clicking "Reload Knowledge Base" to show embedding progress.
-- [x] **2.6 Password Protection:** Implement a simple password gate ("admin") for the `/admin` route.
+## 2. Admin Dashboard (Functional Restoration & Cleanup)
+- [ ] **2.1 Tab System Implementation:** Replace the static sidebar links with a state-driven tab system to switch between "System Health", "Knowledge Base", "Usage Analytics", and "Settings".
+- [ ] **2.2 Real Data Visualizations:** Replace the fake SVG/CSS bar charts in the "System Health" section with real charts (e.g., using Recharts) driven by the `monitoring` data.
+- [ ] **2.3 Missing Settings Tab:** Build the "Settings" view to allow changing app configurations (e.g., Gemini model selection, RAG thresholds, system prompts).
+- [ ] **2.4 Analytics Deep-Dive:** Expand the "Usage Analytics" section to include a full-screen table with search, filtering by status code, and detailed payload inspection.
+- [ ] **2.5 Functional DB Upload:** Implement the logic for the "Upload DB" button to allow bulk JSON/CSV uploads via the browser.
+- [ ] **2.6 Password Protection:** Implement a simple password gate ("admin") for the `/admin` route.
+- [ ] **2.7 Admin Profile Cleanup:** Replace the hardcoded profile image and name with dynamic initials or a generic curator avatar.
+- [ ] **2.8 Source Confirmation:** Add confirmation modals for destructive actions (Delete Source, Clear Index).
 
 ## 3. Core RAG & API Enhancements
 - [ ] **3.1 Response Streaming:** Update `/api/chat` to use Vercel AI SDK or native ReadableStream for typewriter-style responses.
