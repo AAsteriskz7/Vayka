@@ -5,9 +5,15 @@ import UsageLogControls from '../../components/UsageLogControls';
 import { getMonitoringSnapshot } from '../../lib/monitoring'
 import { getUsageLogsSnapshot } from '../../lib/usage-logs'
 import { getKnowledgeBaseSources } from '../../lib/knowledge-base'
+import type { Metadata } from 'next';
 import KnowledgeBaseList from '../../components/KnowledgeBaseList'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: "Admin Dashboard",
+  description: "Vayka Admin Dashboard for managing knowledge base, monitoring health, and analyzing usage.",
+};
 
 function formatTimestamp(value: string) {
   return new Date(value).toLocaleString()

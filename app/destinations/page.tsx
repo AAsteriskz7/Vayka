@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import Footer from '../../components/Footer';
+
+export const metadata: Metadata = {
+  title: "Destinations",
+  description: "Discover curated travel destinations that match your mood, budget, and vibe.",
+};
 
 export default function Destinations() {
   return (

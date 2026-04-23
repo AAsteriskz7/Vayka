@@ -1,3 +1,10 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Interactive Itineraries",
+  description: "Collaboratively build and edit travel itineraries with our AI agent in real-time.",
+};
+
 export default function Dashboard() {
   return (
     <>

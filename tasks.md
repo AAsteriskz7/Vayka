@@ -3,9 +3,9 @@
 This document outlines the comprehensive path to transforming Vayka from a visual mockup into a fully functional, production-ready RAG travel application.
 
 ## 1. Project Infrastructure & Global UX
-- [ ] **1.1 SEO & Metadata:** Implement dynamic `<title>` and `<meta description>` tags for every route in `layout.tsx`.
-- [ ] **1.2 Global Error Boundary:** Create a custom `error.tsx` in the root `app` directory to handle 500s gracefully.
-- [ ] **1.3 Loading States:** Implement `loading.tsx` for all major routes using skeleton screens that match the "Organic Editorialism" style.
+- [x] **1.1 SEO & Metadata:** Implement dynamic `<title>` and `<meta description>` tags for every route in `layout.tsx`.
+- [x] **1.2 Global Error Boundary:** Create a custom `error.tsx` in the root `app` directory to handle 500s gracefully.
+- [x] **1.3 Loading States:** Implement `loading.tsx` for all major routes using skeleton screens that match the "Organic Editorialism" style.
 - [ ] **1.4 Favicon & Manifest:** Ensure `icon.png` and `apple-icon.png` are correctly linked and a `manifest.json` is generated for PWA support.
 - [ ] **1.5 Navigation Links:** Connect all "ghost" links in `TopNav` and `SideNav` (Notifications, Settings, Help).
 - [ ] **1.6 Footer Polish:** Connect all footer links (Privacy Policy, Terms of Service, About) to real pages or clean modals.
@@ -18,7 +18,7 @@ This document outlines the comprehensive path to transforming Vayka from a visua
 - [ ] **2.3 Functional DB Upload:** Implement the logic for the "Upload DB" button to allow bulk JSON/CSV uploads via the browser.
 - [ ] **2.4 Source Deletion:** Add a confirmation modal to the `deleteKnowledgeBaseSource` action.
 - [ ] **2.5 Re-indexing Progress:** Add a real-time progress bar when clicking "Reload Knowledge Base" to show embedding progress.
-- [ ] **2.6 Password Protection:** Implement a simple password gate ("admin") for the `/admin` route.
+- [x] **2.6 Password Protection:** Implement a simple password gate ("admin") for the `/admin` route.
 
 ## 3. Core RAG & API Enhancements
 - [ ] **3.1 Response Streaming:** Update `/api/chat` to use Vercel AI SDK or native ReadableStream for typewriter-style responses.

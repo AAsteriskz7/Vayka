@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import Footer from '../../components/Footer';
+
+export const metadata: Metadata = {
+  title: "Compare Destinations",
+  description: "Side-by-side AI-powered comparison of travel destinations by cost, weather, safety, culture, and more.",
+};
 
 export default function Compare() {
   return (

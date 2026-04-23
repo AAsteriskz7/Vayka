@@ -20,14 +20,34 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Vayka | Travel AI",
-  description: "Travel AI RAG System",
+  title: {
+    default: "Vayka — AI-Powered Travel Discovery",
+    template: "%s | Vayka",
+  },
+  description:
+    "Vayka bridges your wanderlust and the world's best-kept secrets using AI-curated recommendations, itinerary planning, and destination comparison.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://vayka.vercel.app"
+  ),
+  openGraph: {
+    title: "Vayka — AI-Powered Travel Discovery",
+    description:
+      "Let AI curate your perfect journey based on mood, budget, and timing.",
+    siteName: "Vayka",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vayka — AI-Powered Travel Discovery",
+    description:
+      "Let AI curate your perfect journey based on mood, budget, and timing.",
+  },
   icons: {
     icon: [
-      { url: '/icon.png' },
-      { url: '/icon.png', sizes: '32x32', type: 'image/png' },
+      { url: "/icon.png" },
+      { url: "/icon.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: '/apple-icon.png',
+    apple: "/apple-icon.png",
   },
 };
 

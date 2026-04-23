@@ -1,5 +1,11 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import Footer from '../../components/Footer';
+
+export const metadata: Metadata = {
+  title: "Find Destinations",
+  description: "Search for your next travel destination with AI-powered filters for budget, vibe, and region.",
+};
 
 export default function Search() {
   return (
