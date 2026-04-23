@@ -13,13 +13,13 @@ This document outlines the comprehensive path to transforming Vayka from a visua
 - [ ] **1.8 Responsive Audit:** Fix layout breaking on iPad Pro/Tablet widths in the `Compare` table.
 
 ## 2. Admin Dashboard (Functional Restoration & Cleanup)
-- [ ] **2.1 Tab System Implementation:** Replace the static sidebar links with a state-driven tab system to switch between "System Health", "Knowledge Base", "Usage Analytics", and "Settings".
-- [ ] **2.2 Real Data Visualizations:** Replace the fake SVG/CSS bar charts in the "System Health" section with real charts (e.g., using Recharts) driven by the `monitoring` data.
-- [ ] **2.3 Missing Settings Tab:** Build the "Settings" view to allow changing app configurations (e.g., Gemini model selection, RAG thresholds, system prompts).
-- [ ] **2.4 Analytics Deep-Dive:** Expand the "Usage Analytics" section to include a full-screen table with search, filtering by status code, and detailed payload inspection.
-- [ ] **2.5 Functional DB Upload:** Implement the logic for the "Upload DB" button to allow bulk JSON/CSV uploads via the browser.
+- [x] **2.1 Tab System Implementation:** Replace the static sidebar links with a state-driven tab system to switch between "System Health", "Knowledge Base", "Usage Analytics", and "Settings".
+- [x] **2.2 Real Data Visualizations:** Replace the fake SVG/CSS bar charts in the "System Health" section with real charts (e.g., using Recharts) driven by the `monitoring` data.
+- [x] **2.3 Missing Settings Tab:** Build the "Settings" view to allow changing app configurations (e.g., Gemini model selection, RAG thresholds, system prompts).
+- [x] **2.4 Analytics Deep-Dive:** Expand the "Usage Analytics" section to include a full-screen table with search, filtering by status code, and detailed payload inspection.
+- [x] **2.5 Functional DB Upload:** Implement the logic for the "Upload DB" button to allow bulk JSON/CSV uploads via the browser.
 - [ ] **2.6 Password Protection:** Implement a simple password gate ("admin") for the `/admin` route.
-- [ ] **2.7 Admin Profile Cleanup:** Replace the hardcoded profile image and name with dynamic initials or a generic curator avatar.
+- [x] **2.7 Admin Profile Cleanup:** Replace the hardcoded profile image and name with dynamic initials or a generic curator avatar.
 - [ ] **2.8 Source Confirmation:** Add confirmation modals for destructive actions (Delete Source, Clear Index).
 
 ## 3. Core RAG & API Enhancements
