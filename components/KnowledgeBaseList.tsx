@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import ConfirmModal from './ConfirmModal'
 
 export interface KnowledgeBaseSource {
   source: string;
@@ -12,14 +13,16 @@ export default function KnowledgeBaseList({ initialSources }: { initialSources: 
   const [sources, setSources] = useState<KnowledgeBaseSource[]>(initialSources)
   const [isDeleting, setIsDeleting] = useState<string | null>(null)
   const [mounted, setMounted] = React.useState(false)
+  const [deleteTarget, setDeleteTarget] = useState<string | null>(null)
 
   React.useEffect(() => {
     setMounted(true)
   }, [])
 
-  const handleDelete = async (sourceUrl: string) => {
-    if (!confirm(`Are you sure you want to delete the source: ${sourceUrl}?`)) return;
-
+  const executeDelete = async () => {
+    if (!deleteTarget) return
+    const sourceUrl = deleteTarget
+    setDeleteTarget(null)
     setIsDeleting(sourceUrl)
     try {
       const params = new URLSearchParams({ source: sourceUrl })
@@ -62,6 +65,14 @@ export default function KnowledgeBaseList({ initialSources }: { initialSources: 
 
   return (
     <div className="overflow-x-auto pb-4 mt-6">
+      <ConfirmModal
+        open={deleteTarget !== null}
+        title="Delete Source"
+        message={`This will permanently delete "${deleteTarget}" and all its associated documents and embeddings. This action cannot be undone.`}
+        confirmLabel="Delete Source"
+        onConfirm={executeDelete}
+        onCancel={() => setDeleteTarget(null)}
+      />
       <div className="min-w-[800px] space-y-3">
         {/* Table Header */}
         <div className="grid grid-cols-12 px-6 py-4 text-xs font-label font-bold text-secondary uppercase tracking-[0.2em] opacity-80 border-b border-surface-variant">
@@ -93,7 +104,7 @@ export default function KnowledgeBaseList({ initialSources }: { initialSources: 
             </div>
             <div className="col-span-1 text-right relative">
               <button 
-                onClick={() => handleDelete(s.source)} 
+                onClick={() => setDeleteTarget(s.source)} 
                 disabled={isDeleting === s.source}
                 title="Delete Source"
                 className="opacity-0 group-hover:opacity-100 transition-opacity p-2 hover:bg-red-500/10 text-secondary hover:text-red-600 rounded-full outline-none disabled:opacity-50"

@@ -32,7 +32,7 @@ export default function SystemHealthCharts({ metrics }: { metrics: MonitoringSna
                 <Tooltip 
                   cursor={{fill: 'transparent'}}
                   contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                  formatter={(value: number) => [`${value} ms`, 'Latency']}
+                  formatter={(value) => [`${value} ms`, 'Latency']}
                 />
                 <Bar dataKey="latency" fill="#00502b" radius={[4, 4, 4, 4]} />
               </BarChart>
@@ -98,7 +98,7 @@ export default function SystemHealthCharts({ metrics }: { metrics: MonitoringSna
                 <Tooltip 
                   cursor={{fill: 'transparent'}}
                   contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                  formatter={(value: number) => [value, 'Requests']}
+                  formatter={(value) => [value, 'Requests']}
                 />
                 <Bar dataKey="requests" fill="#c3e8d1" radius={[4, 4, 4, 4]} />
               </BarChart>

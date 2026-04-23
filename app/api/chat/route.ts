@@ -117,7 +117,7 @@ export async function POST(req: NextRequest) {
         promptContext += `[Source ${idx + 1}]: ${doc.content}\n`;
         if (doc.source) uniqueSources.add(doc.source);
       });
-      dynamicPrompt += '\n\nYou must base your answer ONLY on the Relevant Information provided below. If the information does not answer the question, state that you do not know based on your current knowledge base.';
+      dynamicPrompt += '\n\nYou must base your answer ONLY on the Relevant Information provided below. If the information does not answer the question, state that you do not know based on your current knowledge base. When you use a fact from a source, place the citation tag like [Source 1] or [Source 2] immediately after the specific sentence or fact it supports. Do not group all citations at the end.';
     }
 
     const finalPromptText = `${dynamicPrompt}${promptContext}\n\nUser question: ${message}`;
@@ -133,7 +133,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         generationConfig: {
           temperature: 0.4,
-          maxOutputTokens: 512,
+          maxOutputTokens: 1024,
         },
         contents: [
           {
@@ -148,9 +148,20 @@ export async function POST(req: NextRequest) {
     });
     if (!res.ok) {
       const err = await res.text();
-      recordRequestMetric({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: err })
-      await safelyAppendUsageLog({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: err })
-      return NextResponse.json({ error: err }, { status: 500 });
+      const statusCode = res.status;
+      recordRequestMetric({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode, errorMessage: err })
+      await safelyAppendUsageLog({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode, errorMessage: err })
+
+      let userMessage = 'Something went wrong while generating your response. Please try again.';
+      if (statusCode === 429) {
+        userMessage = 'The AI service is temporarily busy. Please wait a moment and try again.';
+      } else if (statusCode === 503 || statusCode === 502) {
+        userMessage = 'The AI service is currently unavailable. Please try again in a few minutes.';
+      } else if (statusCode === 400) {
+        userMessage = 'There was an issue with your request. Try rephrasing your question.';
+      }
+
+      return NextResponse.json({ error: userMessage }, { status: statusCode });
     }
     const data = await res.json();
     let response = 'No response.';
@@ -170,6 +181,6 @@ export async function POST(req: NextRequest) {
     const message = error instanceof Error ? error.message : 'Unknown chat error'
     recordRequestMetric({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: message })
     await safelyAppendUsageLog({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: message })
-    return NextResponse.json({ error: message }, { status: 500 })
+    return NextResponse.json({ error: 'Something went wrong while generating your response. Please try again.' }, { status: 500 })
   }
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import ConfirmModal from './ConfirmModal'
 
 interface KnowledgeBaseSummary {
   documentCount: number
@@ -18,6 +19,7 @@ export default function KnowledgeBaseControls() {
   const [summary, setSummary] = useState<KnowledgeBaseSummary>(EMPTY_SUMMARY)
   const [status, setStatus] = useState<string | null>(null)
   const [loadingAction, setLoadingAction] = useState<'clear' | 'reload' | null>(null)
+  const [showClearModal, setShowClearModal] = useState(false)
 
   async function refreshSummary() {
     const response = await fetch('/api/knowledge-base')
@@ -36,13 +38,8 @@ export default function KnowledgeBaseControls() {
     })
   }, [])
 
-  async function handleClear() {
-    const confirmed = window.confirm(
-      'Clear the knowledge base? This will delete all stored documents and embeddings.'
-    )
-
-    if (!confirmed) return
-
+  async function executeClear() {
+    setShowClearModal(false)
     setLoadingAction('clear')
     setStatus(null)
 
@@ -96,6 +93,15 @@ export default function KnowledgeBaseControls() {
 
   return (
     <div className="space-y-6">
+      <ConfirmModal
+        open={showClearModal}
+        title="Clear Knowledge Base"
+        message={`This will permanently delete all ${summary.documentCount} documents and ${summary.embeddingCount} embeddings. This action cannot be undone.`}
+        confirmLabel="Clear Everything"
+        onConfirm={executeClear}
+        onCancel={() => setShowClearModal(false)}
+      />
+
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full lg:w-auto">
           <div className="rounded-2xl bg-surface-container-low p-4 min-w-[150px]">
@@ -115,7 +121,7 @@ export default function KnowledgeBaseControls() {
         <div className="flex flex-wrap gap-4 w-full lg:w-auto">
           <button
             type="button"
-            onClick={handleClear}
+            onClick={() => setShowClearModal(true)}
             disabled={loadingAction !== null}
             className="flex-1 lg:flex-none px-6 lg:px-8 py-3.5 bg-surface-container text-on-surface-variant rounded-full font-bold text-sm tracking-wide hover:bg-surface-container-high transition-colors flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
           >

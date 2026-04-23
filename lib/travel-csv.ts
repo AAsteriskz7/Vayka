@@ -32,7 +32,7 @@ export function parseCsvRecords(csvText: string): GenericCsvRecord[] {
 }
 
 export function parseTravelCsv(csvText: string): TravelCsvRecord[] {
-  return parseCsvRecords(csvText) as TravelCsvRecord[]
+  return parseCsvRecords(csvText) as unknown as TravelCsvRecord[]
 }
 
 // story 6, csv

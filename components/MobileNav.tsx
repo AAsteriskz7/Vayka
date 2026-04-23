@@ -33,7 +33,7 @@ export default function MobileNav() {
       <Link href="/profile" className={`flex flex-col items-center gap-1 ${pathname === '/profile' ? 'text-primary' : 'text-outline/80'} hover:text-primary transition-colors`}>
         <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/profile' ? "'FILL' 1" : "" }}>person</span>
         <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
-        w      </Link>
+      </Link>
     </nav>
   );
 }
