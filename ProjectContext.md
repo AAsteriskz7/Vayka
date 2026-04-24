@@ -27,11 +27,11 @@ The system is designed around two distinct travel personas:
 * [x] **[Story 12]** As an Administrator, I want to view basic usage logs (e.g., number of queries, timestamps, response times) so I can understand how the chatbot is being used.
 
 ### Sprint 2 (Advanced RAG, Validation, & Custom Features)
-* **[Story 3]** As an End User, I want responses to be grounded in the provided dataset, so I can trust their accuracy.
-* **[Story 4]** As an End User, I want to see which documents or sources were used to generate an answer, so I can verify the response.
-* **[Story 6]** As a Developer, I want to ingest data using at least two distinct ingestion methods (e.g., API-based ingestion, document scraping, or direct text/file uploads), so I can build a rich and flexible knowledge base.
-* **[Story 7]** As a Developer, I want to clean and preprocess data before ingestion, so retrieval results are accurate and relevant.
-* **[Story 8]** As a Developer, I want the system to dynamically select or construct prompts based on the type of user question, so I can control the chatbot's behavior for different intents (e.g., factual lookup vs. explanation vs. creative response).
-* **[Story 9]** As a Developer, I want to test response accuracy against known questions, so I can validate system correctness.
-* **[Custom Story 13]** As an End User, I want to discover affordable weekend destinations from my host city so that I can quickly decide where to travel.
-* **[Custom Story 14]** As an End User,  I want a simple weekend itinerary for a destination so that I can maximize my time without spending hours researching.
+* [x] **[Story 3]** As an End User, I want responses to be grounded in the provided dataset, so I can trust their accuracy.
+* [x] **[Story 4]** As an End User, I want to see which documents or sources were used to generate an answer, so I can verify the response.
+* [x] **[Story 6]** As a Developer, I want to ingest data using at least two distinct ingestion methods (e.g., API-based ingestion, document scraping, or direct text/file uploads), so I can build a rich and flexible knowledge base.
+* [x] **[Story 7]** As a Developer, I want to clean and preprocess data before ingestion, so retrieval results are accurate and relevant.
+* [x] **[Story 8]** As a Developer, I want the system to dynamically select or construct prompts based on the type of user question, so I can control the chatbot's behavior for different intents (e.g., factual lookup vs. explanation vs. creative response).
+* [x] **[Story 9]** As a Developer, I want to test response accuracy against known questions, so I can validate system correctness.
+* [x] **[Custom Story 13]** As an End User, I want to discover affordable weekend destinations from my host city so that I can quickly decide where to travel.
+* [x] **[Custom Story 14]** As an End User, I want a simple weekend itinerary for a destination so that I can maximize my time without spending hours researching.
