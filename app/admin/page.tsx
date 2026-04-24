@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import KnowledgeBaseManager from '../../components/KnowledgeBaseManager';
 import KnowledgeBaseControls from '../../components/KnowledgeBaseControls';
-import UsageLogControls from '../../components/UsageLogControls';
 import { getMonitoringSnapshot } from '../../lib/monitoring'
 import { getUsageLogsSnapshot } from '../../lib/usage-logs'
 import { getKnowledgeBaseSources } from '../../lib/knowledge-base'
@@ -17,10 +16,6 @@ export const metadata: Metadata = {
   title: "Admin Dashboard",
   description: "Vayka Admin Dashboard for managing knowledge base, monitoring health, and analyzing usage.",
 };
-
-function formatTimestamp(value: string) {
-  return new Date(value).toLocaleString()
-}
 
 function getSystemStatus(failureRate: number) {
   if (failureRate >= 25) return 'Degraded'

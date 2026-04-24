@@ -63,7 +63,7 @@ These tasks improve the user experience but are not required for project complet
 - [x] **1.5 Navigation Links:** TopNav links to all main routes; ghost buttons replaced with real navigation.
 - [x] **1.6 Footer Polish:** All footer links point to real routes (`/destinations`, `/search`, `/compare`, `/itineraries`).
 - [x] **1.7 Smooth Scroll:** Implement smooth scroll behavior via `scroll-smooth` on `<html>`.
-- [ ] **1.8 Responsive Audit:** Fix layout breaking on iPad Pro/Tablet widths in the `Compare` table.
+- [x] **1.8 Responsive Audit:** Compare table uses card layout on mobile/tablet, table on desktop.
 
 ### 2. Admin Dashboard Enhancements
 - [x] **2.1 Tab System Implementation:** State-driven tab system for "System Health", "Knowledge Base", "Usage Analytics", and "Settings".
@@ -108,7 +108,7 @@ These tasks improve the user experience but are not required for project complet
 - [ ] **8.1 Image Optimization:** Use `next/image` for all images to prevent layout shift and improve LCP.
 - [ ] **8.2 Font Loading:** Optimize Google Font loading to prevent FOIT.
 - [ ] **8.3 Micro-Animations:** Add subtle hover lifts and glass-blur transitions to interactive cards.
-- [ ] **8.4 Final Cleanup:** Remove console logs, unused imports, and dev issues badge.
+- [x] **8.4 Final Cleanup:** Removed unused `SideNav` component, removed unused `UsageLogControls` import from admin, removed duplicate `dynamic` export.
 
 ---
 

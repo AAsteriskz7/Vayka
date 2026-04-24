@@ -172,8 +172,8 @@ export default function CompareEngine() {
             </div>
           )}
 
-          {/* Table */}
-          <div className="overflow-x-auto pb-8">
+          {/* Comparison Table — desktop */}
+          <div className="hidden md:block overflow-x-auto pb-8">
             <table className="w-full border-separate border-spacing-x-3 border-spacing-y-0">
               <thead>
                 <tr>
@@ -181,7 +181,7 @@ export default function CompareEngine() {
                   {result.destinations.map((dest, idx) => (
                     <th
                       key={idx}
-                      className={`p-6 ${idx % 2 === 0 ? "bg-surface-container" : "bg-surface-container-high"} rounded-t-xl min-w-[200px]`}
+                      className={`p-6 ${idx % 2 === 0 ? "bg-surface-container" : "bg-surface-container-high"} rounded-t-xl min-w-[180px]`}
                     >
                       <span className="text-xl font-headline font-black block">{dest}</span>
                     </th>
@@ -209,6 +209,28 @@ export default function CompareEngine() {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* Comparison Cards — mobile/tablet */}
+          <div className="md:hidden space-y-6 pb-8">
+            {result.destinations.map((dest, dIdx) => (
+              <div key={dIdx} className="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-surface-variant/20">
+                <div className="bg-primary p-5">
+                  <h3 className="font-headline text-xl text-white font-bold">{dest}</h3>
+                </div>
+                <div className="divide-y divide-surface-variant/30">
+                  {result.rows.map((row, rIdx) => (
+                    <div key={rIdx} className="flex items-center justify-between px-5 py-3">
+                      <div className="flex items-center gap-2 text-secondary shrink-0">
+                        <span className="material-symbols-outlined text-base">{row.icon}</span>
+                        <span className="text-xs font-bold uppercase">{row.category}</span>
+                      </div>
+                      <span className="text-sm text-on-surface text-right ml-4">{row.values[dIdx] || "—"}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </>
       )}
