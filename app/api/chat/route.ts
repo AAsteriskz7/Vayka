@@ -176,7 +176,7 @@ export async function POST(req: NextRequest) {
         promptContext += `[Source ${idx + 1}]: ${doc.content}\n`;
         if (doc.source) uniqueSources.add(doc.source);
       });
-      dynamicPrompt += '\n\nYou must base your answer ONLY on the Relevant Information provided below. If the information does not answer the question, state that you do not know based on your current knowledge base. When you use a fact from a source, place the citation tag like [Source 1] or [Source 2] immediately after the specific sentence or fact it supports. Do not group all citations at the end.';
+      dynamicPrompt += '\n\nPrefer using the Relevant Information provided below when answering. Cite sources with [Source 1], [Source 2] etc. placed immediately after the specific fact they support. If the provided information does not fully answer the question, supplement with your own general knowledge to give a complete and helpful answer.';
     }
 
     const finalPromptText = `${dynamicPrompt}${promptContext}\n\nUser question: ${message}`;
