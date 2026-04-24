@@ -41,12 +41,9 @@ All Sprint 1 stories have been implemented and deployed.
 - [x] **Story 9:** As a Developer, I want to test response accuracy against known questions, so I can validate system correctness.
   - Implemented: `scripts/test-accuracy.mjs` with test cases in `scripts/accuracy-cases.json`
 
-- [ ] **Story 13 (Custom):** As an End User, I want to discover affordable weekend destinations from my host city so that I can quickly decide where to travel.
-  - Status: Destinations page (`/destinations`) is currently a static mockup
-  - Needs: 
-    - Fetch destinations from `documents` table
-    - Implement functional filters (budget, region, vibe)
-    - Connect search bar to vector search
+- [x] **Story 13 (Custom):** As an End User, I want to discover affordable weekend destinations from my host city so that I can quickly decide where to travel.
+  - Implemented: `/destinations` page fetches from DB via `/api/destinations`, supports search and budget filtering
+  - Components: `DestinationsGrid` (client), `/api/destinations` (server)
 
 - [ ] **Story 14 (Custom):** As an End User, I want a simple weekend itinerary for a destination so that I can maximize my time without spending hours researching.
   - Status: Itineraries page (`/itineraries`) is currently a static mockup
@@ -94,9 +91,9 @@ These tasks improve the user experience but are not required for project complet
 - [ ] **4.3 Smooth Transitions:** Add Framer Motion entrance animations to hero text.
 
 ### 5. Destinations Page Enhancements
-- [ ] **5.1 Dynamic Listing:** Fetch destination cards from `documents` table (distinct sources).
-- [ ] **5.2 Functional Filters:** Implement "Under $2000" and "Tropical" filters to query Supabase metadata.
-- [ ] **5.3 Search Bar Logic:** Connect "Search hidden sanctuaries" to debounced vector search.
+- [x] **5.1 Dynamic Listing:** Fetch destination cards from `documents` table via `/api/destinations` endpoint with `DestinationsGrid` client component.
+- [ ] **5.2 Functional Filters:** Budget filter implemented (Low/Medium/High). Tropical/vibe filters need metadata enrichment.
+- [x] **5.3 Search Bar Logic:** Connected search input to debounced vector search via `/api/destinations?q=`.
 - [ ] **5.4 LocalStorage Persistence:** Save bookmarked destinations.
 
 ### 6. Search & Discovery Enhancements
@@ -123,8 +120,8 @@ These tasks improve the user experience but are not required for project complet
 | Category | Total | Complete | Remaining |
 |----------|-------|----------|-----------|
 | Sprint 1 Stories | 6 | 6 | 0 |
-| Sprint 2 Required Stories | 8 | 6 | 2 |
-| Additional Polish Tasks | 28 | 18 | 10 |
+| Sprint 2 Required Stories | 8 | 7 | 1 |
+| Additional Polish Tasks | 28 | 20 | 8 |
 
 **Priority for Sprint 2 Completion:**
 1. Story 13 - Discover affordable weekend destinations
