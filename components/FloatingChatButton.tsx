@@ -63,6 +63,22 @@ function FormattedText({ text }: { text: string }) {
   );
 }
 
+function getSuggestions(path: string): string[] {
+  if (path.startsWith('/destinations')) {
+    return ['What are the cheapest destinations?', 'Recommend a tropical getaway', 'Compare Tokyo and Kyoto'];
+  }
+  if (path.startsWith('/itineraries')) {
+    return ['Plan a 3-day trip to Bali', 'Weekend itinerary for Paris', 'What should I do in Rome?'];
+  }
+  if (path.startsWith('/search')) {
+    return ['Best budget destinations in Asia', 'Beach vacation under $2000', 'Cultural cities in Europe'];
+  }
+  if (path.startsWith('/compare')) {
+    return ['Compare Bali and Thailand', 'Which is cheaper: Japan or Korea?', 'Best for food: Italy or Spain?'];
+  }
+  return ['Tell me about Tokyo', 'Recommend a budget trip', 'Plan a weekend getaway'];
+}
+
 export default function FloatingChatButton() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -75,6 +91,8 @@ export default function FloatingChatButton() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   if (pathname?.startsWith('/admin')) return null;
+
+  const suggestions = getSuggestions(pathname || '/');
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
@@ -105,7 +123,7 @@ export default function FloatingChatButton() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: msg }),
+        body: JSON.stringify({ message: msg, pageContext: pathname }),
       });
       const data = await res.json();
       const response = data.response || data.error || 'No response.';
@@ -182,6 +200,22 @@ export default function FloatingChatButton() {
               )
             )}
           </div>
+
+          {/* Suggestions */}
+          {messages.length <= 1 && (
+            <div className="px-3 pb-2 flex gap-2 overflow-x-auto no-scrollbar">
+              {suggestions.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => sendMessage(s)}
+                  disabled={isLoading}
+                  className="shrink-0 px-3 py-1.5 bg-surface-container-high text-on-surface-variant text-xs rounded-full hover:bg-primary/10 hover:text-primary transition-colors disabled:opacity-40 whitespace-nowrap"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Input */}
           <form

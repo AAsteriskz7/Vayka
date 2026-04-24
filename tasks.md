@@ -83,7 +83,7 @@ These tasks improve the user experience but are not required for project complet
 - [x] **3.2 Error Sanitization:** Replace raw JSON error objects (429, 503) with helpful user messages.
 - [ ] **3.3 Context Window Management:** Handle long conversation histories (sliding window or summarization).
 - [x] **3.4 Citation Precision:** Ensure citations `[Source N]` are accurately placed next to specific facts they support.
-- [ ] **3.5 Rate Limit Safeguards:** Server-side cooling/retry logic for Gemini API to prevent "429 Resource Exhausted" failures.
+- [x] **3.5 Rate Limit Safeguards:** Backup model fallback — if primary model (gemini-3.1-flash-lite) fails/times out, automatically retries with `GEMINI_CHAT_BACKUP_MODEL` (gemini-3.0-flash).
 
 ### 4. Landing Page Enhancements
 - [x] **4.1 Active Search Input:** Transform textarea into functional form that redirects to `/search/results` with query via `HeroSearchForm` component.

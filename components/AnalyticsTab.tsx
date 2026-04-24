@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import type { UsageLogsSnapshot } from '../lib/usage-logs';
 import UsageLogControls from './UsageLogControls';
 
@@ -108,28 +108,74 @@ export default function AnalyticsTab({ usageLogs }: { usageLogs: UsageLogsSnapsh
               <tbody className="divide-y divide-surface-variant/50">
                 {filteredLogs.length > 0 ? (
                   filteredLogs.map((log) => (
-                    <tr key={log.id} className="hover:bg-surface-variant/20 transition-colors">
-                      <td className="px-6 py-4">
-                        <span className={`px-3 py-1 rounded-full text-xs font-bold ${log.ok ? 'bg-primary/10 text-primary' : 'bg-error/10 text-error'}`}>
-                          {log.status_code}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4">
-                        <span className="font-bold text-primary mr-2">{log.method}</span>
-                        <span className="text-secondary">{log.endpoint}</span>
-                      </td>
-                      <td className="px-6 py-4 text-secondary">{Math.round(log.duration_ms)} ms</td>
-                      <td className="px-6 py-4 text-secondary">{formatTimestamp(log.created_at)}</td>
-                      <td className="px-6 py-4">
-                        <button 
-                          onClick={() => setSelectedLog(selectedLog === log.id ? null : log.id)}
-                          className="text-primary hover:underline font-medium text-xs flex items-center gap-1"
-                        >
-                          {selectedLog === log.id ? 'Hide' : 'Inspect'}
-                          <span className="material-symbols-outlined text-sm">{selectedLog === log.id ? 'expand_less' : 'expand_more'}</span>
-                        </button>
-                      </td>
-                    </tr>
+                    <React.Fragment key={log.id}>
+                      <tr className="hover:bg-surface-variant/20 transition-colors">
+                        <td className="px-6 py-4">
+                          <span className={`px-3 py-1 rounded-full text-xs font-bold ${log.ok ? 'bg-primary/10 text-primary' : 'bg-error/10 text-error'}`}>
+                            {log.status_code}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4">
+                          <span className="font-bold text-primary mr-2">{log.method}</span>
+                          <span className="text-secondary">{log.endpoint}</span>
+                        </td>
+                        <td className="px-6 py-4 text-secondary">{Math.round(log.duration_ms)} ms</td>
+                        <td className="px-6 py-4 text-secondary">{formatTimestamp(log.created_at)}</td>
+                        <td className="px-6 py-4">
+                          <button 
+                            onClick={() => setSelectedLog(selectedLog === log.id ? null : log.id)}
+                            className="text-primary hover:underline font-medium text-xs flex items-center gap-1"
+                          >
+                            {selectedLog === log.id ? 'Hide' : 'Inspect'}
+                            <span className="material-symbols-outlined text-sm">{selectedLog === log.id ? 'expand_less' : 'expand_more'}</span>
+                          </button>
+                        </td>
+                      </tr>
+                      {selectedLog === log.id && (
+                        <tr key={`detail-${log.id}`}>
+                          <td colSpan={5} className="px-6 py-4 bg-surface-container-lowest">
+                            <div className="rounded-xl border border-surface-variant p-4 space-y-3">
+                              <h4 className="font-headline font-bold text-primary text-sm flex items-center gap-2">
+                                <span className="material-symbols-outlined text-base">data_object</span>
+                                Request Details
+                              </h4>
+                              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+                                <div>
+                                  <span className="text-secondary block mb-1">Status</span>
+                                  <span className={`font-bold ${log.ok ? 'text-primary' : 'text-error'}`}>{log.status_code} {log.ok ? 'OK' : 'Error'}</span>
+                                </div>
+                                <div>
+                                  <span className="text-secondary block mb-1">Method</span>
+                                  <span className="font-bold text-on-surface">{log.method}</span>
+                                </div>
+                                <div>
+                                  <span className="text-secondary block mb-1">Endpoint</span>
+                                  <span className="font-bold text-on-surface">{log.endpoint}</span>
+                                </div>
+                                <div>
+                                  <span className="text-secondary block mb-1">Latency</span>
+                                  <span className="font-bold text-on-surface">{Math.round(log.duration_ms)} ms</span>
+                                </div>
+                              </div>
+                              <div>
+                                <span className="text-secondary text-xs block mb-1">Timestamp</span>
+                                <span className="text-on-surface text-xs">{formatTimestamp(log.created_at)}</span>
+                              </div>
+                              {log.error_message ? (
+                                <div>
+                                  <span className="text-error text-xs font-bold block mb-1">Error Message</span>
+                                  <div className="bg-error/5 text-error p-3 rounded-lg font-mono text-xs whitespace-pre-wrap break-all max-h-40 overflow-y-auto">
+                                    {log.error_message}
+                                  </div>
+                                </div>
+                              ) : (
+                                <div className="text-secondary text-xs italic">Request completed successfully. No error payload.</div>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      )}
+                    </React.Fragment>
                   ))
                 ) : (
                   <tr>
@@ -142,22 +188,6 @@ export default function AnalyticsTab({ usageLogs }: { usageLogs: UsageLogsSnapsh
         )}
       </div>
 
-      {/* Selected Log Inspector */}
-      {selectedLog && (
-        <div className="mt-6 p-6 bg-surface-container-lowest border border-surface-variant rounded-2xl shadow-inner">
-          <h4 className="font-headline font-bold text-primary mb-4 flex items-center gap-2">
-            <span className="material-symbols-outlined">data_object</span>
-            Payload Inspector
-          </h4>
-          {filteredLogs.find(l => l.id === selectedLog)?.error_message ? (
-            <div className="bg-error/10 text-error p-4 rounded-xl font-mono text-xs whitespace-pre-wrap">
-              {filteredLogs.find(l => l.id === selectedLog)?.error_message}
-            </div>
-          ) : (
-            <div className="text-secondary text-sm">Request completed successfully. No error payload.</div>
-          )}
-        </div>
-      )}
     </section>
   );
 }

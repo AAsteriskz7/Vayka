@@ -20,7 +20,7 @@ async function fetchAIResponse(question: string): Promise<{ response: string, so
     const res = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: question })
+      body: JSON.stringify({ message: question, pageContext: "/chat" })
     });
     const data = await res.json();
     if (data.response) return { response: data.response, sources: data.sources || [] };
