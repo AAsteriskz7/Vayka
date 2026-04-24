@@ -60,8 +60,8 @@ These tasks improve the user experience but are not required for project complet
 - [x] **1.2 Global Error Boundary:** Create a custom `error.tsx` in the root `app` directory to handle 500s gracefully.
 - [x] **1.3 Loading States:** Implement `loading.tsx` for all major routes using skeleton screens.
 - [x] **1.4 Favicon & Manifest:** `manifest.json` created in `/public`, linked in `layout.tsx`. Icons already configured in metadata.
-- [x] **1.5 Navigation Links:** TopNav icons now link to `/chat` and `/admin` instead of ghost buttons.
-- [x] **1.6 Footer Polish:** All footer links now point to real routes (`/destinations`, `/search`, `/compare`, `/itineraries`, `/chat`, `/admin`).
+- [x] **1.5 Navigation Links:** TopNav links to all main routes; ghost buttons replaced with real navigation.
+- [x] **1.6 Footer Polish:** All footer links point to real routes (`/destinations`, `/search`, `/compare`, `/itineraries`).
 - [x] **1.7 Smooth Scroll:** Implement smooth scroll behavior via `scroll-smooth` on `<html>`.
 - [ ] **1.8 Responsive Audit:** Fix layout breaking on iPad Pro/Tablet widths in the `Compare` table.
 
@@ -118,6 +118,8 @@ These tasks improve the user experience but are not required for project complet
 |----------|-------|----------|-----------|
 | Sprint 1 Stories | 6 | 6 | 0 |
 | Sprint 2 Required Stories | 8 | 8 | 0 |
-| Additional Polish Tasks | 28 | 26 | 2 |
+| Additional Polish Tasks | 28 | 15 | 13 |
 
-**Sprint 2 is COMPLETE. All 8 required user stories are implemented.**
+**Both sprints are COMPLETE. All 14 required user stories are implemented.**
+
+Remaining polish tasks are nice-to-haves (streaming, animations, PDF export, image optimization) — not required for project grading.
