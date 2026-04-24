@@ -1,212 +1,208 @@
-import Link from 'next/link';
-import Footer from '../../../components/Footer';
+"use client";
+
+import { useSearchParams } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import Link from "next/link";
+import Footer from "../../../components/Footer";
+
+interface SearchResult {
+  content: string;
+  source: string;
+  similarity: number;
+}
+
+function SearchResultsContent() {
+  const searchParams = useSearchParams();
+  const query = searchParams.get("q") || "";
+  const [results, setResults] = useState<SearchResult[]>([]);
+  const [aiSummary, setAiSummary] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [searched, setSearched] = useState(false);
+
+  useEffect(() => {
+    if (!query) return;
+    setLoading(true);
+    setSearched(false);
+
+    fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: query }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setAiSummary(data.response || "");
+        // Build result cards from sources
+        const sources: string[] = data.sources || [];
+        const cards: SearchResult[] = sources.map((src: string, idx: number) => ({
+          content: `Matched from knowledge base`,
+          source: src,
+          similarity: Math.round((1 - idx * 0.05) * 100) / 100,
+        }));
+        setResults(cards);
+      })
+      .catch(() => {
+        setAiSummary("Something went wrong. Please try again.");
+        setResults([]);
+      })
+      .finally(() => {
+        setLoading(false);
+        setSearched(true);
+      });
+  }, [query]);
+
+  return (
+    <>
+      <main className="pt-32 pb-24 px-6 md:px-12 max-w-[1600px] mx-auto min-h-screen">
+        {/* Header */}
+        <header className="mb-12 max-w-4xl">
+          <Link
+            href="/search"
+            className="inline-flex items-center gap-1 text-secondary text-sm font-medium mb-6 hover:text-primary transition-colors"
+          >
+            <span className="material-symbols-outlined text-base">arrow_back</span>
+            Back to Search
+          </Link>
+          <h1 className="text-4xl md:text-6xl font-black text-primary leading-tight tracking-tight mb-3">
+            {query ? `Results for "${query}"` : "Search Results"}
+          </h1>
+          {searched && (
+            <p className="text-lg text-secondary font-medium">
+              {results.length > 0
+                ? `${results.length} source${results.length !== 1 ? "s" : ""} matched from the knowledge base`
+                : "No matching sources found"}
+            </p>
+          )}
+        </header>
+
+        {/* Loading State */}
+        {loading && (
+          <div className="flex items-center gap-3 text-secondary mb-12">
+            <span className="material-symbols-outlined animate-spin">progress_activity</span>
+            <span className="text-lg">Searching the knowledge base...</span>
+          </div>
+        )}
+
+        {/* No query */}
+        {!query && !loading && (
+          <div className="text-center py-24">
+            <span className="material-symbols-outlined text-6xl text-outline/40 mb-4 block">travel_explore</span>
+            <p className="text-xl text-secondary mb-6">Enter a search query to discover destinations</p>
+            <Link
+              href="/search"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-full font-bold hover:scale-105 transition-transform"
+            >
+              Go to Search
+              <span className="material-symbols-outlined">arrow_forward</span>
+            </Link>
+          </div>
+        )}
+
+        {/* Results */}
+        {searched && !loading && query && (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            {/* AI Summary */}
+            <div className="lg:col-span-8">
+              <div className="bg-surface-container-lowest rounded-2xl p-8 shadow-sm border border-surface-variant/30 mb-8">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                    <span className="material-symbols-outlined text-white text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
+                  </div>
+                  <div>
+                    <p className="font-bold text-primary text-sm">Vayka AI</p>
+                    <p className="text-[10px] text-secondary uppercase tracking-widest">Curated Response</p>
+                  </div>
+                </div>
+                <div className="text-on-surface leading-relaxed whitespace-pre-line">
+                  {aiSummary}
+                </div>
+              </div>
+
+              {/* Source Cards */}
+              {results.length > 0 && (
+                <div className="space-y-4">
+                  <h3 className="text-sm font-label font-bold text-secondary uppercase tracking-widest mb-4">
+                    Matched Sources
+                  </h3>
+                  {results.map((result, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-surface-container-low rounded-xl p-6 border border-surface-variant/20 hover:border-primary/20 hover:shadow-md transition-all group"
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-secondary-container rounded-lg flex items-center justify-center shrink-0">
+                            <span className="material-symbols-outlined text-primary text-sm">description</span>
+                          </div>
+                          <div>
+                            <p className="font-bold text-primary">{result.source}</p>
+                            <p className="text-xs text-secondary mt-0.5">Knowledge base source</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Sidebar */}
+            <aside className="lg:col-span-4">
+              <div className="sticky top-32 space-y-6">
+                <div className="bg-surface-container rounded-2xl p-6">
+                  <h3 className="text-sm font-label font-bold text-secondary uppercase tracking-widest mb-4">
+                    Refine Your Search
+                  </h3>
+                  <Link
+                    href="/chat"
+                    className="w-full flex items-center gap-3 px-5 py-4 bg-primary text-white rounded-xl font-bold text-sm hover:shadow-lg transition-shadow"
+                  >
+                    <span className="material-symbols-outlined text-base" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
+                    Ask Vayka AI directly
+                  </Link>
+                  <p className="text-xs text-secondary mt-3 leading-relaxed">
+                    Get a more detailed, conversational answer by chatting with our AI travel assistant.
+                  </p>
+                </div>
+
+                <div className="bg-surface-container rounded-2xl p-6">
+                  <h3 className="text-sm font-label font-bold text-secondary uppercase tracking-widest mb-4">
+                    Try Searching
+                  </h3>
+                  <div className="space-y-2">
+                    {["Budget trips to Japan", "Best beaches in Europe", "Weekend getaway ideas"].map((suggestion) => (
+                      <Link
+                        key={suggestion}
+                        href={`/search/results?q=${encodeURIComponent(suggestion)}`}
+                        className="block px-4 py-3 bg-surface-container-low rounded-lg text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-primary transition-colors"
+                      >
+                        {suggestion}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        )}
+      </main>
+
+      <Footer />
+    </>
+  );
+}
 
 export default function SearchResults() {
   return (
-    <>
-      {/* Main Content Canvas */}
+    <Suspense fallback={
       <main className="pt-32 pb-24 px-6 md:px-12 max-w-[1600px] mx-auto min-h-screen">
-        {/* Page Header */}
-        <header className="mb-16 max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-black text-primary leading-tight tracking-tight mb-4">
-            Your Next Destination
-          </h1>
-          <p className="text-lg text-secondary font-medium tracking-wide">
-            Search Results: 14 Curated Experiences Found
-          </p>
-        </header>
-
-        <div className="flex flex-col lg:flex-row gap-12">
-          {/* Sidebar Filters */}
-          <aside className="w-full lg:w-72 shrink-0">
-            <div className="sticky top-32 space-y-12">
-              {/* Budget Filter */}
-              <section>
-                <h3 className="text-sm font-label font-bold uppercase tracking-widest text-secondary mb-6">Budget</h3>
-                <div className="space-y-4">
-                  <label className="flex items-center gap-4 group cursor-pointer">
-                    <div className="w-6 h-6 rounded-lg bg-surface-container flex items-center justify-center group-hover:bg-secondary-container transition-colors">
-                      <span className="material-symbols-outlined text-sm hidden group-aria-checked:block" style={{ fontVariationSettings: "'FILL' 1" }}>check</span>
-                    </div>
-                    <span className="text-on-surface-variant font-medium">Economy</span>
-                  </label>
-                  <label className="flex items-center gap-4 group cursor-pointer">
-                    <div className="w-6 h-6 rounded-lg bg-tertiary-container flex items-center justify-center">
-                      <span className="material-symbols-outlined text-sm text-white" style={{ fontVariationSettings: "'FILL' 1" }}>check</span>
-                    </div>
-                    <span className="text-primary font-bold">Standard</span>
-                  </label>
-                  <label className="flex items-center gap-4 group cursor-pointer">
-                    <div className="w-6 h-6 rounded-lg bg-surface-container flex items-center justify-center group-hover:bg-secondary-container transition-colors"></div>
-                    <span className="text-on-surface-variant font-medium">Luxury</span>
-                  </label>
-                </div>
-              </section>
-
-              {/* Travel Time */}
-              <section>
-                <h3 className="text-sm font-label font-bold uppercase tracking-widest text-secondary mb-6">Travel time</h3>
-                <div className="space-y-3">
-                  <div className="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden relative">
-                    <div className="absolute left-0 top-0 h-full bg-primary-container w-2/3 rounded-full"></div>
-                  </div>
-                  <div className="flex justify-between text-xs font-bold text-secondary">
-                    <span>1 HR</span>
-                    <span>12+ HRS</span>
-                  </div>
-                </div>
-              </section>
-
-              {/* Activity Type */}
-              <section>
-                <h3 className="text-sm font-label font-bold uppercase tracking-widest text-secondary mb-6">Activity type</h3>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-4 py-2 bg-tertiary-container text-on-tertiary-container rounded-full text-xs font-bold cursor-pointer">Adventure</span>
-                  <span className="px-4 py-2 bg-surface-container text-secondary rounded-full text-xs font-bold hover:bg-surface-container-high cursor-pointer transition-colors">Cultural</span>
-                  <span className="px-4 py-2 bg-surface-container text-secondary rounded-full text-xs font-bold hover:bg-surface-container-high cursor-pointer transition-colors">Nature</span>
-                  <span className="px-4 py-2 bg-surface-container text-secondary rounded-full text-xs font-bold hover:bg-surface-container-high cursor-pointer transition-colors">Culinary</span>
-                </div>
-              </section>
-
-              {/* Region */}
-              <section>
-                <h3 className="text-sm font-label font-bold uppercase tracking-widest text-secondary mb-6">Region</h3>
-                <div className="relative">
-                  <select className="w-full bg-surface-container border-0 rounded-xl py-4 px-4 text-primary font-bold focus:ring-2 focus:ring-surface-tint/20 transition-all appearance-none cursor-pointer outline-none">
-                    <option>Scandinavia</option>
-                    <option>Mediterranean</option>
-                    <option>Southeast Asia</option>
-                    <option>Patagonia</option>
-                  </select>
-                  <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-primary">expand_more</span>
-                </div>
-              </section>
-            </div>
-          </aside>
-
-          {/* Results Grid (Masonry Aesthetic) */}
-          <div className="flex-1">
-            <div className="columns-1 md:columns-2 gap-8 space-y-8 relative z-10">
-              
-              {/* Destination Card 1 */}
-              <Link href="/destinations/lofoten" className="break-inside-avoid flex flex-col group">
-                <div className="relative w-full aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-surface-container-low shadow-sm">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img alt="Lofoten Islands" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuFu1P719pF93_EI1H-k3JGWJFpUBcmNQdpMAhCdPtQ4t2hfSu5yc5zWgmliV-5fsDpp5YM9ZKwKO9I7gHGyCf_tjgJ_y2Mk73xy3y_Seahs594GEkZ5lK4JvBiM2fAdmDRj8fp2TeJmdtyL0GrAheNKo2CicJWpQ5Uer86C1g6ATmAv9FmwGTG-RLWrE785gnMX5UeQKz2UW6d3fXo--mh6o5Zh84Kc9hKQwAXsDag0Q9d6ZQxXVdN-sMeqa8slu8Dh_sdLHwyAkf" />
-                  <div className="absolute top-6 right-6 px-4 py-2 bg-white/80 backdrop-blur-md rounded-full text-[10px] font-bold uppercase tracking-widest text-primary shadow-sm">
-                    Trending
-                  </div>
-                </div>
-                <div className="px-2">
-                  <div className="flex justify-between items-start mb-2">
-                    <h2 className="text-3xl font-black text-primary">Lofoten, Norway</h2>
-                    <span className="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-                  </div>
-                  <div className="flex gap-4 mb-4 text-xs font-bold text-secondary uppercase tracking-tighter">
-                    <span>2,400 KM away</span>
-                    <span>Est. $1,800</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="text-xs text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">Hiking</span>
-                    <span className="text-xs text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">Aurora Hunting</span>
-                  </div>
-                </div>
-              </Link>
-
-              {/* Destination Card 2 */}
-              <Link href="/destinations/kyoto" className="break-inside-avoid flex flex-col group">
-                <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-4 bg-surface-container-low shadow-sm">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img alt="Kyoto Temples" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8nfMq_ChUXQDkD-pKVZCX3t5Y40ZNDimt_AVg-CgVFH71Xh713K5W4M6Fi5A9RfRg61v3czQSH9ATiUBSDh51lCLrpvxh4t8BF6K4Br8ITYSrt2F0UfhvaOmMyMB8KJARzlkmTVfZ4I3vfC0_vzHBZHKnv71bBKJcHzn8eMr-gxOcFm2yTePb7HkJoHKn1i28rFmxeUD058A_0wQS261mU8Tmm4Eu022ZLcb41zQzesE3GhsJsi6iBh2p-_AY2YYIiLViDiIc1wHO" />
-                </div>
-                <div className="px-2">
-                  <div className="flex justify-between items-start mb-2">
-                    <h2 className="text-3xl font-black text-primary">Kyoto, Japan</h2>
-                    <span className="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-                  </div>
-                  <div className="flex gap-4 mb-4 text-xs font-bold text-secondary uppercase tracking-tighter">
-                    <span>9,200 KM away</span>
-                    <span>Est. $2,200</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="text-xs text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">Shrines</span>
-                    <span className="text-xs text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">Tea Rituals</span>
-                  </div>
-                </div>
-              </Link>
-
-              {/* Destination Card 3 */}
-              <Link href="/destinations/tuscany" className="break-inside-avoid flex flex-col group">
-                <div className="relative w-full aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container-low shadow-sm">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img alt="Tuscany Hills" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoZCsLKdLYUX9eTUVc5EPCjxU7Z19ga7tnINTgXhIRctYTs4QTlew6Stm3jZLqjYYF-p-EiED_VcE0ny5989chCxkMtP-o94dmpaj5W2NSAI5MYBQUzTDv5mKxXgsi2J0zGum4PLaPm_TWTXjawaM9tNEGYVKp_aizfNuGofMUkNZ8u6Vx0GWnh0fezy3drzmY4sCo7UhWlk8dRaxshJCKPcscW-bT3gEwxOFHkiZ7DJvW_Up-hWOesBlN83xFYt3upHqMQZKi-EFP" />
-                </div>
-                <div className="px-2">
-                  <div className="flex justify-between items-start mb-2">
-                    <h2 className="text-3xl font-black text-primary">Tuscany, Italy</h2>
-                    <span className="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-                  </div>
-                  <div className="flex gap-4 mb-4 text-xs font-bold text-secondary uppercase tracking-tighter">
-                    <span>1,200 KM away</span>
-                    <span>Est. $1,400</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="text-xs text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">Wine Tasting</span>
-                    <span className="text-xs text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">Cycling</span>
-                  </div>
-                </div>
-              </Link>
-
-              {/* Destination Card 4 */}
-              <Link href="/destinations/ubud" className="break-inside-avoid flex flex-col group">
-                <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden mb-4 bg-surface-container-low shadow-sm">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img alt="Bali Jungle" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqRVNHQVTQz3x-lXQoQ87dUWF_lJwUvnGzhnqvaMGYJVDr2fRATgvHIivx6uqjNcJY6fNs6GF1LPcf7DAaIInE04Xylq_T0aBnO7YooKb5g_Dt3eTZOp6ASlwqjUTHzm9yFB-ShL-DskuNXDGprLn7z6IuLzjek21H3H-dCj6QY-TtPeB1IwdNKUWFPumROd-s5gK-ouvo9Ty-QN3L_VS2Bqk-0qz_sF6hXvbbqLOQBoQpzs6x0WkQDQAmLfJ_y3u7VO2J7Nb_qTCy" />
-                </div>
-                <div className="px-2">
-                  <div className="flex justify-between items-start mb-2">
-                    <h2 className="text-3xl font-black text-primary">Ubud, Bali</h2>
-                    <span className="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-                  </div>
-                  <div className="flex gap-4 mb-4 text-xs font-bold text-secondary uppercase tracking-tighter">
-                    <span>12,000 KM away</span>
-                    <span>Est. $950</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="text-xs text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">Yoga</span>
-                    <span className="text-xs text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">Spiritual</span>
-                  </div>
-                </div>
-              </Link>
-
-              {/* Destination Card 5 */}
-              <Link href="/destinations/santorini" className="break-inside-avoid flex flex-col group">
-                <div className="relative w-full aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-surface-container-low shadow-sm">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img alt="Santorini Coast" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4VubQuqqa22iLxHqoYBhmVQ7WkM2cIW5FoKRDOARHS2WuHZt6i6mNZ4yBjOxf8OSy7_IYdJzUKzJgrZgXPADe7gb_AfQvtJio0wUe2NcE0zGHFLIC-6dlve-CyuhTc3ivL-7sS4ZflEkIbH__LAvwyePzBGC6sDca6eKgUEWYQSG_7Sc8-2J99oFca22-Ayj0VsV2WhNkPpaNKMMtMa2AVAw5IvXfOYF-RbGw_g95fY93I8p0VqH-PbvS3ceUNjt8gPWIkgM62OUc" />
-                </div>
-                <div className="px-2">
-                  <div className="flex justify-between items-start mb-2">
-                    <h2 className="text-3xl font-black text-primary">Santorini, Greece</h2>
-                    <span className="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-                  </div>
-                  <div className="flex gap-4 mb-4 text-xs font-bold text-secondary uppercase tracking-tighter">
-                    <span>2,100 KM away</span>
-                    <span>Est. $1,900</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="text-xs text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">Sunset Sails</span>
-                    <span className="text-xs text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">Dining</span>
-                  </div>
-                </div>
-              </Link>
-
-            </div>
-          </div>
+        <div className="flex items-center gap-3 text-secondary">
+          <span className="material-symbols-outlined animate-spin">progress_activity</span>
+          <span className="text-lg">Loading...</span>
         </div>
       </main>
-      
-      <Footer />
-    </>
+    }>
+      <SearchResultsContent />
+    </Suspense>
   );
 }

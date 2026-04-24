@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import Footer from '../../components/Footer';
+import SearchForm from '../../components/SearchForm';
 
 export const metadata: Metadata = {
   title: "Find Destinations",
@@ -35,79 +36,7 @@ export default function Search() {
         {/* Search Discovery Tool (Floating Bento-ish Form) */}
         <section className="max-w-5xl mx-auto px-6 -mt-32 relative z-10">
           <div className="bg-surface-container-lowest glass-panel p-8 md:p-12 rounded-xl shadow-[0px_40px_80px_rgba(26,28,26,0.1)]">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-              
-              {/* Location & Dates */}
-              <div className="space-y-8">
-                <div>
-                  <label className="block font-label text-secondary text-sm font-semibold mb-3 tracking-wide">STARTING FROM</label>
-                  <div className="flex items-center bg-surface-container-low px-6 py-4 rounded-full group focus-within:ring-2 ring-surface-tint/20 transition-all">
-                    <span className="material-symbols-outlined text-outline mr-3">my_location</span>
-                    <input className="bg-transparent border-none focus:ring-0 text-on-surface w-full font-medium placeholder:text-outline-variant outline-none" placeholder="Current Location" type="text" />
-                  </div>
-                </div>
-                <div>
-                  <label className="block font-label text-secondary text-sm font-semibold mb-3 tracking-wide">TRAVEL DATES</label>
-                  <div className="flex items-center bg-surface-container-low px-6 py-4 rounded-full focus-within:ring-2 ring-surface-tint/20 transition-all">
-                    <span className="material-symbols-outlined text-outline mr-3">calendar_today</span>
-                    <input className="bg-transparent border-none focus:ring-0 text-on-surface w-full font-medium placeholder:text-outline-variant outline-none" placeholder="Select dates..." type="text" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Budget & Duration */}
-              <div className="space-y-8">
-                <div>
-                  <label className="block font-label text-secondary text-sm font-semibold mb-3 tracking-wide">BUDGET RANGE</label>
-                  <div className="flex flex-wrap gap-3">
-                    <button className="px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:bg-surface-container-high transition-all text-sm font-medium">Low</button>
-                    <button className="px-6 py-2 rounded-full bg-tertiary-container text-on-tertiary-container ring-1 ring-tertiary-container text-sm font-bold shadow-sm">Med</button>
-                    <button className="px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:bg-surface-container-high transition-all text-sm font-medium">High</button>
-                  </div>
-                </div>
-                <div>
-                  <label className="block font-label text-secondary text-sm font-semibold mb-3 tracking-wide">TRAVEL TYPE</label>
-                  <div className="flex flex-wrap gap-3">
-                    <button className="px-6 py-2 rounded-full bg-surface-container-high text-primary font-bold text-sm">Weekend</button>
-                    <button className="px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:bg-surface-container-high transition-all text-sm font-medium">Extended</button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Preferences (Multi-Select Chips) */}
-              <div className="md:col-span-2">
-                <label className="block font-label text-secondary text-sm font-semibold mb-4 tracking-wide text-center">VIBE & PREFERENCES</label>
-                <div className="flex flex-wrap justify-center gap-3">
-                  <button className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-container text-on-surface-variant hover:bg-tertiary-fixed-dim hover:text-tertiary transition-all">
-                    <span className="material-symbols-outlined text-sm">beach_access</span> Beach
-                  </button>
-                  <button className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-tertiary-container text-on-tertiary-container shadow-sm">
-                    <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>landscape</span> Mountains
-                  </button>
-                  <button className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-container text-on-surface-variant hover:bg-tertiary-fixed-dim hover:text-tertiary transition-all">
-                    <span className="material-symbols-outlined text-sm">apartment</span> City
-                  </button>
-                  <button className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-container text-on-surface-variant hover:bg-tertiary-fixed-dim hover:text-tertiary transition-all">
-                    <span className="material-symbols-outlined text-sm">forest</span> Nature
-                  </button>
-                  <button className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-container text-on-surface-variant hover:bg-tertiary-fixed-dim hover:text-tertiary transition-all">
-                    <span className="material-symbols-outlined text-sm">restaurant</span> Culinary
-                  </button>
-                  <button className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-container text-on-surface-variant hover:bg-tertiary-fixed-dim hover:text-tertiary transition-all">
-                    <span className="material-symbols-outlined text-sm">museum</span> Culture
-                  </button>
-                </div>
-              </div>
-
-              {/* CTA */}
-              <div className="md:col-span-2 flex justify-center pt-6">
-                <Link href="/search/results" className="px-12 py-5 rounded-full bg-gradient-to-br from-primary to-primary-container text-white text-lg font-bold shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-3">
-                  Find Destinations
-                  <span className="material-symbols-outlined">arrow_forward</span>
-                </Link>
-              </div>
-
-            </div>
+            <SearchForm />
           </div>
         </section>
 

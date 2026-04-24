@@ -100,9 +100,9 @@ These tasks improve the user experience but are not required for project complet
 - [ ] **5.4 LocalStorage Persistence:** Save bookmarked destinations.
 
 ### 6. Search & Discovery Enhancements
-- [ ] **6.1 Result Generation:** Replace mock results in `/search/results` with real API call filtering by budget, vibe, region.
+- [x] **6.1 Result Generation:** Replace mock results in `/search/results` with real API call — reads `?q=` param, queries RAG, shows AI summary + matched sources.
 - [ ] **6.2 Dynamic Imagery:** Pull images from metadata or generate if missing.
-- [ ] **6.3 Filter Sync:** Sync sidebar filters with URL search parameters.
+- [x] **6.3 Filter Sync:** Search form (`SearchForm` component) builds query from budget, vibe, type selections and passes to results via URL params.
 
 ### 7. Itinerary Enhancements
 - [ ] **7.1 Collaborative Planner:** User and AI collaboratively build/edit itineraries in real-time.
@@ -124,7 +124,7 @@ These tasks improve the user experience but are not required for project complet
 |----------|-------|----------|-----------|
 | Sprint 1 Stories | 6 | 6 | 0 |
 | Sprint 2 Required Stories | 8 | 6 | 2 |
-| Additional Polish Tasks | 28 | 16 | 12 |
+| Additional Polish Tasks | 28 | 18 | 10 |
 
 **Priority for Sprint 2 Completion:**
 1. Story 13 - Discover affordable weekend destinations
