@@ -1,214 +1,362 @@
-import Footer from '../../../components/Footer';
+'use client'
+
+import { useParams } from 'next/navigation'
+import Link from 'next/link'
+import { itineraries } from '@/lib/mockData'
+import StatusBadge from '@/components/dashboard/StatusBadge'
+import TimelineEventCard from '@/components/dashboard/TimelineEventCard'
+import ChatbotCTA from '@/components/dashboard/ChatbotCTA'
 
 export default function ItineraryDetail() {
-  return (
-    <>
-      <main className="pt-24 pb-32 px-6 md:px-12 max-w-[1600px] mx-auto min-h-screen">
-        <div className="flex flex-col lg:flex-row gap-12 items-start">
-          {/* Left Sidebar: Trip Summary Panel */}
-          <aside className="w-full lg:w-[380px] space-y-8 sticky top-24">
-            <section className="bg-surface-container-lowest p-8 rounded-xl shadow-[0px_20px_40px_rgba(26,28,26,0.06)] relative overflow-hidden flex-shrink-0">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-secondary-container/20 rounded-full -mr-16 -mt-16 blur-3xl"></div>
-              <h2 className="text-3xl font-headline font-black text-primary mb-6 leading-tight">Coastal Serenity in Amalfi</h2>
-              
-              <div className="space-y-6 flex-shrink-0">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-surface-container rounded-full text-primary flex-shrink-0">
-                    <span className="material-symbols-outlined">location_on</span>
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-secondary">Destination</p>
-                    <p className="text-on-surface font-semibold">Positano, Italy</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-surface-container rounded-full text-primary flex-shrink-0">
-                    <span className="material-symbols-outlined">calendar_today</span>
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-secondary">Dates</p>
-                    <p className="text-on-surface font-semibold">Sep 12 — Sep 19, 2024</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-surface-container rounded-full text-primary flex-shrink-0">
-                    <span className="material-symbols-outlined">payments</span>
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-secondary">Budget</p>
-                    <p className="text-on-surface font-semibold">$4,500 Total</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-surface-container rounded-full text-primary flex-shrink-0">
-                    <span className="material-symbols-outlined">sailing</span>
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-secondary">Travel Type</p>
-                    <p className="text-on-surface font-semibold">Luxury / Leisure</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="mt-10 pt-8 border-t border-outline-variant/15 space-y-4">
-                <h3 className="text-lg font-bold text-primary">Cost Breakdown</h3>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-on-surface-variant">Lodging</span>
-                  <span className="font-bold">$2,800</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-on-surface-variant">Food & Dining</span>
-                  <span className="font-bold">$1,200</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-on-surface-variant">Misc & Experiences</span>
-                  <span className="font-bold">$500</span>
-                </div>
-                <div className="w-full bg-surface-container h-2 rounded-full mt-4 overflow-hidden flex">
-                  <div className="bg-primary h-full w-[60%]"></div>
-                  <div className="bg-tertiary-container h-full w-[25%]"></div>
-                  <div className="bg-secondary-fixed-dim h-full w-[15%]"></div>
-                </div>
-              </div>
-            </section>
-            
-            {/* Export Options */}
-            <div className="flex flex-col gap-3">
-              <button className="w-full bg-gradient-to-br from-primary to-primary-container text-white py-4 rounded-xl font-bold flex items-center justify-center gap-3 shadow-lg hover:shadow-primary/20 transition-all">
-                <span className="material-symbols-outlined">save</span>
-                Save Trip
-              </button>
-              <div className="grid grid-cols-2 gap-3">
-                <button className="bg-secondary-container text-on-secondary-container py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-secondary-fixed transition-colors">
-                  <span className="material-symbols-outlined text-lg">download</span>
-                  PDF
-                </button>
-                <button className="bg-secondary-container text-on-secondary-container py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-secondary-fixed transition-colors">
-                  <span className="material-symbols-outlined text-lg">share</span>
-                  Share
-                </button>
-              </div>
-            </div>
-          </aside>
+  const params = useParams()
+  const slug = params?.slug as string
+  const itinerary = itineraries.find(i => i.slug === slug)
 
-          {/* Right Content: Itinerary Builder */}
-          <div className="flex-1 space-y-12">
-            <header className="flex justify-between items-end">
-              <div>
-                <h1 className="text-5xl font-headline font-black text-primary mb-4 tracking-tighter">Your Itinerary</h1>
-                <p className="text-secondary font-medium max-w-xl font-body">A curated week of Mediterranean sun, world-class cuisine, and clifftop adventures, optimized for relaxation.</p>
+  if (!itinerary) {
+    return (
+      <main className="pt-28 pb-20 min-h-screen flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <span className="material-symbols-outlined text-[64px] text-outline">travel_explore</span>
+          <p className="font-headline text-2xl text-primary font-bold">Itinerary not found</p>
+          <Link href="/itineraries" className="text-primary font-semibold hover:underline">
+            Back to My Itineraries
+          </Link>
+        </div>
+      </main>
+    )
+  }
+
+  const { budget } = itinerary
+  const totalEvents = itinerary.days.reduce((acc, d) => acc + d.events.length, 0)
+  const confirmedEvents = itinerary.days
+    .flatMap(d => d.events)
+    .filter(e => e.status === 'confirmed').length
+  const totalCost = itinerary.days
+    .flatMap(d => d.events)
+    .reduce((acc, e) => acc + (e.cost ?? 0), 0)
+
+  const lodgingPct = Math.round((budget.breakdown.lodging / budget.total) * 100)
+  const foodPct = Math.round((budget.breakdown.food / budget.total) * 100)
+  const transportPct = Math.round((budget.breakdown.transport / budget.total) * 100)
+  const activitiesPct = Math.round((budget.breakdown.activities / budget.total) * 100)
+
+  return (
+    <main className="pt-24 pb-20 min-h-screen">
+      <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+
+        {/* ── Back nav ── */}
+        <Link
+          href="/itineraries"
+          className="inline-flex items-center gap-2 text-secondary text-sm font-semibold hover:text-primary transition-colors mb-8"
+        >
+          <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+          My Itineraries
+        </Link>
+
+        {/* ── Hero Banner ── */}
+        <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden mb-10 shadow-xl">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={itinerary.coverImage}
+            alt={itinerary.destination}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          <div className="absolute bottom-6 left-8 right-8 flex items-end justify-between gap-4">
+            <div>
+              <div className="mb-2">
+                <StatusBadge status={itinerary.status} />
               </div>
-              <div className="hidden md:flex gap-2 p-1 bg-surface-container rounded-full">
-                <button className="px-6 py-2 bg-white rounded-full text-sm font-bold shadow-sm">Timeline</button>
-                <button className="px-6 py-2 text-sm font-medium text-secondary">Map View</button>
-              </div>
-            </header>
-            
-            <div className="space-y-16">
-              {/* Day 1 */}
-              <div className="relative pl-8">
-                <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-outline-variant/30"></div>
-                <div className="absolute left-[-6px] top-0 w-3 h-3 rounded-full bg-primary ring-4 ring-surface"></div>
-                <div className="mb-8">
-                  <span className="text-xs font-black tracking-widest text-primary uppercase">Day 01 — Sunday, Sep 12</span>
-                  <h2 className="text-3xl font-headline font-bold text-primary mt-1">The Arrival at the Coast</h2>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Activity Card */}
-                  <div className="bg-surface-container-low p-6 rounded-xl space-y-4 hover:translate-y-[-4px] transition-transform duration-300">
-                    <div className="flex justify-between items-start">
-                      <span className="px-4 py-1 bg-tertiary-container/10 text-tertiary-container text-[10px] font-bold uppercase rounded-full">10:00 AM</span>
-                      <span className="material-symbols-outlined text-secondary text-sm">more_horiz</span>
-                    </div>
-                    <h4 className="font-bold font-body text-lg">Naples Private Transfer</h4>
-                    <p className="text-sm font-body text-on-surface-variant leading-relaxed">Luxury chauffeur from NAP Airport through the scenic Sorrento pass to your clifftop villa.</p>
-                    <div className="flex items-center gap-2 text-xs text-secondary font-semibold">
-                      <span className="material-symbols-outlined text-sm">info</span>
-                      Confirmed: Booking #A882
-                    </div>
-                  </div>
-                  {/* Activity Card with Image */}
-                  <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
-                    <div className="h-40 overflow-hidden">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkYQJXHD8CJnLFPNIa4gsMezvjfRMzPc-sho9jt-ChDx8SKPvYDmNFQoDBt4lfgVk1nrv9lTw_p2YYYhntTqxMMel9J4heaeRY1KlPWR4NbW3gJ0BER6BlXTzEjdPibEf8ovzey5kH-dAnWaZeYRVJ_pejp8AeRQH1ClTR2tbgdKJ5KG8GHHQVen4XaRKEKeOuOPRSFJUFO80_L65IBPb57jA6CxXjI2eKrVqkPyu3eKlh-RFr3D7c3tmD41iWxoTUKdPofUFAQXiz" alt="Amalfi Coast view" />
-                    </div>
-                    <div className="p-6 space-y-3">
-                      <div className="flex justify-between items-start">
-                        <span className="px-4 py-1 bg-tertiary-container/10 text-tertiary-container text-[10px] font-bold uppercase rounded-full">02:00 PM</span>
-                      </div>
-                      <h4 className="font-bold font-body text-lg">Villa check-in & Welcome Spritz</h4>
-                      <p className="text-sm font-body text-on-surface-variant leading-relaxed">Refresh at Le Sirenuse. Valet will handle your luggage while you enjoy terrace views.</p>
-                    </div>
-                  </div>
-                </div>
-                {/* AI Suggestion Prompt */}
-                <div className="mt-8 p-6 bg-tertiary-fixed/10 rounded-xl border-2 border-dashed border-tertiary-fixed/30 flex gap-6 items-center">
-                  <div className="w-12 h-12 rounded-full bg-tertiary-container text-white flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-bold text-tertiary">AI SUGGESTION</p>
-                    <p className="text-sm text-on-tertiary-fixed-variant">I noticed a gap in your evening. Would you like a reservation at <strong>Da Adolfo</strong>? It's highly rated for sunset dining.</p>
-                  </div>
-                  <button className="px-6 py-2 bg-tertiary-container text-white text-xs font-bold rounded-full">Add to Day 1</button>
-                </div>
-              </div>
-              
-              {/* Day 2 */}
-              <div className="relative pl-8">
-                <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-outline-variant/30"></div>
-                <div className="absolute left-[-6px] top-0 w-3 h-3 rounded-full bg-outline-variant"></div>
-                <div className="mb-8">
-                  <span className="text-xs font-black tracking-widest text-secondary uppercase">Day 02 — Monday, Sep 13</span>
-                  <h2 className="text-3xl font-headline font-bold text-primary mt-1">Limone & Leather</h2>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="md:col-span-2 bg-surface-container-low p-6 rounded-xl flex gap-6">
-                    <div className="w-24 h-24 rounded-lg bg-surface-container overflow-hidden shrink-0">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv9fKHWk2WRsZVwK54ny5jahGvzim74WNct_WITXrg8eZ187mt-uRbJIRheX59mkOVSaLGiJZ0QvbNGFOFnTfEBff7azw9J_pYgCMnjx7XZ5f6WYvW1HMXGnuBxTYFqtNxpniZ_Hj9MZkg2X5U9_TTctk_ACQ6XtUg7pkpPByQfRq_1gd5bSJqsghyxIYsMlQySMVV6InuYw6YMrMRUEGtD4Wy8GenT-9MEYp8GcR_K7RHZyAkLVbP3MqOnRcA8uwr0hCgsLyBOweL" alt="Italian Lemons" />
-                    </div>
-                    <div className="space-y-2">
-                      <span className="px-4 py-1 bg-tertiary-container/10 text-tertiary-container text-[10px] font-bold uppercase rounded-full">09:00 AM</span>
-                      <h4 className="font-bold text-lg font-body">Amalfi Lemon Grove Tour</h4>
-                      <p className="text-sm font-body text-on-surface-variant">A private walking tour through the 'Sfusato Amalfitano' gardens followed by limoncello tasting.</p>
-                    </div>
-                  </div>
-                  <div className="bg-surface-container-low p-6 rounded-xl flex flex-col justify-between">
-                    <div className="space-y-3">
-                      <span className="px-4 py-1 bg-tertiary-container/10 text-tertiary-container text-[10px] font-bold uppercase rounded-full">01:00 PM</span>
-                      <h4 className="font-bold text-lg font-body">Custom Sandal Fitting</h4>
-                      <p className="text-sm font-body text-on-surface-variant">La Botteguccia artisan workshop.</p>
-                    </div>
-                    <div className="pt-4 border-t border-outline-variant/10 text-xs font-bold text-primary">
-                      $85.00 Estimated
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Add Day Placeholder */}
-              <button className="w-full py-6 rounded-xl border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center gap-2 group hover:border-primary/30 transition-colors">
-                <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
-                  <span className="material-symbols-outlined">add</span>
-                </div>
-                <span className="text-sm font-bold text-secondary">Add New Day</span>
+              <h1 className="font-headline text-3xl md:text-5xl font-black text-white leading-tight drop-shadow-lg">
+                {itinerary.title}
+              </h1>
+              <p className="text-white/80 mt-1 flex items-center gap-1.5 text-sm">
+                <span className="material-symbols-outlined text-[16px]">location_on</span>
+                {itinerary.destination}
+              </p>
+            </div>
+            <div className="hidden md:flex items-center gap-2 p-1.5 bg-white/15 backdrop-blur-sm rounded-full shrink-0">
+              <button className="px-5 py-2 bg-white rounded-full text-sm font-bold text-primary shadow-sm">
+                Timeline
+              </button>
+              <button className="px-5 py-2 text-sm font-medium text-white/80 hover:text-white transition-colors">
+                Map View
               </button>
             </div>
           </div>
         </div>
-      </main>
 
-      {/* Floating Action Button */}
-      <button className="fixed bottom-10 right-10 md:bottom-20 md:right-12 w-16 h-16 bg-gradient-to-br from-primary to-primary-container text-white rounded-full shadow-2xl flex items-center justify-center scale-100 active:scale-90 transition-transform z-40">
-        <span className="material-symbols-outlined text-3xl">add</span>
-      </button>
+        {/* ── Main Layout ── */}
+        <div className="flex flex-col lg:flex-row gap-8 items-start">
 
-      <Footer />
-    </>
-  );
+          {/* ═══ LEFT SIDEBAR ═══ */}
+          <aside className="w-full lg:w-[340px] xl:w-[380px] shrink-0 space-y-6 lg:sticky lg:top-24">
+
+            {/* Trip Summary Card */}
+            <div className="bg-surface-container-lowest rounded-2xl p-7 shadow-sm border border-outline-variant/10 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-secondary-container/20 rounded-full -mr-16 -mt-16 blur-3xl pointer-events-none" />
+
+              <h2 className="font-headline text-xl font-bold text-primary mb-6">Trip Summary</h2>
+
+              <div className="space-y-4">
+                {[
+                  { icon: 'location_on', label: 'Destination', value: itinerary.destination },
+                  {
+                    icon: 'calendar_today',
+                    label: 'Dates',
+                    value: `${itinerary.dates.start} — ${itinerary.dates.end}`,
+                  },
+                  {
+                    icon: 'schedule',
+                    label: 'Duration',
+                    value: `${itinerary.duration} days`,
+                  },
+                  {
+                    icon: 'group',
+                    label: 'Travelers',
+                    value: `${itinerary.travelers} ${itinerary.travelers === 1 ? 'person' : 'people'}`,
+                  },
+                  { icon: 'category', label: 'Travel Style', value: itinerary.travelType },
+                ].map(row => (
+                  <div key={row.label} className="flex items-center gap-3">
+                    <div className="w-9 h-9 bg-surface-container rounded-full flex items-center justify-center shrink-0">
+                      <span className="material-symbols-outlined text-primary text-[18px]">
+                        {row.icon}
+                      </span>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-secondary">
+                        {row.label}
+                      </p>
+                      <p className="text-on-surface font-semibold text-sm truncate">{row.value}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Trip stats row */}
+              <div className="mt-6 grid grid-cols-3 gap-3 pt-6 border-t border-outline-variant/10">
+                <div className="text-center">
+                  <p className="font-headline text-2xl font-bold text-primary">{totalEvents}</p>
+                  <p className="text-[10px] text-outline font-semibold uppercase tracking-wide">Events</p>
+                </div>
+                <div className="text-center">
+                  <p className="font-headline text-2xl font-bold text-primary">{confirmedEvents}</p>
+                  <p className="text-[10px] text-outline font-semibold uppercase tracking-wide">Confirmed</p>
+                </div>
+                <div className="text-center">
+                  <p className="font-headline text-2xl font-bold text-primary">{itinerary.days.length}</p>
+                  <p className="text-[10px] text-outline font-semibold uppercase tracking-wide">Days</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Budget Breakdown */}
+            <div className="bg-surface-container-lowest rounded-2xl p-7 shadow-sm border border-outline-variant/10">
+              <div className="flex items-center justify-between mb-5">
+                <h3 className="font-bold text-primary text-lg">Budget</h3>
+                <span className="font-headline text-2xl font-bold text-primary">
+                  ${budget.total.toLocaleString()}
+                </span>
+              </div>
+
+              {/* Stacked bar */}
+              <div className="h-2 rounded-full flex overflow-hidden mb-4 gap-px">
+                <div className="bg-primary h-full" style={{ width: `${lodgingPct}%` }} />
+                <div className="bg-on-primary-container h-full" style={{ width: `${foodPct}%` }} />
+                <div className="bg-secondary-fixed-dim h-full" style={{ width: `${transportPct}%` }} />
+                <div className="bg-tertiary-fixed-dim h-full" style={{ width: `${activitiesPct}%` }} />
+              </div>
+
+              <div className="space-y-3">
+                {[
+                  { label: 'Lodging', value: budget.breakdown.lodging, color: 'bg-primary' },
+                  { label: 'Food & Dining', value: budget.breakdown.food, color: 'bg-on-primary-container' },
+                  { label: 'Transport', value: budget.breakdown.transport, color: 'bg-secondary-fixed-dim' },
+                  { label: 'Activities', value: budget.breakdown.activities, color: 'bg-tertiary-fixed-dim' },
+                ].map(row => (
+                  <div key={row.label} className="flex items-center justify-between text-sm">
+                    <span className="flex items-center gap-2 text-on-surface-variant">
+                      <span className={`w-2 h-2 rounded-full ${row.color}`} />
+                      {row.label}
+                    </span>
+                    <span className="font-bold text-on-surface">
+                      ${row.value.toLocaleString()}
+                    </span>
+                  </div>
+                ))}
+                <div className="pt-3 border-t border-outline-variant/10 flex items-center justify-between text-sm">
+                  <span className="text-on-surface-variant font-medium">Logged so far</span>
+                  <span className="font-bold text-primary">${totalCost.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Tags */}
+            <div className="bg-surface-container-lowest rounded-2xl p-7 shadow-sm border border-outline-variant/10">
+              <h3 className="font-bold text-primary text-lg mb-4">Trip Tags</h3>
+              <div className="flex flex-wrap gap-2">
+                {itinerary.tags.map(tag => (
+                  <span
+                    key={tag}
+                    className="bg-surface-container text-on-surface-variant text-xs px-4 py-2 rounded-full font-semibold"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Action buttons */}
+            <div className="space-y-3">
+              <button className="w-full bg-gradient-to-br from-primary to-primary-container text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:scale-[1.02] transition-all">
+                <span className="material-symbols-outlined text-[20px]">save</span>
+                Save Trip
+              </button>
+              <div className="grid grid-cols-2 gap-3">
+                <button className="bg-secondary-container text-on-secondary-fixed-variant py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-secondary-fixed transition-colors">
+                  <span className="material-symbols-outlined text-[18px]">download</span>
+                  PDF
+                </button>
+                <button className="bg-secondary-container text-on-secondary-fixed-variant py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-secondary-fixed transition-colors">
+                  <span className="material-symbols-outlined text-[18px]">share</span>
+                  Share
+                </button>
+              </div>
+            </div>
+
+            {/* Chatbot CTA */}
+            <ChatbotCTA
+              itineraryTitle={itinerary.title}
+              itinerarySlug={itinerary.slug}
+              variant="sidebar"
+            />
+          </aside>
+
+          {/* ═══ RIGHT: TIMELINE ═══ */}
+          <div className="flex-1 min-w-0 space-y-6">
+
+            {/* Chatbot banner (mobile/top) */}
+            <div className="lg:hidden">
+              <ChatbotCTA
+                itineraryTitle={itinerary.title}
+                itinerarySlug={itinerary.slug}
+                variant="banner"
+              />
+            </div>
+
+            {/* Timeline header */}
+            <div className="flex items-center justify-between">
+              <h2 className="font-headline text-3xl font-black text-primary">Day-by-Day Timeline</h2>
+              <span className="text-sm text-outline font-medium hidden sm:block">
+                {itinerary.days.length} days · {totalEvents} events
+              </span>
+            </div>
+
+            {/* Days */}
+            <div className="space-y-10">
+              {itinerary.days.map((day, dayIdx) => (
+                <section key={day.dayNumber}>
+
+                  {/* Day header */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center shrink-0 shadow-md shadow-primary/20">
+                      <span className="text-white text-xs font-black">
+                        {String(day.dayNumber).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-black text-secondary uppercase tracking-widest">
+                        Day {day.dayNumber} · {day.date}
+                      </p>
+                      <h3 className="font-headline text-2xl font-bold text-primary leading-tight">
+                        {day.dayLabel}
+                      </h3>
+                    </div>
+                    <div className="ml-auto hidden sm:flex items-center gap-2 text-xs text-outline font-medium">
+                      <span className="material-symbols-outlined text-[16px]">event</span>
+                      {day.events.length} events
+                    </div>
+                  </div>
+
+                  {/* Events with connecting line */}
+                  <div className="relative pl-4">
+                    {/* Vertical timeline line */}
+                    {day.events.length > 1 && (
+                      <div className="absolute left-[26px] top-5 bottom-5 w-px bg-outline-variant/20" />
+                    )}
+
+                    <div className="space-y-4">
+                      {day.events.map(event => (
+                        <TimelineEventCard key={event.id} event={event} />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* AI suggestion strip (shown on every other day) */}
+                  {dayIdx % 2 === 0 && (
+                    <div className="mt-4 ml-4 p-5 bg-tertiary-fixed/10 rounded-xl border-2 border-dashed border-tertiary-fixed/25 flex gap-4 items-center">
+                      <div className="w-10 h-10 rounded-full bg-tertiary-container text-white flex items-center justify-center shrink-0">
+                        <span
+                          className="material-symbols-outlined text-[18px]"
+                          style={{ fontVariationSettings: "'FILL' 1" }}
+                        >
+                          auto_awesome
+                        </span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-black text-on-tertiary-fixed-variant uppercase tracking-widest">
+                          Vayka Suggestion
+                        </p>
+                        <p className="text-sm text-on-surface-variant mt-0.5">
+                          {dayIdx === 0
+                            ? 'I noticed a gap tomorrow morning — want me to add a local breakfast spot or temple visit?'
+                            : 'Based on your pace, consider adding a free afternoon in here for rest or spontaneous exploration.'}
+                        </p>
+                      </div>
+                      <Link
+                        href={`/chat?itinerary=${itinerary.slug}&day=${day.dayNumber}`}
+                        className="px-4 py-2 bg-tertiary-container text-white text-xs font-bold rounded-full shrink-0 hover:opacity-90 transition-opacity"
+                      >
+                        Ask Vayka
+                      </Link>
+                    </div>
+                  )}
+
+                  {/* Day separator */}
+                  {dayIdx < itinerary.days.length - 1 && (
+                    <div className="mt-8 h-px bg-outline-variant/15" />
+                  )}
+                </section>
+              ))}
+
+              {/* Add Day placeholder */}
+              <button className="w-full py-8 rounded-2xl border-2 border-dashed border-outline-variant/25 flex flex-col items-center justify-center gap-3 group hover:border-primary/30 hover:bg-surface-container-low/50 transition-all duration-200">
+                <div className="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+                  <span className="material-symbols-outlined text-[24px] text-outline group-hover:text-white">
+                    add
+                  </span>
+                </div>
+                <div className="text-center">
+                  <p className="font-bold text-on-surface text-sm">Add a Day</p>
+                  <p className="text-xs text-on-surface-variant mt-0.5">
+                    Or ask Vayka to extend the trip
+                  </p>
+                </div>
+              </button>
+            </div>
+
+            {/* Bottom CTA banner (desktop) */}
+            <div className="hidden lg:block mt-8">
+              <ChatbotCTA
+                itineraryTitle={itinerary.title}
+                itinerarySlug={itinerary.slug}
+                variant="banner"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  )
 }

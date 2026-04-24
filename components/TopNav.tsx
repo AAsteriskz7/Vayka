@@ -8,9 +8,9 @@ export default function TopNav() {
   // Hide global navigation on the admin dashboard
   if (pathname?.startsWith('/admin')) return null;
 
-  const isDestinations = pathname === '/destinations';
-  const isItineraries = pathname === '/itineraries';
-  const isSearch = pathname === '/search';
+  const isDestinations = pathname?.startsWith('/destinations');
+  const isItineraries = pathname?.startsWith('/itineraries');
+  const isSearch = pathname?.startsWith('/search');
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center bg-white/60 dark:bg-teal-950/60 backdrop-blur-3xl rounded-full max-w-fit mx-auto mt-6 px-6 py-3 shadow-[0px_20px_40px_rgba(26,28,26,0.06)]">
