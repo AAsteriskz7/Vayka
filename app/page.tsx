@@ -1,5 +1,6 @@
 import Footer from '../components/Footer';
 import Link from 'next/link';
+import HeroSearchForm from '../components/HeroSearchForm';
 
 export default function Home() {
   return (
@@ -15,24 +16,7 @@ export default function Home() {
                 <h1 className="font-headline text-6xl lg:text-7xl leading-tight font-black text-primary tracking-tight">Beyond Search. <br/><span className="italic text-on-primary-container font-normal">Into Discovery.</span></h1>
                 <p className="text-secondary text-lg max-w-md leading-relaxed">Let Vayka bridge the gap between your wanderlust and the world&apos;s best-kept secrets.</p>
               </div>
-              <div className="relative group">
-                <div className="absolute inset-0 bg-surface-tint/5 blur-2xl rounded-xl -z-10 group-focus-within:bg-surface-tint/10 transition-all"></div>
-                <div className="bg-surface-container-lowest p-6 rounded-xl shadow-xl shadow-on-surface/5 flex flex-col gap-4">
-                  <label className="text-secondary font-label text-sm font-semibold tracking-wide flex items-center gap-2">
-                    <span className="material-symbols-outlined text-primary text-lg">magic_button</span>
-                    Where does your curiosity lead?
-                  </label>
-                  <div className="relative">
-                    <textarea 
-                      className="w-full bg-surface-container border-none rounded-lg p-5 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-surface-tint/20 min-h-[120px] resize-none font-body outline-none" 
-                      placeholder="Describe a feeling, a flavor, or a hidden coast..."
-                    ></textarea>
-                    <Link href="/search" className="absolute bottom-4 right-4 bg-primary text-white p-3 rounded-full hover:scale-105 transition-transform inline-flex items-center justify-center">
-                      <span className="material-symbols-outlined">arrow_forward</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+              <HeroSearchForm />
             </div>
             {/* Right: Overlapping Organic Image */}
             <div className="lg:col-span-7 relative">
@@ -179,25 +163,6 @@ export default function Home() {
                 <span className="bg-surface-container text-on-surface-variant text-xs px-4 py-2 rounded-full font-semibold">Sunset Views</span>
               </div>
             </Link>
-          </div>
-        </section>
-
-        {/* Newsletter / Community Section */}
-        <section className="max-w-screen-2xl mx-auto px-12">
-          <div className="bg-primary-container rounded-xl p-16 relative overflow-hidden">
-            <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-primary rounded-full blur-3xl opacity-50"></div>
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6">
-                <h2 className="font-headline text-4xl lg:text-5xl font-black text-white leading-tight">Join the Vayka Collective</h2>
-                <p className="text-on-primary-container text-lg max-w-md">Receive bi-weekly dispatches featuring under-the-radar destinations and exclusive curator tools.</p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <input className="flex-grow bg-white/10 border-none rounded-xl px-6 py-4 text-white placeholder:text-white/40 focus:ring-2 focus:ring-white/20 font-body outline-none" placeholder="your@journal.com" type="email"/>
-                <button className="bg-white text-primary px-10 py-4 rounded-xl font-bold hover:bg-surface-container-high transition-colors shadow-lg">
-                  Subscribe
-                </button>
-              </div>
-            </div>
           </div>
         </section>
       </main>

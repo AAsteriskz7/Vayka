@@ -72,13 +72,71 @@ function buildIntentInstructions(intent: ChatIntent) {
   }
 }
 
+function buildPageContextInstruction(pageContext?: string): string {
+  if (!pageContext) return ''
+  if (pageContext === '/') return ''
+
+  if (pageContext.startsWith('/destinations')) {
+    return ' The user is currently browsing the destinations page. If relevant, tailor your answer to help them discover or compare destinations.'
+  }
+  if (pageContext.startsWith('/itineraries')) {
+    return ' The user is currently viewing itineraries. If relevant, help them plan or refine a trip itinerary.'
+  }
+  if (pageContext.startsWith('/search')) {
+    return ' The user is currently on the search page looking for travel options. Help them find what they are looking for.'
+  }
+  if (pageContext.startsWith('/compare')) {
+    return ' The user is currently comparing destinations. Help them weigh the pros and cons.'
+  }
+  return ''
+}
+
+async function callGemini(model: string, apiKey: string, promptText: string, history?: { role: string; text: string }[]): Promise<Response> {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`
+
+  // Build multi-turn contents if history is provided
+  const contents: { role: string; parts: { text: string }[] }[] = []
+
+  if (history && history.length > 0) {
+    for (const msg of history) {
+      contents.push({
+        role: msg.role === 'user' ? 'user' : 'model',
+        parts: [{ text: msg.text }],
+      })
+    }
+  }
+
+  // Current user message (with full prompt context)
+  contents.push({ role: 'user', parts: [{ text: promptText }] })
+
+  return fetch(`${url}?key=${apiKey}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      generationConfig: { temperature: 0.4, maxOutputTokens: 1024 },
+      contents,
+    }),
+  })
+}
+
 export async function POST(req: NextRequest) {
   const startedAt = Date.now()
 
   try {
-    const { message } = await req.json();
+    const body = await req.json();
+    const message = body.message;
+    const pageContext = body.pageContext || '';
+    const rawHistory: { role: string; content: string }[] = Array.isArray(body.history) ? body.history : [];
     const apiKey = process.env.GEMINI_API_KEY;
     const chatModel = process.env.GEMINI_CHAT_MODEL || 'gemini-2.5-flash';
+    const backupModel = process.env.GEMINI_CHAT_BACKUP_MODEL || '';
+
+    // Sliding window: keep last 10 messages to avoid token overflow
+    const MAX_HISTORY = 10;
+    const history = rawHistory.slice(-MAX_HISTORY).map(m => ({
+      role: m.role === 'user' ? 'user' : 'model',
+      text: m.content,
+    }));
 
     if (!apiKey || !supabase) {
       const err = !apiKey ? 'Missing Gemini API key' : 'Missing Supabase Config'
@@ -100,13 +158,14 @@ export async function POST(req: NextRequest) {
          contextDocuments = data;
       }
     } catch (e) {
-      console.warn("Vector search failed, proceeding without context. Ensure match_documents RPC is installed.", e);
+      console.warn("Vector search failed, proceeding without context.", e);
     }
 
     // 2. Dynamic Prompt Construction
     const intent = detectIntent(message)
     const intentInstructions = buildIntentInstructions(intent)
-    let dynamicPrompt = `${BASE_INSTRUCTIONS} ${intentInstructions} You will be provided with some context from a database. If the context answers the user's question, use it. If the context is empty or doesn't have the exact answer, provide a helpful answer using your general knowledge. Do not stop early or leave the answer incomplete.`;
+    const pageInstruction = buildPageContextInstruction(pageContext)
+    let dynamicPrompt = `${BASE_INSTRUCTIONS} ${intentInstructions}${pageInstruction} You will be provided with some context from a database. If the context answers the user's question, use it. If the context is empty or doesn't have the exact answer, provide a helpful answer using your general knowledge. Do not stop early or leave the answer incomplete.`;
 
     let promptContext = '';
     const uniqueSources = new Set<string>();
@@ -117,41 +176,40 @@ export async function POST(req: NextRequest) {
         promptContext += `[Source ${idx + 1}]: ${doc.content}\n`;
         if (doc.source) uniqueSources.add(doc.source);
       });
-      dynamicPrompt += '\n\nYou must base your answer ONLY on the Relevant Information provided below. If the information does not answer the question, state that you do not know based on your current knowledge base.';
+      dynamicPrompt += '\n\nPrefer using the Relevant Information provided below when answering. Cite sources with [Source 1], [Source 2] etc. placed immediately after the specific fact they support. If the provided information does not fully answer the question, supplement with your own general knowledge to give a complete and helpful answer.';
     }
 
     const finalPromptText = `${dynamicPrompt}${promptContext}\n\nUser question: ${message}`;
 
-    // 3. Query Gemini
-    const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${chatModel}:generateContent`;
+    // 3. Query Gemini (with backup model fallback)
+    let res = await callGemini(chatModel, apiKey, finalPromptText, history);
 
-    const res = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        generationConfig: {
-          temperature: 0.4,
-          maxOutputTokens: 512,
-        },
-        contents: [
-          {
-            parts: [
-              {
-                text: finalPromptText,
-              },
-            ],
-          },
-        ],
-      }),
-    });
+    // If primary model fails and we have a backup, try the backup
+    let usedModel = chatModel;
+    if (!res.ok && backupModel && backupModel !== chatModel) {
+      console.warn(`Primary model ${chatModel} failed (${res.status}), falling back to ${backupModel}`);
+      res = await callGemini(backupModel, apiKey, finalPromptText, history);
+      usedModel = backupModel;
+    }
+
     if (!res.ok) {
       const err = await res.text();
-      recordRequestMetric({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: err })
-      await safelyAppendUsageLog({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: err })
-      return NextResponse.json({ error: err }, { status: 500 });
+      const statusCode = res.status;
+      recordRequestMetric({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode, errorMessage: err })
+      await safelyAppendUsageLog({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode, errorMessage: err })
+
+      let userMessage = 'Something went wrong while generating your response. Please try again.';
+      if (statusCode === 429) {
+        userMessage = 'The AI service is temporarily busy. Please wait a moment and try again.';
+      } else if (statusCode === 503 || statusCode === 502) {
+        userMessage = 'The AI service is currently unavailable. Please try again in a few minutes.';
+      } else if (statusCode === 400) {
+        userMessage = 'There was an issue with your request. Try rephrasing your question.';
+      }
+
+      return NextResponse.json({ error: userMessage }, { status: statusCode });
     }
+
     const data = await res.json();
     let response = 'No response.';
     if (data && Array.isArray(data.candidates) && data.candidates[0]?.content?.parts?.[0]?.text) {
@@ -164,12 +222,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ 
       response,
       intent,
-      sources: Array.from(uniqueSources)
+      sources: Array.from(uniqueSources),
+      model: usedModel,
     });
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unknown chat error'
-    recordRequestMetric({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: message })
-    await safelyAppendUsageLog({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: message })
-    return NextResponse.json({ error: message }, { status: 500 })
+    const errMsg = error instanceof Error ? error.message : 'Unknown chat error'
+    recordRequestMetric({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: errMsg })
+    await safelyAppendUsageLog({ endpoint: '/api/chat', method: 'POST', durationMs: Date.now() - startedAt, ok: false, statusCode: 500, errorMessage: errMsg })
+    return NextResponse.json({ error: 'Something went wrong while generating your response. Please try again.' }, { status: 500 })
   }
 }
