@@ -30,8 +30,7 @@ export default function KnowledgeBaseList({ initialSources }: { initialSources: 
       if (!res.ok) throw new Error('Failed to delete source')
       
       setSources(s => s.filter((x: KnowledgeBaseSource) => x.source !== sourceUrl))
-    } catch (err) {
-      console.error(err)
+    } catch {
       alert("Error deleting source")
     } finally {
       setIsDeleting(null)

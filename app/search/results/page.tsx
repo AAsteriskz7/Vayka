@@ -153,16 +153,16 @@ function SearchResultsContent() {
                   <h3 className="text-sm font-label font-bold text-secondary uppercase tracking-widest mb-4">
                     Refine Your Search
                   </h3>
+                  <p className="text-xs text-secondary leading-relaxed mb-3">
+                    Use the floating chat button to get a more detailed, conversational answer from Vayka AI.
+                  </p>
                   <Link
-                    href="/chat"
+                    href="/search"
                     className="w-full flex items-center gap-3 px-5 py-4 bg-primary text-white rounded-xl font-bold text-sm hover:shadow-lg transition-shadow"
                   >
-                    <span className="material-symbols-outlined text-base" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
-                    Ask Vayka AI directly
+                    <span className="material-symbols-outlined text-base">tune</span>
+                    Refine search filters
                   </Link>
-                  <p className="text-xs text-secondary mt-3 leading-relaxed">
-                    Get a more detailed, conversational answer by chatting with our AI travel assistant.
-                  </p>
                 </div>
 
                 <div className="bg-surface-container rounded-2xl p-6">

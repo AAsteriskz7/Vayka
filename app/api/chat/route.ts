@@ -74,7 +74,7 @@ function buildIntentInstructions(intent: ChatIntent) {
 
 function buildPageContextInstruction(pageContext?: string): string {
   if (!pageContext) return ''
-  if (pageContext === '/' || pageContext === '/chat') return ''
+  if (pageContext === '/') return ''
 
   if (pageContext.startsWith('/destinations')) {
     return ' The user is currently browsing the destinations page. If relevant, tailor your answer to help them discover or compare destinations.'

@@ -1,0 +1,21 @@
+{
+  "name": "Vayka — AI-Powered Travel Discovery",
+  "short_name": "Vayka",
+  "description": "AI-curated travel recommendations, itinerary planning, and destination comparison.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf9f6",
+  "theme_color": "#00502b",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

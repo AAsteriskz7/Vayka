@@ -5,19 +5,24 @@ import { usePathname } from 'next/navigation';
 export default function MobileNav() {
   const pathname = usePathname();
 
-  // Hide global navigation on the admin dashboard
   if (pathname?.startsWith('/admin')) return null;
+
+  const linkClass = (path: string) =>
+    `flex flex-col items-center gap-1 ${pathname === path ? 'text-primary' : 'text-outline/80'} hover:text-primary transition-colors`;
+
+  const iconFill = (path: string) =>
+    pathname === path ? { fontVariationSettings: "'FILL' 1" as const } : {};
 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl flex justify-around p-4 z-50 border-t border-outline-variant/10 pb-6 pt-2">
-      <Link href="/destinations" className={`flex flex-col items-center gap-1 ${pathname === '/destinations' || pathname === '/' ? 'text-primary' : 'text-outline/80'} hover:text-primary transition-colors`}>
-        <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/destinations' || pathname === '/' ? "'FILL' 1" : "" }}>explore</span>
+      <Link href="/destinations" className={linkClass('/destinations')}>
+        <span className="material-symbols-outlined" style={iconFill('/destinations')}>explore</span>
         <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Explore</span>
       </Link>
 
-      <Link href="/chat" className={`flex flex-col items-center gap-1 ${pathname === '/chat' ? 'text-primary' : 'text-outline/80'} hover:text-primary transition-colors`}>
-        <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/chat' ? "'FILL' 1" : "" }}>chat_bubble</span>
-        <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Chat</span>
+      <Link href="/compare" className={linkClass('/compare')}>
+        <span className="material-symbols-outlined" style={iconFill('/compare')}>compare_arrows</span>
+        <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Compare</span>
       </Link>
 
       <Link href="/search" className={`flex flex-col items-center justify-center ${pathname === '/search' ? 'bg-primary text-on-primary' : 'bg-primary/90 text-on-primary'} rounded-full p-3 -mt-4 shadow-lg hover:bg-primary transition-all duration-300 ease-in-out hover:scale-105 active:scale-95`}>
@@ -25,14 +30,14 @@ export default function MobileNav() {
         <span className="font-sans text-[10px] font-bold uppercase tracking-widest mt-1">Search</span>
       </Link>
 
-      <Link href="/itineraries" className={`flex flex-col items-center gap-1 ${pathname === '/itineraries' ? 'text-primary' : 'text-outline/80'} hover:text-primary transition-colors`}>
-        <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/itineraries' ? "'FILL' 1" : "" }}>map</span>
+      <Link href="/itineraries" className={linkClass('/itineraries')}>
+        <span className="material-symbols-outlined" style={iconFill('/itineraries')}>map</span>
         <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Trips</span>
       </Link>
 
-      <Link href="/profile" className={`flex flex-col items-center gap-1 ${pathname === '/profile' ? 'text-primary' : 'text-outline/80'} hover:text-primary transition-colors`}>
-        <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/profile' ? "'FILL' 1" : "" }}>person</span>
-        <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
+      <Link href="/admin" className={linkClass('/admin')}>
+        <span className="material-symbols-outlined" style={iconFill('/admin')}>settings</span>
+        <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Admin</span>
       </Link>
     </nav>
   );
