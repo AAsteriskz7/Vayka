@@ -34,11 +34,6 @@ export default function MobileNav() {
         <span className="material-symbols-outlined" style={iconFill('/itineraries')}>map</span>
         <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Trips</span>
       </Link>
-
-      <Link href="/admin" className={linkClass('/admin')}>
-        <span className="material-symbols-outlined" style={iconFill('/admin')}>settings</span>
-        <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Admin</span>
-      </Link>
     </nav>
   );
 }

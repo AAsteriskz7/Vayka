@@ -24,8 +24,7 @@ export default function TopNav() {
           </Link>
         </div>
       </div>
-      <div className="flex items-center gap-3 ml-8">
-        <Link href="/admin" className="material-symbols-outlined text-teal-900 dark:text-teal-50 p-2 hover:bg-white/40 rounded-full transition-all" title="Admin Dashboard">settings</Link>
+      <div className="hidden md:flex items-center gap-3 ml-8">
       </div>
     </nav>
   );

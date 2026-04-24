@@ -91,14 +91,30 @@ function buildPageContextInstruction(pageContext?: string): string {
   return ''
 }
 
-async function callGemini(model: string, apiKey: string, promptText: string): Promise<Response> {
+async function callGemini(model: string, apiKey: string, promptText: string, history?: { role: string; text: string }[]): Promise<Response> {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`
+
+  // Build multi-turn contents if history is provided
+  const contents: { role: string; parts: { text: string }[] }[] = []
+
+  if (history && history.length > 0) {
+    for (const msg of history) {
+      contents.push({
+        role: msg.role === 'user' ? 'user' : 'model',
+        parts: [{ text: msg.text }],
+      })
+    }
+  }
+
+  // Current user message (with full prompt context)
+  contents.push({ role: 'user', parts: [{ text: promptText }] })
+
   return fetch(`${url}?key=${apiKey}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       generationConfig: { temperature: 0.4, maxOutputTokens: 1024 },
-      contents: [{ parts: [{ text: promptText }] }],
+      contents,
     }),
   })
 }
@@ -110,9 +126,17 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const message = body.message;
     const pageContext = body.pageContext || '';
+    const rawHistory: { role: string; content: string }[] = Array.isArray(body.history) ? body.history : [];
     const apiKey = process.env.GEMINI_API_KEY;
     const chatModel = process.env.GEMINI_CHAT_MODEL || 'gemini-2.5-flash';
     const backupModel = process.env.GEMINI_CHAT_BACKUP_MODEL || '';
+
+    // Sliding window: keep last 10 messages to avoid token overflow
+    const MAX_HISTORY = 10;
+    const history = rawHistory.slice(-MAX_HISTORY).map(m => ({
+      role: m.role === 'user' ? 'user' : 'model',
+      text: m.content,
+    }));
 
     if (!apiKey || !supabase) {
       const err = !apiKey ? 'Missing Gemini API key' : 'Missing Supabase Config'
@@ -158,13 +182,13 @@ export async function POST(req: NextRequest) {
     const finalPromptText = `${dynamicPrompt}${promptContext}\n\nUser question: ${message}`;
 
     // 3. Query Gemini (with backup model fallback)
-    let res = await callGemini(chatModel, apiKey, finalPromptText);
+    let res = await callGemini(chatModel, apiKey, finalPromptText, history);
 
     // If primary model fails and we have a backup, try the backup
     let usedModel = chatModel;
     if (!res.ok && backupModel && backupModel !== chatModel) {
       console.warn(`Primary model ${chatModel} failed (${res.status}), falling back to ${backupModel}`);
-      res = await callGemini(backupModel, apiKey, finalPromptText);
+      res = await callGemini(backupModel, apiKey, finalPromptText, history);
       usedModel = backupModel;
     }
 

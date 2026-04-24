@@ -28,9 +28,9 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="font-bold text-primary mb-6">Support</h4>
+          <h4 className="font-bold text-primary mb-6">More</h4>
           <ul className="space-y-4 text-on-surface-variant">
-            <li><Link className="hover:text-primary transition-colors" href="/admin">Admin Dashboard</Link></li>
+            <li><Link className="hover:text-primary transition-colors" href="/compare">Compare</Link></li>
           </ul>
         </div>
       </div>

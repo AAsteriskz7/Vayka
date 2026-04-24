@@ -90,18 +90,15 @@ export default function FloatingChatButton() {
   const feedRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  if (pathname?.startsWith('/admin')) return null;
-
+  const isAdmin = pathname?.startsWith('/admin') ?? false;
   const suggestions = getSuggestions(pathname || '/');
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (feedRef.current) {
       feedRef.current.scrollTop = feedRef.current.scrollHeight;
     }
   }, [messages]);
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (open) {
       setTimeout(() => inputRef.current?.focus(), 100);
@@ -123,7 +120,13 @@ export default function FloatingChatButton() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: msg, pageContext: pathname }),
+        body: JSON.stringify({
+          message: msg,
+          pageContext: pathname,
+          history: messages
+            .filter(m => m.content !== '...' && m.content !== 'Hi! Ask me anything about travel.')
+            .map(m => ({ role: m.role === 'user' ? 'user' : 'ai', content: m.content })),
+        }),
       });
       const data = await res.json();
       const response = data.response || data.error || 'No response.';
@@ -144,12 +147,13 @@ export default function FloatingChatButton() {
     }
   }
 
+  // Hide on admin pages
+  if (isAdmin) return null;
+
   return (
     <>
-      {/* Chat Panel */}
       {open && (
-        <div className="fixed bottom-[88px] md:bottom-24 right-4 md:right-12 z-50 w-[calc(100vw-2rem)] md:w-[420px] max-h-[70vh] bg-surface-container-lowest rounded-2xl shadow-2xl border border-surface-variant/30 flex flex-col overflow-hidden animate-in">
-          {/* Header */}
+        <div className="fixed bottom-[88px] md:bottom-24 right-4 md:right-12 z-50 w-[calc(100vw-2rem)] md:w-[420px] max-h-[70vh] bg-surface-container-lowest rounded-2xl shadow-2xl border border-surface-variant/30 flex flex-col overflow-hidden">
           <div className="flex items-center justify-between px-5 py-4 bg-primary text-white rounded-t-2xl">
             <div className="flex items-center gap-3">
               <span className="material-symbols-outlined text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
@@ -163,7 +167,6 @@ export default function FloatingChatButton() {
             </button>
           </div>
 
-          {/* Messages */}
           <div ref={feedRef} className="flex-1 overflow-y-auto p-4 space-y-4 min-h-[200px] max-h-[50vh]">
             {messages.map((msg, i) =>
               msg.role === 'user' ? (
@@ -201,52 +204,32 @@ export default function FloatingChatButton() {
             )}
           </div>
 
-          {/* Suggestions */}
           {messages.length <= 1 && (
             <div className="px-3 pb-2 flex gap-2 overflow-x-auto no-scrollbar">
               {suggestions.map((s) => (
-                <button
-                  key={s}
-                  onClick={() => sendMessage(s)}
-                  disabled={isLoading}
-                  className="shrink-0 px-3 py-1.5 bg-surface-container-high text-on-surface-variant text-xs rounded-full hover:bg-primary/10 hover:text-primary transition-colors disabled:opacity-40 whitespace-nowrap"
-                >
+                <button key={s} onClick={() => sendMessage(s)} disabled={isLoading}
+                  className="shrink-0 px-3 py-1.5 bg-surface-container-high text-on-surface-variant text-xs rounded-full hover:bg-primary/10 hover:text-primary transition-colors disabled:opacity-40 whitespace-nowrap">
                   {s}
                 </button>
               ))}
             </div>
           )}
 
-          {/* Input */}
-          <form
-            onSubmit={(e) => { e.preventDefault(); sendMessage(input); }}
-            className="flex items-center gap-2 p-3 border-t border-surface-variant/30"
-          >
-            <input
-              ref={inputRef}
-              type="text"
+          <form onSubmit={(e) => { e.preventDefault(); sendMessage(input); }}
+            className="flex items-center gap-2 p-3 border-t border-surface-variant/30">
+            <input ref={inputRef} type="text"
               className="flex-1 bg-surface-container border-none rounded-full px-4 py-2.5 text-sm text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 outline-none"
-              placeholder="Ask about destinations..."
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              disabled={isLoading}
-            />
-            <button
-              type="submit"
-              disabled={isLoading || !input.trim()}
-              className="w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all disabled:opacity-40"
-            >
+              placeholder="Ask about destinations..." value={input} onChange={(e) => setInput(e.target.value)} disabled={isLoading} />
+            <button type="submit" disabled={isLoading || !input.trim()}
+              className="w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all disabled:opacity-40">
               <span className="material-symbols-outlined text-base">arrow_upward</span>
             </button>
           </form>
         </div>
       )}
 
-      {/* FAB Button */}
-      <button
-        onClick={() => setOpen(!open)}
-        className="fixed bottom-[88px] md:bottom-12 right-6 md:right-12 z-50 w-14 h-14 md:w-16 md:h-16 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all outline-none focus:ring-4 focus:ring-primary/30"
-      >
+      <button onClick={() => setOpen(!open)}
+        className="fixed bottom-[88px] md:bottom-12 right-6 md:right-12 z-50 w-14 h-14 md:w-16 md:h-16 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all outline-none focus:ring-4 focus:ring-primary/30">
         <span className="material-symbols-outlined text-2xl md:text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>
           {open ? 'close' : 'auto_awesome'}
         </span>

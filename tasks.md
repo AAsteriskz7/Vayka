@@ -78,7 +78,7 @@ These tasks improve the user experience but are not required for project complet
 ### 3. Core RAG & API Enhancements
 - [ ] **3.1 Response Streaming:** Update `/api/chat` to use Vercel AI SDK or native ReadableStream for typewriter-style responses.
 - [x] **3.2 Error Sanitization:** Replace raw JSON error objects (429, 503) with helpful user messages.
-- [ ] **3.3 Context Window Management:** Handle long conversation histories (sliding window or summarization).
+- [x] **3.3 Context Window Management:** Sliding window (last 10 messages) sent as multi-turn conversation history to Gemini API.
 - [x] **3.4 Citation Precision:** Ensure citations `[Source N]` are accurately placed next to specific facts they support.
 - [x] **3.5 Rate Limit Safeguards:** Backup model fallback — if primary model (gemini-3.1-flash-lite) fails/times out, automatically retries with `GEMINI_CHAT_BACKUP_MODEL` (gemini-3.0-flash).
 
