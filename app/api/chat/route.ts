@@ -91,10 +91,9 @@ function buildPageContextInstruction(pageContext?: string): string {
   return ''
 }
 
-async function callGemini(model: string, apiKey: string, promptText: string, history?: { role: string; text: string }[]): Promise<Response> {
+async function callGemini(model: string, apiKey: string, promptText: string, history?: { role: string; text: string }[], maxOutputTokens = 1024): Promise<Response> {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`
 
-  // Build multi-turn contents if history is provided
   const contents: { role: string; parts: { text: string }[] }[] = []
 
   if (history && history.length > 0) {
@@ -106,14 +105,13 @@ async function callGemini(model: string, apiKey: string, promptText: string, his
     }
   }
 
-  // Current user message (with full prompt context)
   contents.push({ role: 'user', parts: [{ text: promptText }] })
 
   return fetch(`${url}?key=${apiKey}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      generationConfig: { temperature: 0.4, maxOutputTokens: 1024 },
+      generationConfig: { temperature: 0.4, maxOutputTokens },
       contents,
     }),
   })
@@ -182,13 +180,14 @@ export async function POST(req: NextRequest) {
     const finalPromptText = `${dynamicPrompt}${promptContext}\n\nUser question: ${message}`;
 
     // 3. Query Gemini (with backup model fallback)
-    let res = await callGemini(chatModel, apiKey, finalPromptText, history);
+    const maxTokens = intent === 'itinerary' ? 4096 : 1024;
+    let res = await callGemini(chatModel, apiKey, finalPromptText, history, maxTokens);
 
     // If primary model fails and we have a backup, try the backup
     let usedModel = chatModel;
     if (!res.ok && backupModel && backupModel !== chatModel) {
       console.warn(`Primary model ${chatModel} failed (${res.status}), falling back to ${backupModel}`);
-      res = await callGemini(backupModel, apiKey, finalPromptText, history);
+      res = await callGemini(backupModel, apiKey, finalPromptText, history, maxTokens);
       usedModel = backupModel;
     }
 

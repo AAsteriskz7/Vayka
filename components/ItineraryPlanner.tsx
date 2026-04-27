@@ -145,7 +145,7 @@ export default function ItineraryPlanner() {
   async function handleAIGenerate() {
     if (!dest.trim()) return;
     setGenerating(true);
-    const prompt = `Plan a ${dur}-day trip to ${dest}${aiFocus ? ` focused on ${aiFocus}` : ""}. Structure with "Day 1: Title", "Day 2: Title" headers and bullet activities.`;
+    const prompt = `Plan a ${dur}-day trip to ${dest}${aiFocus ? ` focused on ${aiFocus}` : ""}. You MUST cover all ${dur} days. Format strictly as follows — do not deviate:\n\nDay 1: [day title]\n- [activity]\n- [activity]\n- [activity]\n\nDay 2: [day title]\n- [activity]\n- [activity]\n- [activity]\n\nContinue this exact pattern for every day up to Day ${dur}. Use plain bullet points starting with "- " for every activity. Include 3 to 5 activities per day.`;
     try {
       const res = await fetch("/api/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: prompt, pageContext: "/itineraries" }) });
       const data = await res.json();

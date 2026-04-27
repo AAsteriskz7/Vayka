@@ -5,7 +5,7 @@ import type { User } from '@/lib/mockData'
 import DashboardHeader from '@/components/dashboard/DashboardHeader'
 import UserStatsCards from '@/components/dashboard/UserStatsCards'
 import UpcomingTripCard from '@/components/dashboard/UpcomingTripCard'
-import ItineraryOverviewList from '@/components/dashboard/ItineraryOverviewList'
+import DashboardItineraryList from '@/components/dashboard/DashboardItineraryList'
 import PersonalizedRecommendations from '@/components/dashboard/PersonalizedRecommendations'
 import type { Metadata } from 'next'
 
@@ -48,7 +48,7 @@ export default async function DashboardPage() {
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 mt-2">
         <div className="xl:col-span-2 flex flex-col gap-8">
           {upcomingTrip && <UpcomingTripCard itinerary={upcomingTrip} />}
-          <ItineraryOverviewList itineraries={userItineraries} />
+          <DashboardItineraryList />
         </div>
         <div className="xl:col-span-1">
           <PersonalizedRecommendations
