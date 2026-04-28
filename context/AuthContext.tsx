@@ -28,6 +28,21 @@ async function toAuthUser(su: SupabaseUser): Promise<AuthUser> {
   const name: string =
     su.user_metadata?.display_name ?? su.email?.split("@")[0] ?? "Traveler";
 
+ if (!supabase) {
+    return {
+      id: su.id,
+      name,
+      email: su.email ?? "",
+      role: "user",
+      avatarInitials: name
+        .split(" ")
+        .slice(0, 2)
+        .map((w: string) => w[0])
+        .join("")
+        .toUpperCase(),
+    };
+  }
+
   const { data: profile, error } = await supabase
     .from("profiles")
     .select("role, display_name")
