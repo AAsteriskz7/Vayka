@@ -9,6 +9,8 @@ export default function TopNav() {
   const { user } = useAuth();
   const isAdmin = user?.role === "admin";
 
+  if (pathname?.startsWith('/admin')) return null;
+
   const linkClass = (path: string) =>
     `${pathname === path ? 'text-teal-900 dark:text-white font-bold' : 'text-teal-700/70 dark:text-teal-200/70'} font-body font-medium tracking-wide hover:bg-white/40 dark:hover:bg-teal-800/40 transition-all duration-300 px-3 py-1 rounded-full`;
 
