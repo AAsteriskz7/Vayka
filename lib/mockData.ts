@@ -1,3 +1,47 @@
+// ─── User / Auth types ────────────────────────────────────────────────────────
+
+export type UserRole = 'user' | 'admin'
+
+export interface User {
+  id: string
+  name: string
+  email: string
+  role: UserRole
+  avatarInitials: string
+  homeAirport?: string
+  travelPreferences?: string[]
+}
+
+export const mockUsers: User[] = [
+  {
+    id: 'user-1',
+    name: 'Ria Gupta',
+    email: 'rgupta448@gatech.edu',
+    role: 'user',
+    avatarInitials: 'RG',
+    homeAirport: 'ATL',
+    travelPreferences: ['Cultural', 'Gastronomy', 'Wellness', 'Luxury'],
+  },
+  {
+    id: 'user-2',
+    name: 'Alex Chen',
+    email: 'alex.chen@example.com',
+    role: 'user',
+    avatarInitials: 'AC',
+    homeAirport: 'SFO',
+    travelPreferences: ['Adventure', 'Hiking', 'Budget'],
+  },
+  {
+    id: 'admin-1',
+    name: 'Vayka Admin',
+    email: 'admin@vayka.ai',
+    role: 'admin',
+    avatarInitials: 'VA',
+  },
+]
+
+// ─── Trip / Itinerary types ───────────────────────────────────────────────────
+
 export type TripStatus = 'upcoming' | 'planning' | 'completed' | 'draft'
 export type EventType = 'flight' | 'hotel' | 'meal' | 'activity' | 'transport'
 export type EventStatus = 'confirmed' | 'pending' | 'suggested'
@@ -25,6 +69,8 @@ export interface ItineraryDay {
 
 export interface Itinerary {
   id: string
+  userId: string
+  planningProgress: number
   slug: string
   title: string
   destination: string
@@ -49,12 +95,14 @@ export interface Itinerary {
 export const itineraries: Itinerary[] = [
   {
     id: '1',
+    userId: 'user-1',
+    planningProgress: 88,
     slug: 'kyoto-spring',
     title: 'Spring Blossoms & Zen Gardens',
     destination: 'Kyoto, Japan',
     country: 'Japan',
     coverImage: 'https://picsum.photos/seed/kyoto-spring/1200/800',
-    dates: { start: 'May 2, 2025', end: 'May 10, 2025' },
+    dates: { start: 'May 2, 2026', end: 'May 10, 2026' },
     duration: 8,
     status: 'upcoming',
     budget: { total: 5200, currency: 'USD', breakdown: { lodging: 2400, food: 1000, transport: 1200, activities: 600 } },
@@ -274,12 +322,14 @@ export const itineraries: Itinerary[] = [
   },
   {
     id: '2',
+    userId: 'user-1',
+    planningProgress: 52,
     slug: 'amalfi-escape',
     title: 'Coastal Serenity in Amalfi',
     destination: 'Positano, Italy',
     country: 'Italy',
     coverImage: 'https://picsum.photos/seed/amalfi-coast/1200/800',
-    dates: { start: 'Sep 12, 2025', end: 'Sep 19, 2025' },
+    dates: { start: 'Sep 12, 2026', end: 'Sep 19, 2026' },
     duration: 7,
     status: 'planning',
     budget: { total: 6800, currency: 'USD', breakdown: { lodging: 3200, food: 1600, transport: 800, activities: 1200 } },
@@ -442,6 +492,8 @@ export const itineraries: Itinerary[] = [
   },
   {
     id: '3',
+    userId: 'user-1',
+    planningProgress: 100,
     slug: 'bali-retreat',
     title: 'Island Serenity: Bali Wellness',
     destination: 'Ubud, Bali',
@@ -579,12 +631,14 @@ export const itineraries: Itinerary[] = [
   },
   {
     id: '4',
+    userId: 'user-1',
+    planningProgress: 28,
     slug: 'tokyo-weekend',
     title: 'Tokyo Urban Explorer',
     destination: 'Tokyo, Japan',
     country: 'Japan',
     coverImage: 'https://picsum.photos/seed/tokyo-night/1200/800',
-    dates: { start: 'Jul 18, 2025', end: 'Jul 21, 2025' },
+    dates: { start: 'Jul 18, 2026', end: 'Jul 21, 2026' },
     duration: 3,
     status: 'draft',
     budget: { total: 2200, currency: 'USD', breakdown: { lodging: 900, food: 600, transport: 400, activities: 300 } },

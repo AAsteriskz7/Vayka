@@ -1,6 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
+import { useAuth } from "@/context/AuthContext";
 
 interface ItineraryDay {
   day: number;
@@ -15,16 +19,6 @@ interface SavedItinerary {
   notes: string;
   days: ItineraryDay[];
   createdAt: string;
-}
-
-function loadSaved(): SavedItinerary[] {
-  if (typeof window === "undefined") return [];
-  try {
-    return JSON.parse(localStorage.getItem("vayka_itineraries") || "[]");
-  } catch { return []; }
-}
-function persist(items: SavedItinerary[]) {
-  localStorage.setItem("vayka_itineraries", JSON.stringify(items));
 }
 
 function parseAIDays(text: string): ItineraryDay[] {
@@ -47,10 +41,12 @@ type View = "list" | "create" | "detail";
 type CreateTab = "manual" | "ai";
 
 export default function ItineraryPlanner() {
+  const { user } = useAuth();
+  const router = useRouter();
   const [saved, setSaved] = useState<SavedItinerary[]>([]);
   const [view, setView] = useState<View>("list");
   const [viewing, setViewing] = useState<SavedItinerary | null>(null);
-  const [mounted, setMounted] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // Create form state
   const [createTab, setCreateTab] = useState<CreateTab>("manual");
@@ -65,18 +61,61 @@ export default function ItineraryPlanner() {
   const [editingDayIdx, setEditingDayIdx] = useState<number | null>(null);
   const [newActivity, setNewActivity] = useState("");
 
-  useEffect(() => { setSaved(loadSaved()); setMounted(true); }, []);
+  const loadFromDB = useCallback(async () => {
+    if (!supabase || !user) { setLoading(false); return; }
+    setLoading(true);
+    const { data, error } = await supabase
+      .from("itineraries")
+      .select("*")
+      .order("created_at", { ascending: false });
+    if (!error && data) {
+      setSaved(data.map(r => ({
+        id: r.id,
+        destination: r.destination,
+        duration: r.duration,
+        notes: r.notes ?? "",
+        days: r.days as ItineraryDay[],
+        createdAt: r.created_at,
+      })));
+    }
+    setLoading(false);
+  }, [user]);
 
-  function save(itinerary: SavedItinerary) {
-    const updated = [itinerary, ...saved.filter(s => s.id !== itinerary.id)];
-    setSaved(updated);
-    persist(updated);
+  useEffect(() => { loadFromDB(); }, [loadFromDB]);
+
+  async function saveItinerary(itinerary: SavedItinerary): Promise<SavedItinerary | null> {
+    if (!supabase || !user) return null;
+    const isNew = !saved.find(s => s.id === itinerary.id);
+    if (isNew) {
+      const { data, error } = await supabase
+        .from("itineraries")
+        .insert({
+          user_id: user.id,
+          destination: itinerary.destination,
+          duration: itinerary.duration,
+          notes: itinerary.notes,
+          days: itinerary.days,
+        })
+        .select()
+        .single();
+      if (error || !data) return null;
+      const saved: SavedItinerary = { id: data.id, destination: data.destination, duration: data.duration, notes: data.notes ?? "", days: data.days as ItineraryDay[], createdAt: data.created_at };
+      setSaved(prev => [saved, ...prev]);
+      return saved;
+    } else {
+      await supabase
+        .from("itineraries")
+        .update({ destination: itinerary.destination, duration: itinerary.duration, notes: itinerary.notes, days: itinerary.days })
+        .eq("id", itinerary.id);
+      setSaved(prev => prev.map(s => s.id === itinerary.id ? itinerary : s));
+      return itinerary;
+    }
   }
 
-  function handleDelete(id: string) {
-    const updated = saved.filter(s => s.id !== id);
-    setSaved(updated);
-    persist(updated);
+  async function handleDelete(id: string) {
+    if (!supabase) return;
+    await supabase.from("itineraries").delete().eq("id", id);
+    setSaved(prev => prev.filter(s => s.id !== id));
     if (viewing?.id === id) { setViewing(null); setView("list"); }
   }
 
@@ -87,91 +126,55 @@ export default function ItineraryPlanner() {
   }
 
   // --- Manual day management ---
-  function addDay() {
-    setDays(prev => [...prev, { day: prev.length + 1, title: "", activities: [""] }]);
-  }
-  function removeDay(idx: number) {
-    setDays(prev => prev.filter((_, i) => i !== idx).map((d, i) => ({ ...d, day: i + 1 })));
-  }
-  function updateDayTitle(idx: number, title: string) {
-    setDays(prev => prev.map((d, i) => i === idx ? { ...d, title } : d));
-  }
-  function updateActivity(dayIdx: number, actIdx: number, value: string) {
-    setDays(prev => prev.map((d, i) => i === dayIdx ? { ...d, activities: d.activities.map((a, j) => j === actIdx ? value : a) } : d));
-  }
-  function addActivity(dayIdx: number) {
-    setDays(prev => prev.map((d, i) => i === dayIdx ? { ...d, activities: [...d.activities, ""] } : d));
-  }
-  function removeActivity(dayIdx: number, actIdx: number) {
-    setDays(prev => prev.map((d, i) => i === dayIdx ? { ...d, activities: d.activities.filter((_, j) => j !== actIdx) } : d));
-  }
+  function addDay() { setDays(prev => [...prev, { day: prev.length + 1, title: "", activities: [""] }]); }
+  function removeDay(idx: number) { setDays(prev => prev.filter((_, i) => i !== idx).map((d, i) => ({ ...d, day: i + 1 }))); }
+  function updateDayTitle(idx: number, title: string) { setDays(prev => prev.map((d, i) => i === idx ? { ...d, title } : d)); }
+  function updateActivity(dayIdx: number, actIdx: number, value: string) { setDays(prev => prev.map((d, i) => i === dayIdx ? { ...d, activities: d.activities.map((a, j) => j === actIdx ? value : a) } : d)); }
+  function addActivity(dayIdx: number) { setDays(prev => prev.map((d, i) => i === dayIdx ? { ...d, activities: [...d.activities, ""] } : d)); }
+  function removeActivity(dayIdx: number, actIdx: number) { setDays(prev => prev.map((d, i) => i === dayIdx ? { ...d, activities: d.activities.filter((_, j) => j !== actIdx) } : d)); }
 
-  function handleManualSave() {
+  async function handleManualSave() {
     if (!dest.trim()) return;
-    const cleaned: ItineraryDay[] = days.map(d => ({
-      ...d,
-      title: d.title || `Day ${d.day}`,
-      activities: d.activities.filter(a => a.trim()),
-    })).filter(d => d.activities.length > 0);
+    const cleaned: ItineraryDay[] = days.map(d => ({ ...d, title: d.title || `Day ${d.day}`, activities: d.activities.filter(a => a.trim()) })).filter(d => d.activities.length > 0);
     if (cleaned.length === 0) return;
-    const it: SavedItinerary = {
-      id: Date.now().toString(), destination: dest.trim(), duration: dur,
-      notes, days: cleaned, createdAt: new Date().toISOString(),
-    };
-    save(it);
-    resetCreate();
-    setViewing(it);
-    setView("detail");
+    const draft: SavedItinerary = { id: "", destination: dest.trim(), duration: dur, notes, days: cleaned, createdAt: "" };
+    const created = await saveItinerary(draft);
+    if (created) { resetCreate(); setViewing(created); setView("detail"); }
   }
 
   async function handleAIGenerate() {
     if (!dest.trim()) return;
     setGenerating(true);
-    const prompt = `Plan a ${dur}-day trip to ${dest}${aiFocus ? ` focused on ${aiFocus}` : ""}. Structure with "Day 1: Title", "Day 2: Title" headers and bullet activities.`;
+    const prompt = `Plan a ${dur}-day trip to ${dest}${aiFocus ? ` focused on ${aiFocus}` : ""}. You MUST cover all ${dur} days. Format strictly as follows — do not deviate:\n\nDay 1: [day title]\n- [activity]\n- [activity]\n- [activity]\n\nDay 2: [day title]\n- [activity]\n- [activity]\n- [activity]\n\nContinue this exact pattern for every day up to Day ${dur}. Use plain bullet points starting with "- " for every activity. Include 3 to 5 activities per day.`;
     try {
-      const res = await fetch("/api/chat", {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: prompt, pageContext: "/itineraries" }),
-      });
+      const res = await fetch("/api/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: prompt, pageContext: "/itineraries" }) });
       const data = await res.json();
       const parsed = parseAIDays(data.response || "");
       if (parsed.length > 0) {
-        const it: SavedItinerary = {
-          id: Date.now().toString(), destination: dest.trim(), duration: dur,
-          notes: aiFocus, days: parsed, createdAt: new Date().toISOString(),
-        };
-        save(it);
-        resetCreate();
-        setViewing(it);
-        setView("detail");
+        const draft: SavedItinerary = { id: "", destination: dest.trim(), duration: dur, notes: aiFocus, days: parsed, createdAt: "" };
+        const created = await saveItinerary(draft);
+        if (created) { resetCreate(); setViewing(created); setView("detail"); }
       }
     } catch { /* silent */ } finally { setGenerating(false); }
   }
 
-  // --- Detail view: add activity to a day ---
-  function handleAddActivityToViewing(dayIdx: number) {
+  async function handleAddActivityToViewing(dayIdx: number) {
     if (!viewing || !newActivity.trim()) return;
-    const updated = {
-      ...viewing,
-      days: viewing.days.map((d, i) => i === dayIdx ? { ...d, activities: [...d.activities, newActivity.trim()] } : d),
-    };
+    const updated = { ...viewing, days: viewing.days.map((d, i) => i === dayIdx ? { ...d, activities: [...d.activities, newActivity.trim()] } : d) };
     setViewing(updated);
-    save(updated);
+    await saveItinerary(updated);
     setNewActivity("");
     setEditingDayIdx(null);
   }
 
-  function handleRemoveFromViewing(dayIdx: number, actIdx: number) {
+  async function handleRemoveFromViewing(dayIdx: number, actIdx: number) {
     if (!viewing) return;
-    const updated = {
-      ...viewing,
-      days: viewing.days.map((d, i) => i === dayIdx ? { ...d, activities: d.activities.filter((_, j) => j !== actIdx) } : d),
-    };
+    const updated = { ...viewing, days: viewing.days.map((d, i) => i === dayIdx ? { ...d, activities: d.activities.filter((_, j) => j !== actIdx) } : d) };
     setViewing(updated);
-    save(updated);
+    await saveItinerary(updated);
   }
 
-  if (!mounted) return <div className="flex items-center justify-center py-24 gap-3 text-secondary"><span className="material-symbols-outlined animate-spin">progress_activity</span>Loading...</div>;
+  if (loading) return <div className="flex items-center justify-center py-24 gap-3 text-secondary"><span className="material-symbols-outlined animate-spin">progress_activity</span>Loading itineraries…</div>;
 
   // ==================== DETAIL VIEW ====================
   if (view === "detail" && viewing) {
@@ -184,7 +187,7 @@ export default function ItineraryPlanner() {
           <div>
             <span className="text-secondary font-label text-[10px] uppercase tracking-widest font-bold">Itinerary</span>
             <h1 className="font-headline text-4xl md:text-5xl text-primary font-bold italic">{viewing.destination}</h1>
-            <p className="text-secondary text-sm mt-1">{viewing.days.length} days · {viewing.duration} day plan · Created {new Date(viewing.createdAt).toLocaleDateString()}</p>
+            <p className="text-secondary text-sm mt-1">{viewing.days.length} days · {viewing.duration} day plan{viewing.createdAt && ` · Created ${new Date(viewing.createdAt).toLocaleDateString()}`}</p>
             {viewing.notes && <p className="text-on-surface-variant text-sm mt-2 italic">{viewing.notes}</p>}
           </div>
           <button onClick={() => handleDelete(viewing.id)} className="px-5 py-2.5 bg-surface-container text-secondary rounded-full text-sm font-bold hover:bg-red-50 hover:text-red-600 transition-colors flex items-center gap-2">
@@ -211,7 +214,6 @@ export default function ItineraryPlanner() {
                     </li>
                   ))}
                 </ul>
-                {/* Add activity inline */}
                 {editingDayIdx === dIdx ? (
                   <div className="flex gap-2 mt-3">
                     <input type="text" value={newActivity} onChange={e => setNewActivity(e.target.value)} onKeyDown={e => { if (e.key === "Enter") handleAddActivityToViewing(dIdx); }}
@@ -242,7 +244,6 @@ export default function ItineraryPlanner() {
         <h1 className="font-headline text-4xl text-primary font-bold mb-2">New Itinerary</h1>
         <p className="text-on-surface-variant mb-8">Build it yourself or let the AI do the heavy lifting.</p>
 
-        {/* Tabs */}
         <div className="flex gap-2 mb-8">
           <button onClick={() => setCreateTab("manual")} className={`px-5 py-2.5 rounded-full text-sm font-bold transition-colors ${createTab === "manual" ? "bg-primary text-white" : "bg-surface-container text-secondary hover:bg-surface-container-high"}`}>
             <span className="material-symbols-outlined text-sm align-middle mr-1">edit</span>Manual
@@ -252,7 +253,6 @@ export default function ItineraryPlanner() {
           </button>
         </div>
 
-        {/* Shared fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div>
             <label className="block text-sm font-medium text-secondary mb-2">Destination *</label>
@@ -266,7 +266,6 @@ export default function ItineraryPlanner() {
           </div>
         </div>
 
-        {/* AI tab */}
         {createTab === "ai" && (
           <div className="space-y-6">
             <div>
@@ -279,7 +278,6 @@ export default function ItineraryPlanner() {
           </div>
         )}
 
-        {/* Manual tab */}
         {createTab === "manual" && (
           <div className="space-y-6">
             <div>
@@ -287,7 +285,6 @@ export default function ItineraryPlanner() {
               <textarea value={notes} onChange={e => setNotes(e.target.value)} rows={2} className="w-full bg-surface-container-lowest border border-surface-variant rounded-xl px-5 py-3.5 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 outline-none resize-none" placeholder="Any notes about this trip..." />
             </div>
 
-            {/* Day builder */}
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h3 className="font-headline text-lg text-primary font-bold">Days</h3>
@@ -345,14 +342,30 @@ export default function ItineraryPlanner() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10">
         <div>
           <h1 className="font-headline text-4xl md:text-5xl text-primary font-bold leading-tight">Your <span className="italic text-secondary">Itineraries</span></h1>
-          <p className="text-on-surface-variant text-lg mt-2">AI-generated or hand-crafted trip plans, saved to your browser.</p>
+          <p className="text-on-surface-variant text-lg mt-2">AI-generated or hand-crafted trip plans, saved to your account.</p>
         </div>
-        <button onClick={() => { resetCreate(); setView("create"); }} className="px-6 py-3.5 bg-primary text-white rounded-full font-bold text-sm flex items-center gap-2 hover:shadow-lg hover:scale-105 active:scale-95 transition-all">
+        <button onClick={() => { if (!user) { router.push('/login?next=/itineraries'); return; } resetCreate(); setView("create"); }} className="px-6 py-3.5 bg-primary text-white rounded-full font-bold text-sm flex items-center gap-2 hover:shadow-lg hover:scale-105 active:scale-95 transition-all">
           <span className="material-symbols-outlined text-base">add</span>New Itinerary
         </button>
       </div>
 
-      {saved.length === 0 ? (
+      {!user ? (
+        <div className="text-center py-24 bg-surface-container-low rounded-2xl">
+          <span className="material-symbols-outlined text-6xl text-outline/25 mb-4 block" style={{ fontVariationSettings: "'FILL' 1" }}>lock</span>
+          <p className="text-xl text-secondary mb-2">Sign in to manage your itineraries</p>
+          <p className="text-sm text-on-surface-variant max-w-md mx-auto mb-6">
+            Create personalized trip plans manually or with AI assistance, saved to your account.
+          </p>
+          <div className="flex items-center justify-center gap-3">
+            <Link href="/login?next=/itineraries" className="px-8 py-3.5 bg-primary text-white rounded-full font-bold text-sm inline-flex items-center gap-2 hover:shadow-lg transition-all">
+              Sign In
+            </Link>
+            <Link href="/signup" className="px-8 py-3.5 bg-surface-container text-primary rounded-full font-bold text-sm inline-flex items-center gap-2 hover:shadow transition-all">
+              Create Account
+            </Link>
+          </div>
+        </div>
+      ) : saved.length === 0 ? (
         <div className="text-center py-24 bg-surface-container-low rounded-2xl">
           <span className="material-symbols-outlined text-6xl text-outline/25 mb-4 block">map</span>
           <p className="text-xl text-secondary mb-2">No itineraries yet</p>
@@ -383,7 +396,7 @@ export default function ItineraryPlanner() {
                   {s.days.length > 3 && <p className="text-xs text-secondary pl-7">+{s.days.length - 3} more days</p>}
                 </div>
                 <div className="flex justify-between items-center pt-3 border-t border-surface-variant/30">
-                  <span className="text-[10px] text-secondary uppercase tracking-widest">{new Date(s.createdAt).toLocaleDateString()}</span>
+                  <span className="text-[10px] text-secondary uppercase tracking-widest">{s.createdAt ? new Date(s.createdAt).toLocaleDateString() : ''}</span>
                   <div className="flex gap-1">
                     <button onClick={e => { e.stopPropagation(); handleDelete(s.id); }} className="p-1.5 hover:bg-red-50 text-secondary hover:text-red-500 rounded-full transition-colors" title="Delete">
                       <span className="material-symbols-outlined text-sm">delete</span>

@@ -5,6 +5,7 @@ import "./globals.css";
 import TopNav from "../components/TopNav";
 import MobileNav from "../components/MobileNav";
 import FloatingChatButton from "../components/FloatingChatButton";
+import { AuthProvider } from "../context/AuthContext";
 
 const notoSerif = Noto_Serif({
   variable: "--font-noto-serif",
@@ -66,10 +67,12 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className="min-h-full flex flex-col bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-fixed">
-        <TopNav />
-        {children}
-        <FloatingChatButton />
-        <MobileNav />
+        <AuthProvider>
+          <TopNav />
+          {children}
+          <FloatingChatButton />
+          <MobileNav />
+        </AuthProvider>
       </body>
     </html>
   );

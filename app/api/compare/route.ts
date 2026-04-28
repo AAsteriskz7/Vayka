@@ -28,7 +28,8 @@ export async function POST(req: NextRequest) {
           match_count: 5,
         })
         destData[dest] = (data || []).map((d: { content: string }) => d.content)
-      } catch {
+      } catch (err) {
+        console.error("RAG retrieval failed for destination:", dest, err)
         destData[dest] = []
       }
     }
@@ -72,13 +73,34 @@ Keep each value short (under 15 words). Do not use markdown. Do not add extra ca
         }),
       })
     }
-
+    console.log("Calling Gemini model:", chatModel)
     let res = await callModel(chatModel)
+    console.log("Gemini response status:", res.status, res.statusText)
+
     if (!res.ok && backupModel && backupModel !== chatModel) {
+      console.log("Trying backup model:", backupModel)
       res = await callModel(backupModel)
+      console.log("Backup model response status:", res.status, res.statusText)
     }
     if (!res.ok) {
-      return NextResponse.json({ error: 'AI service unavailable' }, { status: 503 })
+      const errorText = await res.text()
+      console.error("Gemini API failed:", {
+        status: res.status,
+        statusText: res.statusText,
+        chatModel,
+        backupModel,
+        errorText,
+      })
+
+      return NextResponse.json(
+        {
+          error: 'AI service unavailable',
+          details: errorText,
+          status: res.status,
+          model: chatModel,
+        },
+        { status: 503 }
+      )
     }
 
     const data = await res.json()

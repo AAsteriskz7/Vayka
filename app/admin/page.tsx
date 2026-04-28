@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import KnowledgeBaseManager from '../../components/KnowledgeBaseManager';
 import KnowledgeBaseControls from '../../components/KnowledgeBaseControls';
 import { getMonitoringSnapshot } from '../../lib/monitoring'
@@ -9,6 +10,7 @@ import KnowledgeBaseList from '../../components/KnowledgeBaseList'
 import SystemHealthCharts from '../../components/SystemHealthCharts'
 import SettingsTab from '../../components/SettingsTab'
 import AnalyticsTab from '../../components/AnalyticsTab'
+import { getSession } from '../../lib/session'
 
 export const dynamic = 'force-dynamic'
 
@@ -31,10 +33,18 @@ export default async function AdminDashboard(props: Props) {
   const resolvedSearchParams = await props.searchParams;
   const currentTab = typeof resolvedSearchParams.tab === 'string' ? resolvedSearchParams.tab : 'health';
 
-  const metrics = getMonitoringSnapshot()
+  const [session, metrics] = await Promise.all([
+    getSession(),
+    Promise.resolve(getMonitoringSnapshot()),
+  ])
+
+  if (!session || session.role !== 'admin') redirect('/login')
   const systemStatus = getSystemStatus(metrics.totals.failureRate)
   const usageLogs = await getUsageLogsSnapshot(100)
   const sources = await getKnowledgeBaseSources()
+
+  const adminName = session?.displayName ?? 'Admin'
+  const adminInitials = adminName.split(' ').slice(0, 2).map((w: string) => w[0]).join('').toUpperCase() || 'AD'
 
   const getTabClass = (tab: string) => {
     if (currentTab === tab) {
@@ -46,7 +56,7 @@ export default async function AdminDashboard(props: Props) {
   return (
     <div className="min-h-screen bg-surface text-on-surface">
       {/* Sidebar Navigation */}
-      <aside className="fixed left-0 top-0 h-full z-40 flex-col p-8 lg:p-12 overflow-y-auto bg-surface-bright dark:bg-[#1a1c1a] rounded-r-[3rem] w-64 lg:w-80 shadow-xl hidden md:flex border-r border-surface-variant">
+      <aside className="fixed left-0 top-0 h-full z-40 flex-col pt-24 px-8 pb-8 lg:pt-28 lg:px-12 lg:pb-12 overflow-y-auto bg-surface-bright dark:bg-[#1a1c1a] rounded-r-[3rem] w-64 lg:w-80 shadow-xl hidden md:flex border-r border-surface-variant">
         <div className="mb-12">
           <h1 className="font-headline text-primary text-2xl font-bold">Vayka</h1>
           <p className="font-body tracking-tight text-secondary-container-on mt-1 text-xs opacity-60">Admin Dashboard</p>
@@ -74,7 +84,7 @@ export default async function AdminDashboard(props: Props) {
       </aside>
 
       {/* Main Content Canvas */}
-      <main className="ml-0 md:ml-64 lg:ml-80 min-h-screen p-6 md:p-12 lg:p-16">
+      <main className="ml-0 md:ml-64 lg:ml-80 min-h-screen px-6 pb-6 pt-24 md:px-12 md:pb-12 md:pt-28 lg:px-16 lg:pb-16 lg:pt-28">
         {/* Header */}
         <header className="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div>
@@ -89,8 +99,11 @@ export default async function AdminDashboard(props: Props) {
                 {systemStatus}
               </span>
             </div>
-            <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-sm">
-              <span className="text-white font-headline font-bold">AD</span>
+            <div className="flex flex-col items-end gap-1">
+              <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-sm">
+                <span className="text-white font-headline font-bold text-sm">{adminInitials}</span>
+              </div>
+              <span className="text-xs text-secondary">{adminName}</span>
             </div>
           </div>
         </header>

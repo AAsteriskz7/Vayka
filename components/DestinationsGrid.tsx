@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 interface Destination {
   name: string;
@@ -36,6 +38,8 @@ const ASPECT_CLASSES = [
 const FILTERS = ["All", "Low Budget", "Medium Budget", "High Budget"];
 
 export default function DestinationsGrid() {
+  const { user } = useAuth();
+  const router = useRouter();
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -70,6 +74,7 @@ export default function DestinationsGrid() {
   }, [fetchDestinations]);
 
   function handleSearch(value: string) {
+    if (!user) { router.push('/login?next=/destinations'); return; }
     setSearchQuery(value);
     if (searchTimeout) clearTimeout(searchTimeout);
     const timeout = setTimeout(() => {
@@ -79,6 +84,7 @@ export default function DestinationsGrid() {
   }
 
   function handleFilter(filter: string) {
+    if (!user) { router.push('/login?next=/destinations'); return; }
     setActiveFilter(filter);
     fetchDestinations(searchQuery, filter);
   }
@@ -88,13 +94,14 @@ export default function DestinationsGrid() {
       {/* Filters & Search */}
       <div className="flex flex-wrap items-center gap-4 mb-12">
         <div className="flex items-center gap-2 bg-surface-container-low px-6 py-4 rounded-xl flex-grow max-w-md">
-          <span className="material-symbols-outlined text-outline">search</span>
+          <span className="material-symbols-outlined text-outline">{user ? 'search' : 'lock'}</span>
           <input
             className="bg-transparent border-none focus:ring-0 text-on-surface-variant w-full font-body outline-none"
-            placeholder="Search destinations..."
+            placeholder={user ? "Search destinations..." : "Sign in to search destinations"}
             type="text"
             value={searchQuery}
             onChange={(e) => handleSearch(e.target.value)}
+            readOnly={!user}
           />
         </div>
         <div className="flex items-center gap-3 overflow-x-auto pb-2 hide-scrollbar">

@@ -165,25 +165,6 @@ export default function Home() {
             </Link>
           </div>
         </section>
-
-        {/* Newsletter / Community Section */}
-        <section className="max-w-screen-2xl mx-auto px-12">
-          <div className="bg-primary-container rounded-xl p-16 relative overflow-hidden">
-            <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-primary rounded-full blur-3xl opacity-50"></div>
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6">
-                <h2 className="font-headline text-4xl lg:text-5xl font-black text-white leading-tight">Join the Vayka Collective</h2>
-                <p className="text-on-primary-container text-lg max-w-md">Receive bi-weekly dispatches featuring under-the-radar destinations and exclusive curator tools.</p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <input className="flex-grow bg-white/10 border-none rounded-xl px-6 py-4 text-white placeholder:text-white/40 focus:ring-2 focus:ring-white/20 font-body outline-none" placeholder="your@journal.com" type="email"/>
-                <button className="bg-white text-primary px-10 py-4 rounded-xl font-bold hover:bg-surface-container-high transition-colors shadow-lg">
-                  Subscribe
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
       
       <Footer />
