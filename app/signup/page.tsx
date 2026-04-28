@@ -25,7 +25,10 @@ export default function SignupPage() {
       const { data, error: authError } = await supabase.auth.signUp({
         email,
         password,
-        options: { data: { display_name: name, role: 'user' } },
+        options: {
+          data: { display_name: name, role: 'user' },
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
       })
       if (authError) throw authError
       if (!data.user) throw new Error('Sign up failed. Please try again.')
