@@ -170,11 +170,17 @@ export async function POST(req: NextRequest) {
 
     if (contextDocuments.length > 0) {
       promptContext = '\n\nRelevant Information:\n';
-      contextDocuments.forEach((doc, idx) => {
-        promptContext += `[Source ${idx + 1}]: ${doc.content}\n`;
+      contextDocuments.forEach((doc) => {
+        const sourceName = doc.source || 'Knowledge Base';
+        promptContext += `[${sourceName}]: ${doc.content}\n`;
         if (doc.source) uniqueSources.add(doc.source);
       });
-      dynamicPrompt += '\n\nPrefer using the Relevant Information provided below when answering. Cite sources with [Source 1], [Source 2] etc. placed immediately after the specific fact they support. If the provided information does not fully answer the question, supplement with your own general knowledge to give a complete and helpful answer.';
+
+      if (intent === 'itinerary') {
+        dynamicPrompt += '\n\nUse the Relevant Information below to inform specific activities. When an activity is drawn from a source, append the source name in parentheses at the end of that bullet, like: - Visit the Gion district (Source: Kyoto Travel Guide). Only cite a source if you actually used it for that activity. Omit the citation for activities based on general knowledge.';
+      } else {
+        dynamicPrompt += '\n\nPrefer using the Relevant Information provided below when answering. Cite the source name in parentheses immediately after the specific fact it supports, like: (Lonely Planet). If the provided information does not fully answer the question, supplement with your own general knowledge to give a complete and helpful answer.';
+      }
     }
 
     const finalPromptText = `${dynamicPrompt}${promptContext}\n\nUser question: ${message}`;

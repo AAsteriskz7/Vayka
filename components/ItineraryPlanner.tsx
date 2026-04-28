@@ -31,7 +31,7 @@ function parseAIDays(text: string): ItineraryDay[] {
     const section = text.slice(hits[i].idx, i + 1 < hits.length ? hits[i + 1].idx : undefined);
     const acts = section.split("\n").slice(1)
       .map(l => l.replace(/^\s*[-*•]\s*/, "").replace(/^\s*\d+[.)]\s*/, "").trim())
-      .filter(l => l.length > 5 && l.length < 200);
+      .filter(l => l.length > 5 && l.length < 400);
     days.push({ day: hits[i].day, title: hits[i].title || `Day ${hits[i].day}`, activities: acts.length ? acts : ["Explore the area"] });
   }
   return days;
@@ -145,7 +145,7 @@ export default function ItineraryPlanner() {
   async function handleAIGenerate() {
     if (!dest.trim()) return;
     setGenerating(true);
-    const prompt = `Plan a ${dur}-day trip to ${dest}${aiFocus ? ` focused on ${aiFocus}` : ""}. You MUST cover all ${dur} days. Format strictly as follows — do not deviate:\n\nDay 1: [day title]\n- [activity]\n- [activity]\n- [activity]\n\nDay 2: [day title]\n- [activity]\n- [activity]\n- [activity]\n\nContinue this exact pattern for every day up to Day ${dur}. Use plain bullet points starting with "- " for every activity. Include 3 to 5 activities per day.`;
+    const prompt = `Plan a ${dur}-day trip to ${dest}${aiFocus ? ` focused on ${aiFocus}` : ""}. You MUST cover all ${dur} days. Format strictly as follows — do not deviate:\n\nDay 1: [day title]\n- [activity] (Source: [source name] — only if drawn from the knowledge base)\n- [activity]\n- [activity]\n\nDay 2: [day title]\n- [activity]\n- [activity]\n- [activity]\n\nContinue this exact pattern for every day up to Day ${dur}. Use plain bullet points starting with "- " for every activity. Include 3 to 5 activities per day. When an activity is informed by a provided source, append (Source: source name) at the end of that line only. Omit the citation for activities based on general knowledge.`;
     try {
       const res = await fetch("/api/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: prompt, pageContext: "/itineraries" }) });
       const data = await res.json();
