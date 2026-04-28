@@ -10,6 +10,16 @@ interface ChatMessage {
   sources?: string[];
 }
 
+function formatSourceName(source: string): string {
+  if (!source) return 'Vayka Knowledge Base'
+  const lower = source.toLowerCase()
+  if (lower.includes('world_famous') || lower.includes('world famous')) return 'World Famous Places 2024'
+  if (lower.includes('rag_seed')) return 'Vayka Travel Guide'
+  if (lower.includes('travel_recommendations') || lower.includes('recommendations')) return 'Travel Recommendations'
+  if (lower.includes('travel details') || lower.includes('details dataset')) return 'Trip Reports'
+  return source.replace(/\.[^/.]+$/, '').replace(/[_-]/g, ' ').split(' ').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+}
+
 function FormatCitations({ text }: { text: string }) {
   const parts = text.split(/(\[Source\s+\d+(?:\s*,\s*Source\s+\d+)*\])/gi);
   return (
@@ -190,12 +200,16 @@ export default function FloatingChatButton() {
                       <FormattedText text={msg.content} />
                     )}
                     {msg.sources && msg.sources.length > 0 && (
-                      <div className="mt-2 pt-2 border-t border-surface-variant/40 flex flex-wrap gap-1">
-                        {msg.sources.map((src, idx) => (
-                          <span key={idx} className="px-2 py-0.5 bg-surface-container-high rounded-full text-[10px] text-secondary truncate max-w-[140px]" title={src}>
-                            {src}
-                          </span>
-                        ))}
+                      <div className="mt-2 pt-2 border-t border-surface-variant/40">
+                        <p className="text-[9px] font-bold text-secondary uppercase tracking-widest mb-1.5">Sources</p>
+                        <div className="flex flex-wrap gap-1">
+                          {msg.sources.map((src, idx) => (
+                            <span key={idx} className="inline-flex items-center gap-1 px-2 py-0.5 bg-surface-container-high rounded-full text-[10px] text-secondary" title={src}>
+                              <span className="material-symbols-outlined text-[9px]">description</span>
+                              {formatSourceName(src)}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>

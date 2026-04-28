@@ -232,6 +232,23 @@ export default function CompareEngine() {
               </div>
             ))}
           </div>
+
+          {/* Data sources footnote */}
+          <div className="flex flex-wrap items-center gap-3 pt-6 border-t border-surface-variant/20">
+            <span className="text-[10px] font-bold text-secondary uppercase tracking-widest">Data sources</span>
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-surface-container rounded-full text-[11px] text-on-surface-variant">
+              <span className="material-symbols-outlined text-[11px]">place</span>
+              Vayka POI Database
+            </span>
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-surface-container rounded-full text-[11px] text-on-surface-variant">
+              <span className="material-symbols-outlined text-[11px]">library_books</span>
+              Vayka Knowledge Base
+            </span>
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-surface-container rounded-full text-[11px] text-on-surface-variant">
+              <span className="material-symbols-outlined text-[11px]" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
+              AI Analysis by Google Gemini
+            </span>
+          </div>
         </>
       )}
 

@@ -11,6 +11,16 @@ interface SearchResult {
   similarity: number;
 }
 
+function formatSourceName(source: string): string {
+  if (!source) return 'Vayka Knowledge Base'
+  const lower = source.toLowerCase()
+  if (lower.includes('world_famous') || lower.includes('world famous')) return 'World Famous Places 2024'
+  if (lower.includes('rag_seed')) return 'Vayka Travel Guide'
+  if (lower.includes('travel_recommendations') || lower.includes('recommendations')) return 'Travel Recommendations'
+  if (lower.includes('travel details') || lower.includes('details dataset')) return 'Trip Reports'
+  return source.replace(/\.[^/.]+$/, '').replace(/[_-]/g, ' ').split(' ').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+}
+
 function SearchResultsContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
@@ -116,6 +126,17 @@ function SearchResultsContent() {
                 <div className="text-on-surface leading-relaxed whitespace-pre-line">
                   {aiSummary}
                 </div>
+                <div className="mt-4 pt-4 border-t border-surface-variant/30 flex flex-wrap items-center gap-2">
+                  <span className="text-[9px] font-bold text-secondary uppercase tracking-widest">Sources</span>
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-surface-container rounded-full text-[10px] text-on-surface-variant">
+                    <span className="material-symbols-outlined text-[10px]">library_books</span>
+                    Vayka Knowledge Base
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-surface-container rounded-full text-[10px] text-on-surface-variant">
+                    <span className="material-symbols-outlined text-[10px]" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
+                    Google Gemini
+                  </span>
+                </div>
               </div>
 
               {/* Source Cards */}
@@ -135,8 +156,8 @@ function SearchResultsContent() {
                             <span className="material-symbols-outlined text-primary text-sm">description</span>
                           </div>
                           <div>
-                            <p className="font-bold text-primary">{result.source}</p>
-                            <p className="text-xs text-secondary mt-0.5">Knowledge base source</p>
+                            <p className="font-bold text-primary">{formatSourceName(result.source)}</p>
+                            <p className="text-xs text-secondary mt-0.5">Vayka Knowledge Base</p>
                           </div>
                         </div>
                       </div>

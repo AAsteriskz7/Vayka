@@ -26,6 +26,16 @@ const CARD_IMAGES = [
   "https://lh3.googleusercontent.com/aida-public/AB6AXuBJ_tLx4GBumGXC7n2ZnUMQr7lS44TDr-R6t8GFFWfy_5Bssr7T68ywQolCShunz9lHoYwrm64lWeTGDZu6DD2Oq-iOZSo7TN9Zi51Q1y9ub8jzefoIYNqYm3yE7qsxhrgalxgk-FRFOzPVyKmZ3eI-k8Ap5xAoB7CXb3JJryciuE5X1p4tsEqGMhQeTYB66MDtjjibWDII7XYwEV0wgj_WKpBN2PU5DbSclCgT-beozQdrDGRpNAgaA4Tloi3YoPD0Yf-T-Z7wmoE",
 ];
 
+function formatSourceName(source: string): string {
+  if (!source) return 'Knowledge Base'
+  const lower = source.toLowerCase()
+  if (lower.includes('world_famous') || lower.includes('world famous')) return 'World Famous Places 2024'
+  if (lower.includes('rag_seed')) return 'Vayka Travel Guide'
+  if (lower.includes('travel_recommendations') || lower.includes('recommendations')) return 'Travel Recommendations'
+  if (lower.includes('travel details') || lower.includes('details dataset')) return 'Trip Reports'
+  return source.replace(/\.[^/.]+$/, '').replace(/[_-]/g, ' ').split(' ').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+}
+
 const ASPECT_CLASSES = [
   "aspect-[4/5]",
   "aspect-[3/4]",
@@ -168,7 +178,7 @@ export default function DestinationsGrid() {
 
               <div className="absolute bottom-8 left-8 right-8">
                 <p className="text-tertiary-fixed font-label text-xs tracking-widest uppercase mb-2">
-                  {dest.region || dest.source}
+                  {dest.region || formatSourceName(dest.source)}
                 </p>
                 <h3 className="font-headline text-2xl md:text-3xl text-white leading-tight mb-3">
                   {dest.name}
@@ -182,6 +192,15 @@ export default function DestinationsGrid() {
                         {tag}
                       </span>
                     ))}
+                  </div>
+                )}
+                {/* Source attribution */}
+                {dest.source && (
+                  <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 mt-2">
+                    <span className="inline-flex items-center gap-1 text-white/60 text-[9px] font-label">
+                      <span className="material-symbols-outlined text-[9px]">library_books</span>
+                      {formatSourceName(dest.source)}
+                    </span>
                   </div>
                 )}
               </div>

@@ -21,6 +21,11 @@ interface SavedItinerary {
   createdAt: string;
 }
 
+function parseActivityTime(act: string): { time: string | null; text: string } {
+  const m = act.match(/^(\d{1,2}:\d{2})\s*[-–]\s*(.+)/)
+  return m ? { time: m[1], text: m[2] } : { time: null, text: act }
+}
+
 function parseAIDays(text: string): ItineraryDay[] {
   const days: ItineraryDay[] = [];
   const pat = /Day\s+(\d+)[\s:.\-]+([^\n]*)/gi;
@@ -145,7 +150,7 @@ export default function ItineraryPlanner() {
   async function handleAIGenerate() {
     if (!dest.trim()) return;
     setGenerating(true);
-    const prompt = `Plan a ${dur}-day trip to ${dest}${aiFocus ? ` focused on ${aiFocus}` : ""}. You MUST cover all ${dur} days. Format strictly as follows — do not deviate:\n\nDay 1: [day title]\n- [activity]\n- [activity]\n- [activity]\n\nDay 2: [day title]\n- [activity]\n- [activity]\n- [activity]\n\nContinue this exact pattern for every day up to Day ${dur}. Use plain bullet points starting with "- " for every activity. Include 3 to 5 activities per day.`;
+    const prompt = `Plan a ${dur}-day trip to ${dest}${aiFocus ? ` focused on ${aiFocus}` : ""}. You MUST cover all ${dur} days. Format strictly as follows — do not deviate:\n\nDay 1: [day title]\n- 09:00 - [activity]\n- 11:30 - [activity]\n- 13:00 - [activity]\n- 15:30 - [activity]\n- 19:00 - [activity]\n\nDay 2: [day title]\n- 09:00 - [activity]\n- 11:30 - [activity]\n- 13:00 - [activity]\n- 15:30 - [activity]\n- 19:00 - [activity]\n\nContinue this exact pattern for every day up to Day ${dur}. Every activity MUST start with a time in HH:MM format followed by " - " then the activity description. Include 4 to 5 timed activities per day. Use realistic sequential times.`;
     try {
       const res = await fetch("/api/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: prompt, pageContext: "/itineraries" }) });
       const data = await res.json();
@@ -203,16 +208,23 @@ export default function ItineraryPlanner() {
               </div>
               <div className="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-surface-variant/20 hover:shadow-md transition-shadow">
                 <h3 className="font-headline text-xl text-primary font-bold mb-4">{day.title}</h3>
-                <ul className="space-y-2">
-                  {day.activities.map((act, aIdx) => (
-                    <li key={aIdx} className="flex items-start gap-3 text-on-surface-variant group/item">
-                      <span className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5"><span className="text-primary text-[8px]">●</span></span>
-                      <span className="flex-1 text-sm leading-relaxed">{act}</span>
-                      <button onClick={() => handleRemoveFromViewing(dIdx, aIdx)} className="opacity-0 group-hover/item:opacity-100 text-secondary hover:text-red-500 transition-all shrink-0 p-1" title="Remove">
-                        <span className="material-symbols-outlined text-sm">close</span>
-                      </button>
-                    </li>
-                  ))}
+                <ul className="space-y-3">
+                  {day.activities.map((act, aIdx) => {
+                    const { time, text } = parseActivityTime(act)
+                    return (
+                      <li key={aIdx} className="flex items-start gap-3 text-on-surface-variant group/item">
+                        {time ? (
+                          <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded shrink-0 mt-0.5 min-w-[44px] text-center">{time}</span>
+                        ) : (
+                          <span className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5"><span className="text-primary text-[8px]">●</span></span>
+                        )}
+                        <span className="flex-1 text-sm leading-relaxed">{text}</span>
+                        <button onClick={() => handleRemoveFromViewing(dIdx, aIdx)} className="opacity-0 group-hover/item:opacity-100 text-secondary hover:text-red-500 transition-all shrink-0 p-1" title="Remove">
+                          <span className="material-symbols-outlined text-sm">close</span>
+                        </button>
+                      </li>
+                    )
+                  })}
                 </ul>
                 {editingDayIdx === dIdx ? (
                   <div className="flex gap-2 mt-3">
@@ -275,6 +287,10 @@ export default function ItineraryPlanner() {
             <button onClick={handleAIGenerate} disabled={generating || !dest.trim()} className="px-8 py-3.5 bg-primary text-white rounded-full font-bold text-sm flex items-center gap-2 hover:shadow-lg transition-all disabled:opacity-50">
               {generating ? <><span className="material-symbols-outlined animate-spin text-base">progress_activity</span>Generating...</> : <><span className="material-symbols-outlined text-base" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>Generate Itinerary</>}
             </button>
+            <p className="text-[11px] text-on-surface-variant flex items-center gap-1.5 mt-1">
+              <span className="material-symbols-outlined text-[11px]">info</span>
+              Attractions retrieved from the Vayka POI database and knowledge base, then grounded into a plan by Google Gemini
+            </p>
           </div>
         )}
 
