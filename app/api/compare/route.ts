@@ -2,6 +2,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '../../../lib/supabase'
 import { getGeminiEmbedding } from '../../../lib/embeddings'
 
+interface PoiResult {
+  place_name: string
+  city: string
+  type: string
+  famous_for: string
+  similarity: number
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { destinations } = await req.json()
@@ -17,36 +25,61 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing config' }, { status: 500 })
     }
 
-    // 1. Fetch knowledge base data for each destination
+    // 1. Retrieve POIs + knowledge-base docs for each destination in parallel
     const destData: Record<string, string[]> = {}
+    const poiData: Record<string, PoiResult[]> = {}
+
     for (const dest of destinations) {
       try {
         const embedding = await getGeminiEmbedding(dest)
-        const { data } = await supabase.rpc('match_documents', {
+
+        // Existing document retrieval (kept intact)
+        const { data: docs } = await supabase.rpc('match_documents', {
           query_embedding: embedding,
           match_threshold: 0.35,
           match_count: 5,
         })
-        destData[dest] = (data || []).map((d: { content: string }) => d.content)
+        destData[dest] = (docs || []).map((d: { content: string }) => d.content)
+
+        // POI retrieval (graceful fallback if table/function not ready)
+        try {
+          const { data: pois } = await supabase.rpc('match_pois', {
+            query_embedding: embedding,
+            match_count: 10,
+          })
+          poiData[dest] = (pois as PoiResult[]) || []
+        } catch {
+          poiData[dest] = []
+        }
       } catch (err) {
-        console.error("RAG retrieval failed for destination:", dest, err)
+        console.error('RAG retrieval failed for destination:', dest, err)
         destData[dest] = []
+        poiData[dest] = []
       }
     }
 
-    // 2. Build a prompt with the actual data
+    // 2. Build context block — POIs first, then knowledge-base docs
     let contextBlock = ''
     for (const dest of destinations) {
-      const chunks = destData[dest]
-      if (chunks.length > 0) {
-        contextBlock += `\n\nKnowledge base data for ${dest}:\n${chunks.join('\n')}`
-      } else {
-        contextBlock += `\n\nNo knowledge base data found for ${dest}. Use your general knowledge.`
+      const pois = poiData[dest]
+      const docs = destData[dest]
+
+      if (pois.length > 0) {
+        contextBlock += `\n\nReal attractions in ${dest}:\n`
+        contextBlock += pois.map(p => `- ${p.place_name} (${p.type}): ${p.famous_for}`).join('\n')
+      }
+      if (docs.length > 0) {
+        contextBlock += `\n\nKnowledge base data for ${dest}:\n${docs.join('\n')}`
+      }
+      if (pois.length === 0 && docs.length === 0) {
+        contextBlock += `\n\nNo database data found for ${dest}. Use your general knowledge.`
       }
     }
 
     const prompt = `You are comparing these travel destinations: ${destinations.join(', ')}.
 ${contextBlock}
+
+Use the real attractions listed above when describing what each destination offers.
 
 Based on the data above (and your general knowledge where data is missing), output a comparison in EXACTLY this format. Each line must have values separated by | characters, one value per destination in the same order (${destinations.join(', ')}):
 

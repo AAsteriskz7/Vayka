@@ -1,0 +1,1001 @@
+id,destination,category,best_months,climate,crowd_level,activities,companions,travel_duration_days
+522,"Zermatt, Switzerland",mountains,"May, June, April, July",cold/mild,quiet,"hiking, trekking",couple,10
+738,"Whistler, Canada",adventure,"April, June, May, September",variable,lively,"rafting, paragliding",family,3
+741,"Torres del Paine, Chile",adventure,"April, October, May, September",variable,lively,"rafting, paragliding",family,11
+661,Bora Bora,islands,"February, March, December, January",tropical,quiet,"boat rides, snorkeling",friends,8
+412,Maldives,islands,"February, December, March, January",tropical,quiet,"boat rides, snorkeling",solo,4
+679,"Gir Forest, India",forest,"January, November, October, December",humid,quiet,"wildlife safari, nature walks",family,12
+627,"Amsterdam, Netherlands",culture,"March, April, October, May",mild,moderate,"museum tours, heritage walks",couple,10
+514,"Pahalgam, India",mountains,"July, May, September, August",cold/mild,quiet,"hiking, trekking",couple,4
+860,"Shanghai, China",culture,"April, May, November, October",mild,moderate,"museum tours, heritage walks",solo,8
+137,"Marrakech, Morocco",culture,"May, March, October, April",mild,moderate,"museum tours, heritage walks",family,3
+812,"Phuket, Thailand",beaches,"April, December, March, February",tropical/warm,lively,"swimming, snorkeling",couple,8
+77,"Honolulu, Hawaii",beaches,"April, November, February, March",tropical/warm,lively,"swimming, snorkeling",friends,9
+637,"Marrakech, Morocco",culture,"October, November, May, March",mild,moderate,"museum tours, heritage walks",family,11
+974,"Wadi Al Dawasir, Saudi Arabia",desert,"October, February, December, November",hot/dry,moderate,"camel rides, sandboarding",friends,9
+939,"Borneo Forest, Malaysia",forest,"November, January, December, October",humid,quiet,"wildlife safari, nature walks",couple,12
+900,"Yerevan, Armenia",culture,"April, March, October, November",mild,moderate,"museum tours, heritage walks",solo,7
+281,"La Paz, Bolivia",mountains,"April, August, June, September",cold/mild,quiet,"hiking, trekking",family,11
+884,"Madrid, Spain",culture,"April, October, May, November",mild,moderate,"museum tours, heritage walks",solo,12
+762,"Kedarnath, India",mountains,"July, June, May, September",cold/mild,quiet,"hiking, trekking",solo,10
+320,"Da Nang, Vietnam",beaches,"November, March, February, April",tropical/warm,lively,"swimming, snorkeling",solo,6
+550,"Jungfrau Region, Switzerland",mountains,"September, August, July, April",cold/mild,quiet,"hiking, trekking",solo,4
+175,"Oahu, Hawaii",islands,"March, January, December, February",tropical,quiet,"boat rides, snorkeling",solo,6
+372,"Budapest, Hungary",culture,"March, May, November, October",mild,moderate,"museum tours, heritage walks",friends,11
+528,"Queenstown, New Zealand",mountains,"April, May, August, July",cold/mild,quiet,"hiking, trekking",solo,10
+211,"Nevada Desert, USA",desert,"November, October, February, December",hot/dry,moderate,"camel rides, sandboarding",couple,10
+236,"Interlaken, Switzerland",adventure,"April, October, May, September",variable,lively,"rafting, paragliding",friends,12
+102,"Florence, Italy",culture,"May, November, March, October",mild,moderate,"museum tours, heritage walks",couple,6
+987,"Chamonix, France",adventure,"April, October, September, June",variable,lively,"rafting, paragliding",couple,3
+903,"Neil Island, India",islands,"February, December, March, January",tropical,quiet,"boat rides, snorkeling",couple,3
+948,"Sinharaja Forest, Sri Lanka",forest,"December, January, November, October",humid,quiet,"wildlife safari, nature walks",couple,12
+347,"Diani Beach, Kenya",beaches,"April, December, February, March",tropical/warm,lively,"swimming, snorkeling",couple,10
+140,"Luxor, Egypt",culture,"April, May, November, October",mild,moderate,"museum tours, heritage walks",couple,10
+622,"Budapest, Hungary",culture,"May, October, November, April",mild,moderate,"museum tours, heritage walks",couple,8
+500,"Alaska, USA",adventure,"June, September, April, October",variable,lively,"rafting, paragliding",solo,7
+371,"Prague, Czech Republic",culture,"November, April, March, October",mild,moderate,"museum tours, heritage walks",family,11
+199,"Chitwan National Park, Nepal",forest,"November, January, December, October",humid,quiet,"wildlife safari, nature walks",couple,8
+688,"Serengeti, Tanzania",forest,"November, October, January, December",humid,quiet,"wildlife safari, nature walks",couple,3
+585,"Cannes, France",beaches,"December, January, April, November",tropical/warm,lively,"swimming, snorkeling",solo,6
+902,"Havelock Island, India",islands,"February, March, January, December",tropical,quiet,"boat rides, snorkeling",friends,11
+60,"Chennai, India",beaches,"March, January, December, February",tropical/warm,lively,"swimming, snorkeling",couple,5
+329,"Tulum, Mexico",beaches,"December, April, February, March",tropical/warm,lively,"swimming, snorkeling",couple,7
+97,"Diani Beach, Kenya",beaches,"December, January, November, February",tropical/warm,lively,"swimming, snorkeling",friends,3
+313,"Krabi, Thailand",beaches,"November, December, January, February",tropical/warm,lively,"swimming, snorkeling",family,6
+975,"Rub' al Khali, Saudi Arabia",desert,"November, October, January, February",hot/dry,moderate,"camel rides, sandboarding",couple,10
+300,"Jungfrau Region, Switzerland",mountains,"August, September, April, May",cold/mild,quiet,"hiking, trekking",couple,9
+278,"Queenstown, New Zealand",mountains,"April, May, August, September",cold/mild,quiet,"hiking, trekking",friends,12
+925,"Oahu, Hawaii",islands,"December, February, March, January",tropical,quiet,"boat rides, snorkeling",friends,7
+602,"Florence, Italy",culture,"November, March, October, April",mild,moderate,"museum tours, heritage walks",friends,6
+440,"Daintree Forest, Australia",forest,"November, December, January, October",humid,quiet,"wildlife safari, nature walks",solo,5
+838,"Crete, Greece",beaches,"December, April, November, January",tropical/warm,lively,"swimming, snorkeling",solo,9
+571,"Nha Trang, Vietnam",beaches,"December, March, January, April",tropical/warm,lively,"swimming, snorkeling",solo,3
+880,"Stockholm, Sweden",culture,"April, March, November, October",mild,moderate,"museum tours, heritage walks",family,11
+262,"Kedarnath, India",mountains,"April, June, July, August",cold/mild,quiet,"hiking, trekking",couple,5
+579,"Tulum, Mexico",beaches,"January, December, February, April",tropical/warm,lively,"swimming, snorkeling",family,3
+24,"Lucerne, Switzerland",mountains,"September, June, August, April",cold/mild,quiet,"hiking, trekking",family,10
+31,"La Paz, Bolivia",mountains,"May, June, September, April",cold/mild,quiet,"hiking, trekking",family,8
+618,"Munich, Germany",culture,"October, March, April, May",mild,moderate,"museum tours, heritage walks",friends,5
+11,"Rishikesh, India",mountains,"April, September, August, May",cold/mild,quiet,"hiking, trekking",family,6
+222,"Sonoran Desert, USA",desert,"October, November, February, January",hot/dry,moderate,"camel rides, sandboarding",couple,10
+821,"Nha Trang, Vietnam",beaches,"February, December, April, November",tropical/warm,lively,"swimming, snorkeling",couple,10
+297,"Innsbruck, Austria",mountains,"September, July, August, May",cold/mild,quiet,"hiking, trekking",couple,4
+55,"Pondicherry, India",beaches,"March, April, November, February",tropical/warm,lively,"swimming, snorkeling",friends,12
+543,"Mount Kilimanjaro, Tanzania",mountains,"June, August, April, May",cold/mild,quiet,"hiking, trekking",couple,6
+210,Oman Desert,desert,"January, December, November, February",hot/dry,moderate,"camel rides, sandboarding",family,11
+605,"Athens, Greece",culture,"November, April, October, March",mild,moderate,"museum tours, heritage walks",family,5
+693,"Blue Mountains, Australia",forest,"January, December, November, October",humid,quiet,"wildlife safari, nature walks",couple,8
+663,Sri Lanka,islands,"December, January, February, March",tropical,quiet,"boat rides, snorkeling",family,9
+867,"Berlin, Germany",culture,"March, November, October, April",mild,moderate,"museum tours, heritage walks",couple,8
+71,"Nha Trang, Vietnam",beaches,"January, December, April, November",tropical/warm,lively,"swimming, snorkeling",solo,12
+544,Armenia Mountains,mountains,"August, April, July, September",cold/mild,quiet,"hiking, trekking",couple,6
+108,"Osaka, Japan",culture,"April, March, May, October",mild,moderate,"museum tours, heritage walks",couple,7
+494,"Iguazu Falls, Brazil",adventure,"October, September, May, April",variable,lively,"rafting, paragliding",friends,9
+591,"Barcelona Beaches, Spain",beaches,"December, April, November, February",tropical/warm,lively,"swimming, snorkeling",couple,10
+742,"Cusco, Peru",adventure,"October, April, May, September",variable,lively,"rafting, paragliding",couple,4
+293,"Mount Kilimanjaro, Tanzania",mountains,"June, September, April, July",cold/mild,quiet,"hiking, trekking",family,4
+290,"Gudauri, Georgia",mountains,"May, April, June, July",cold/mild,quiet,"hiking, trekking",family,9
+653,"Neil Island, India",islands,"February, January, March, December",tropical,quiet,"boat rides, snorkeling",family,3
+40,"Gudauri, Georgia",mountains,"August, July, May, September",cold/mild,quiet,"hiking, trekking",family,3
+590,"Valencia, Spain",beaches,"November, March, April, February",tropical/warm,lively,"swimming, snorkeling",couple,5
+308,"Alibaug, India",beaches,"January, February, November, December",tropical/warm,lively,"swimming, snorkeling",friends,5
+680,"Sundarbans, India",forest,"December, October, November, January",humid,quiet,"wildlife safari, nature walks",family,7
+67,"Male, Maldives",beaches,"February, April, January, November",tropical/warm,lively,"swimming, snorkeling",family,7
+276,"Aspen, USA",mountains,"April, June, September, July",cold/mild,quiet,"hiking, trekking",solo,8
+68,"Maafushi, Maldives",beaches,"February, March, December, April",tropical/warm,lively,"swimming, snorkeling",solo,4
+319,"Cebu, Philippines",beaches,"December, January, November, April",tropical/warm,lively,"swimming, snorkeling",solo,8
+549,"Andermatt, Switzerland",mountains,"May, September, August, June",cold/mild,quiet,"hiking, trekking",couple,6
+999,"Newfoundland, Canada",adventure,"October, September, May, June",variable,lively,"rafting, paragliding",couple,11
+715,"Namib Desert, Namibia",desert,"January, October, November, December",hot/dry,moderate,"camel rides, sandboarding",solo,8
+754,"Mussoorie, India",mountains,"May, April, September, June",cold/mild,quiet,"hiking, trekking",family,5
+328,"Cancun, Mexico",beaches,"March, November, January, December",tropical/warm,lively,"swimming, snorkeling",couple,3
+383,"Porto, Portugal",culture,"October, April, March, November",mild,moderate,"museum tours, heritage walks",family,8
+452,"Jaisalmer, India",desert,"December, October, February, January",hot/dry,moderate,"camel rides, sandboarding",family,10
+523,"Interlaken, Switzerland",mountains,"June, July, August, September",cold/mild,quiet,"hiking, trekking",friends,6
+219,"Dasht-e Kavir, Iran",desert,"December, January, February, October",hot/dry,moderate,"camel rides, sandboarding",couple,3
+788,"Mount Cook, New Zealand",mountains,"April, July, June, May",cold/mild,quiet,"hiking, trekking",couple,10
+437,"Masai Mara, Kenya",forest,"January, November, October, December",humid,quiet,"wildlife safari, nature walks",friends,4
+765,"Srinagar, India",mountains,"May, September, August, April",cold/mild,quiet,"hiking, trekking",family,6
+89,"Ibiza, Spain",beaches,"January, November, February, March",tropical/warm,lively,"swimming, snorkeling",friends,4
+64,"Langkawi, Malaysia",beaches,"February, March, December, April",tropical/warm,lively,"swimming, snorkeling",solo,5
+827,"Honolulu, Hawaii",beaches,"February, April, January, December",tropical/warm,lively,"swimming, snorkeling",family,5
+717,"Dubai Desert, UAE",desert,"November, February, January, December",hot/dry,moderate,"camel rides, sandboarding",couple,6
+352,"Florence, Italy",culture,"April, October, March, May",mild,moderate,"museum tours, heritage walks",solo,8
+937,"Masai Mara, Kenya",forest,"December, November, October, January",humid,quiet,"wildlife safari, nature walks",friends,7
+257,"Darjeeling, India",mountains,"September, May, June, April",cold/mild,quiet,"hiking, trekking",couple,7
+636,"Granada, Spain",culture,"April, March, May, November",mild,moderate,"museum tours, heritage walks",solo,9
+645,"Abu Dhabi, UAE",culture,"March, April, November, October",mild,moderate,"museum tours, heritage walks",family,7
+555,"Pondicherry, India",beaches,"January, March, February, April",tropical/warm,lively,"swimming, snorkeling",friends,10
+960,Oman Desert,desert,"January, October, February, December",hot/dry,moderate,"camel rides, sandboarding",friends,4
+169,"Sardinia, Italy",islands,"January, March, February, December",tropical,quiet,"boat rides, snorkeling",solo,10
+918,"Sicily, Italy",islands,"December, January, March, February",tropical,quiet,"boat rides, snorkeling",couple,5
+529,"Te Anau, New Zealand",mountains,"July, September, May, April",cold/mild,quiet,"hiking, trekking",friends,4
+824,"Perth, Australia",beaches,"March, November, December, January",tropical/warm,lively,"swimming, snorkeling",friends,7
+986,"Interlaken, Switzerland",adventure,"April, September, June, May",variable,lively,"rafting, paragliding",couple,5
+817,"Male, Maldives",beaches,"November, January, December, March",tropical/warm,lively,"swimming, snorkeling",family,12
+87,"Mykonos, Greece",beaches,"December, April, January, November",tropical/warm,lively,"swimming, snorkeling",friends,12
+433,"Yellowstone, USA",forest,"November, January, October, December",humid,quiet,"wildlife safari, nature walks",friends,10
+185,"Jasper National Park, Canada",forest,"November, January, December, October",humid,quiet,"wildlife safari, nature walks",couple,5
+979,"Meghalaya, India",adventure,"April, June, May, October",variable,lively,"rafting, paragliding",family,11
+535,"Pokhara, Nepal",mountains,"May, April, June, September",cold/mild,quiet,"hiking, trekking",friends,3
+295,"Pyrenees, France",mountains,"May, July, April, August",cold/mild,quiet,"hiking, trekking",friends,12
+893,"Petra, Jordan",culture,"March, October, November, May",mild,moderate,"museum tours, heritage walks",family,4
+426,"Jim Corbett, India",forest,"November, December, October, January",humid,quiet,"wildlife safari, nature walks",friends,11
+714,"Kalahari Desert, Botswana",desert,"January, February, October, December",hot/dry,moderate,"camel rides, sandboarding",family,11
+261,"Rishikesh, India",mountains,"August, September, May, June",cold/mild,quiet,"hiking, trekking",family,12
+238,"Whistler, Canada",adventure,"April, October, September, June",variable,lively,"rafting, paragliding",friends,12
+560,"Chennai, India",beaches,"April, December, November, January",tropical/warm,lively,"swimming, snorkeling",friends,5
+584,"Nice, France",beaches,"February, January, April, December",tropical/warm,lively,"swimming, snorkeling",couple,7
+446,"Black Forest, Germany",forest,"December, November, January, October",humid,quiet,"wildlife safari, nature walks",couple,3
+868,"Munich, Germany",culture,"March, November, April, October",mild,moderate,"museum tours, heritage walks",family,9
+801,"Goa, India",beaches,"April, March, January, November",tropical/warm,lively,"swimming, snorkeling",couple,11
+600,Fiji Islands,beaches,"February, November, January, December",tropical/warm,lively,"swimming, snorkeling",solo,10
+850,Fiji Islands,beaches,"February, January, April, March",tropical/warm,lively,"swimming, snorkeling",solo,9
+266,"Kasol, India",mountains,"April, May, June, August",cold/mild,quiet,"hiking, trekking",family,4
+996,"Madeira, Portugal",adventure,"June, September, October, April",variable,lively,"rafting, paragliding",family,12
+530,"Patagonia, Chile",mountains,"August, April, July, September",cold/mild,quiet,"hiking, trekking",couple,4
+56,"Lakshadweep, India",beaches,"February, December, November, January",tropical/warm,lively,"swimming, snorkeling",friends,6
+121,"Prague, Czech Republic",culture,"April, May, October, March",mild,moderate,"museum tours, heritage walks",solo,7
+216,"Doha Desert, Qatar",desert,"February, October, November, December",hot/dry,moderate,"camel rides, sandboarding",friends,5
+26,"Aspen, USA",mountains,"April, July, September, May",cold/mild,quiet,"hiking, trekking",family,4
+73,"Sydney, Australia",beaches,"March, November, April, December",tropical/warm,lively,"swimming, snorkeling",solo,12
+45,"Pyrenees, France",mountains,"April, June, May, July",cold/mild,quiet,"hiking, trekking",friends,11
+248,Iceland,adventure,"October, April, June, September",variable,lively,"rafting, paragliding",family,9
+722,"Sonoran Desert, USA",desert,"November, January, February, October",hot/dry,moderate,"camel rides, sandboarding",friends,8
+282,"Cusco, Peru",mountains,"August, September, June, May",cold/mild,quiet,"hiking, trekking",family,11
+894,"Dubai, UAE",culture,"November, October, March, May",mild,moderate,"museum tours, heritage walks",family,3
+915,Madagascar,islands,"February, January, March, December",tropical,quiet,"boat rides, snorkeling",couple,5
+811,"Bali, Indonesia",beaches,"March, December, November, April",tropical/warm,lively,"swimming, snorkeling",friends,7
+245,Reunion Island,adventure,"May, April, October, September",variable,lively,"rafting, paragliding",solo,5
+823,"Sydney, Australia",beaches,"April, November, January, December",tropical/warm,lively,"swimming, snorkeling",couple,7
+322,"Gold Coast, Australia",beaches,"March, February, November, January",tropical/warm,lively,"swimming, snorkeling",couple,7
+644,"Dubai, UAE",culture,"October, May, March, April",mild,moderate,"museum tours, heritage walks",friends,5
+159,Fiji,islands,"January, February, December, March",tropical,quiet,"boat rides, snorkeling",solo,10
+978,"Coorg, India",adventure,"October, September, May, April",variable,lively,"rafting, paragliding",family,3
+430,"Sundarbans, India",forest,"November, December, January, October",humid,quiet,"wildlife safari, nature walks",couple,5
+942,"Tongariro, New Zealand",forest,"November, December, October, January",humid,quiet,"wildlife safari, nature walks",friends,7
+463,"Simpson Desert, Australia",desert,"February, January, December, November",hot/dry,moderate,"camel rides, sandboarding",solo,12
+310,"Chennai, India",beaches,"February, December, March, November",tropical/warm,lively,"swimming, snorkeling",couple,11
+698,"Sinharaja Forest, Sri Lanka",forest,"December, January, November, October",humid,quiet,"wildlife safari, nature walks",family,9
+61,"Bali, Indonesia",beaches,"January, February, December, November",tropical/warm,lively,"swimming, snorkeling",friends,7
+885,"Seville, Spain",culture,"April, March, May, November",mild,moderate,"museum tours, heritage walks",family,7
+596,"Zanzibar, Tanzania",beaches,"January, December, March, April",tropical/warm,lively,"swimming, snorkeling",couple,5
+768,"Kodaikanal, India",mountains,"May, August, September, June",cold/mild,quiet,"hiking, trekking",solo,9
+650,"Yerevan, Armenia",culture,"April, May, March, November",mild,moderate,"museum tours, heritage walks",solo,3
+651,"Andaman Islands, India",islands,"January, February, December, March",tropical,quiet,"boat rides, snorkeling",family,8
+866,"Versailles, France",culture,"November, October, April, May",mild,moderate,"museum tours, heritage walks",family,9
+669,"Sardinia, Italy",islands,"December, January, March, February",tropical,quiet,"boat rides, snorkeling",couple,11
+299,"Andermatt, Switzerland",mountains,"September, June, July, April",cold/mild,quiet,"hiking, trekking",solo,10
+690,"Daintree Forest, Australia",forest,"December, November, January, October",humid,quiet,"wildlife safari, nature walks",family,7
+315,"Boracay, Philippines",beaches,"November, April, January, March",tropical/warm,lively,"swimming, snorkeling",friends,6
+311,"Bali, Indonesia",beaches,"November, March, February, January",tropical/warm,lively,"swimming, snorkeling",solo,3
+362,"London, UK",culture,"October, March, April, May",mild,moderate,"museum tours, heritage walks",solo,3
+480,"Sikkim, India",adventure,"October, June, May, September",variable,lively,"rafting, paragliding",friends,12
+111,"Xi'an, China",culture,"March, October, April, May",mild,moderate,"museum tours, heritage walks",couple,10
+990,"Patagonia, Argentina",adventure,"June, May, October, September",variable,lively,"rafting, paragliding",family,12
+487,"Chamonix, France",adventure,"April, October, June, May",variable,lively,"rafting, paragliding",family,4
+364,"Oxford, UK",culture,"March, November, October, April",mild,moderate,"museum tours, heritage walks",family,7
+255,"Nainital, India",mountains,"August, June, May, July",cold/mild,quiet,"hiking, trekking",friends,12
+260,"Gangtok, India",mountains,"April, June, August, May",cold/mild,quiet,"hiking, trekking",family,12
+803,"Kovalam, India",beaches,"March, January, December, April",tropical/warm,lively,"swimming, snorkeling",friends,9
+678,"Periyar, India",forest,"November, October, January, December",humid,quiet,"wildlife safari, nature walks",solo,6
+495,Reunion Island,adventure,"May, October, June, September",variable,lively,"rafting, paragliding",solo,5
+671,Cyprus,islands,"February, March, December, January",tropical,quiet,"boat rides, snorkeling",solo,4
+378,"Rotterdam, Netherlands",culture,"November, May, March, April",mild,moderate,"museum tours, heritage walks",friends,12
+527,"Denver, USA",mountains,"May, July, August, September",cold/mild,quiet,"hiking, trekking",couple,6
+846,"Zanzibar, Tanzania",beaches,"November, February, April, January",tropical/warm,lively,"swimming, snorkeling",family,6
+138,"Fes, Morocco",culture,"March, November, May, April",mild,moderate,"museum tours, heritage walks",solo,9
+356,"Kyoto, Japan",culture,"November, October, March, April",mild,moderate,"museum tours, heritage walks",couple,8
+366,"Versailles, France",culture,"April, October, May, November",mild,moderate,"museum tours, heritage walks",friends,11
+943,"Blue Mountains, Australia",forest,"December, October, January, November",humid,quiet,"wildlife safari, nature walks",couple,9
+750,"Alaska, USA",adventure,"May, June, September, October",variable,lively,"rafting, paragliding",couple,12
+949,"Chitwan National Park, Nepal",forest,"October, January, November, December",humid,quiet,"wildlife safari, nature walks",family,7
+830,"Rio de Janeiro, Brazil",beaches,"April, November, January, December",tropical/warm,lively,"swimming, snorkeling",friends,5
+657,"Langkawi, Malaysia",islands,"December, January, February, March",tropical,quiet,"boat rides, snorkeling",couple,3
+200,"Bwindi Forest, Uganda",forest,"October, December, January, November",humid,quiet,"wildlife safari, nature walks",solo,8
+214,"Kalahari Desert, Botswana",desert,"February, October, January, November",hot/dry,moderate,"camel rides, sandboarding",solo,4
+409,Fiji,islands,"February, December, January, March",tropical,quiet,"boat rides, snorkeling",family,12
+333,"Durban, South Africa",beaches,"February, November, March, April",tropical/warm,lively,"swimming, snorkeling",family,3
+209,"Arabian Desert, UAE",desert,"December, January, November, February",hot/dry,moderate,"camel rides, sandboarding",solo,12
+614,"Oxford, UK",culture,"November, April, October, March",mild,moderate,"museum tours, heritage walks",friends,3
+79,"Tulum, Mexico",beaches,"March, January, April, December",tropical/warm,lively,"swimming, snorkeling",solo,11
+30,"Patagonia, Chile",mountains,"May, August, September, July",cold/mild,quiet,"hiking, trekking",couple,4
+536,"Thimphu, Bhutan",mountains,"June, July, September, May",cold/mild,quiet,"hiking, trekking",couple,3
+696,"Black Forest, Germany",forest,"December, November, January, October",humid,quiet,"wildlife safari, nature walks",friends,11
+558,"Alibaug, India",beaches,"March, January, April, November",tropical/warm,lively,"swimming, snorkeling",solo,11
+837,"Mykonos, Greece",beaches,"February, December, March, January",tropical/warm,lively,"swimming, snorkeling",family,8
+597,"Diani Beach, Kenya",beaches,"February, December, March, April",tropical/warm,lively,"swimming, snorkeling",couple,12
+166,"Jeju Island, South Korea",islands,"January, December, February, March",tropical,quiet,"boat rides, snorkeling",couple,4
+919,"Sardinia, Italy",islands,"January, December, March, February",tropical,quiet,"boat rides, snorkeling",family,11
+496,"Madeira, Portugal",adventure,"April, September, May, October",variable,lively,"rafting, paragliding",friends,10
+825,"Cairns, Australia",beaches,"April, February, November, January",tropical/warm,lively,"swimming, snorkeling",family,3
+66,"Palawan, Philippines",beaches,"March, April, February, January",tropical/warm,lively,"swimming, snorkeling",solo,8
+142,"Jerusalem, Israel",culture,"October, April, May, November",mild,moderate,"museum tours, heritage walks",solo,3
+926,"Jim Corbett, India",forest,"October, November, December, January",humid,quiet,"wildlife safari, nature walks",couple,9
+828,"Cancun, Mexico",beaches,"November, December, April, March",tropical/warm,lively,"swimming, snorkeling",family,6
+656,"Phuket, Thailand",islands,"February, March, January, December",tropical,quiet,"boat rides, snorkeling",solo,4
+332,"Cape Town, South Africa",beaches,"December, April, November, March",tropical/warm,lively,"swimming, snorkeling",solo,11
+665,Madagascar,islands,"December, January, February, March",tropical,quiet,"boat rides, snorkeling",solo,3
+250,"Alaska, USA",adventure,"September, October, May, June",variable,lively,"rafting, paragliding",friends,5
+908,"Bali, Indonesia",islands,"December, March, February, January",tropical,quiet,"boat rides, snorkeling",friends,12
+709,"Arabian Desert, UAE",desert,"February, October, November, January",hot/dry,moderate,"camel rides, sandboarding",family,11
+306,"Lakshadweep, India",beaches,"December, January, February, April",tropical/warm,lively,"swimming, snorkeling",solo,6
+735,"Victoria Falls, Zambia",adventure,"September, June, May, October",variable,lively,"rafting, paragliding",couple,5
+976,"Rishikesh, India",adventure,"May, June, April, September",variable,lively,"rafting, paragliding",friends,8
+50,"Jungfrau Region, Switzerland",mountains,"July, August, September, May",cold/mild,quiet,"hiking, trekking",solo,6
+897,"Muscat, Oman",culture,"April, November, March, May",mild,moderate,"museum tours, heritage walks",family,5
+3,"Shimla, India",mountains,"September, April, May, June",cold/mild,quiet,"hiking, trekking",family,5
+545,"Pyrenees, France",mountains,"May, April, September, August",cold/mild,quiet,"hiking, trekking",solo,3
+351,"Rome, Italy",culture,"April, November, March, October",mild,moderate,"museum tours, heritage walks",solo,11
+905,Seychelles,islands,"January, February, December, March",tropical,quiet,"boat rides, snorkeling",family,6
+537,"Paro, Bhutan",mountains,"April, June, August, May",cold/mild,quiet,"hiking, trekking",family,12
+345,"Sardinia, Italy",beaches,"March, November, January, February",tropical/warm,lively,"swimming, snorkeling",friends,5
+995,Reunion Island,adventure,"May, June, October, September",variable,lively,"rafting, paragliding",solo,3
+482,"Chiang Mai, Thailand",adventure,"May, June, September, October",variable,lively,"rafting, paragliding",friends,10
+576,"Miami, USA",beaches,"February, April, March, November",tropical/warm,lively,"swimming, snorkeling",solo,7
+34,"Kathmandu, Nepal",mountains,"June, August, April, May",cold/mild,quiet,"hiking, trekking",couple,7
+32,"Cusco, Peru",mountains,"September, June, July, April",cold/mild,quiet,"hiking, trekking",solo,10
+232,"Chiang Mai, Thailand",adventure,"May, June, April, September",variable,lively,"rafting, paragliding",couple,10
+964,"Kalahari Desert, Botswana",desert,"January, November, February, December",hot/dry,moderate,"camel rides, sandboarding",solo,8
+193,"Blue Mountains, Australia",forest,"October, January, November, December",humid,quiet,"wildlife safari, nature walks",family,8
+334,"Nice, France",beaches,"April, February, March, November",tropical/warm,lively,"swimming, snorkeling",friends,3
+4,"Mussoorie, India",mountains,"June, September, April, August",cold/mild,quiet,"hiking, trekking",couple,3
+205,"Sahara, Morocco",desert,"February, November, October, January",hot/dry,moderate,"camel rides, sandboarding",couple,6
+515,"Srinagar, India",mountains,"May, July, June, April",cold/mild,quiet,"hiking, trekking",family,12
+800,"Jungfrau Region, Switzerland",mountains,"April, August, July, May",cold/mild,quiet,"hiking, trekking",couple,10
+307,"Gokarna, India",beaches,"March, April, November, February",tropical/warm,lively,"swimming, snorkeling",family,8
+110,"Shanghai, China",culture,"March, November, October, May",mild,moderate,"museum tours, heritage walks",friends,6
+431,"Amazon Rainforest, Brazil",forest,"October, November, December, January",humid,quiet,"wildlife safari, nature walks",friends,11
+78,"Cancun, Mexico",beaches,"April, March, February, November",tropical/warm,lively,"swimming, snorkeling",friends,7
+85,"Cannes, France",beaches,"December, March, April, January",tropical/warm,lively,"swimming, snorkeling",solo,12
+287,"Paro, Bhutan",mountains,"August, April, June, September",cold/mild,quiet,"hiking, trekking",family,9
+83,"Durban, South Africa",beaches,"November, December, January, February",tropical/warm,lively,"swimming, snorkeling",family,7
+992,"Cusco, Peru",adventure,"June, April, September, October",variable,lively,"rafting, paragliding",couple,10
+790,"Gudauri, Georgia",mountains,"May, July, August, September",cold/mild,quiet,"hiking, trekking",solo,6
+895,"Abu Dhabi, UAE",culture,"November, October, March, April",mild,moderate,"museum tours, heritage walks",couple,5
+399,"Samarkand, Uzbekistan",culture,"April, November, March, October",mild,moderate,"museum tours, heritage walks",solo,7
+324,"Perth, Australia",beaches,"March, February, January, April",tropical/warm,lively,"swimming, snorkeling",friends,3
+520,"Banff, Canada",mountains,"July, August, April, May",cold/mild,quiet,"hiking, trekking",couple,5
+917,"Hokkaido, Japan",islands,"March, December, February, January",tropical,quiet,"boat rides, snorkeling",couple,11
+923,"Sabah, Malaysia",islands,"January, March, February, December",tropical,quiet,"boat rides, snorkeling",couple,3
+6,"Mount Abu, India",mountains,"May, August, June, July",cold/mild,quiet,"hiking, trekking",family,11
+732,"Chiang Mai, Thailand",adventure,"May, October, April, September",variable,lively,"rafting, paragliding",friends,4
+466,"Doha Desert, Qatar",desert,"January, December, November, February",hot/dry,moderate,"camel rides, sandboarding",couple,12
+98,Seychelles,beaches,"February, December, November, March",tropical/warm,lively,"swimming, snorkeling",friends,4
+267,"Spiti Valley, India",mountains,"May, July, April, August",cold/mild,quiet,"hiking, trekking",family,7
+358,"Osaka, Japan",culture,"March, October, May, November",mild,moderate,"museum tours, heritage walks",family,7
+869,"Hamburg, Germany",culture,"May, November, April, March",mild,moderate,"museum tours, heritage walks",friends,7
+799,"Andermatt, Switzerland",mountains,"May, April, August, June",cold/mild,quiet,"hiking, trekking",solo,11
+381,"Helsinki, Finland",culture,"May, April, March, November",mild,moderate,"museum tours, heritage walks",couple,10
+632,"Lisbon, Portugal",culture,"March, October, November, May",mild,moderate,"museum tours, heritage walks",friends,5
+382,"Lisbon, Portugal",culture,"April, May, March, November",mild,moderate,"museum tours, heritage walks",solo,7
+491,"Torres del Paine, Chile",adventure,"June, May, April, October",variable,lively,"rafting, paragliding",family,9
+119,"Hamburg, Germany",culture,"April, May, March, October",mild,moderate,"museum tours, heritage walks",family,5
+901,"Andaman Islands, India",islands,"March, January, December, February",tropical,quiet,"boat rides, snorkeling",couple,11
+251,"Manali, India",mountains,"August, September, May, July",cold/mild,quiet,"hiking, trekking",couple,11
+524,"Lucerne, Switzerland",mountains,"May, July, August, April",cold/mild,quiet,"hiking, trekking",solo,11
+10,"Gangtok, India",mountains,"May, June, July, August",cold/mild,quiet,"hiking, trekking",friends,12
+197,"Ardennes, Belgium",forest,"November, January, October, December",humid,quiet,"wildlife safari, nature walks",friends,11
+604,"Milan, Italy",culture,"May, March, October, November",mild,moderate,"museum tours, heritage walks",friends,6
+82,"Cape Town, South Africa",beaches,"December, January, March, November",tropical/warm,lively,"swimming, snorkeling",friends,4
+784,"Kathmandu, Nepal",mountains,"August, April, June, May",cold/mild,quiet,"hiking, trekking",family,6
+588,"Crete, Greece",beaches,"December, November, February, January",tropical/warm,lively,"swimming, snorkeling",friends,8
+798,"Salzburg, Austria",mountains,"June, April, May, September",cold/mild,quiet,"hiking, trekking",couple,9
+240,"Patagonia, Argentina",adventure,"October, June, April, May",variable,lively,"rafting, paragliding",couple,11
+291,"Cappadocia, Turkey",mountains,"August, April, July, June",cold/mild,quiet,"hiking, trekking",couple,12
+212,"Death Valley, USA",desert,"February, October, November, January",hot/dry,moderate,"camel rides, sandboarding",solo,3
+718,"Sinai Desert, Egypt",desert,"January, February, October, December",hot/dry,moderate,"camel rides, sandboarding",couple,8
+360,"Shanghai, China",culture,"April, October, March, November",mild,moderate,"museum tours, heritage walks",family,4
+450,"Bwindi Forest, Uganda",forest,"October, December, January, November",humid,quiet,"wildlife safari, nature walks",friends,6
+228,"Coorg, India",adventure,"September, October, April, May",variable,lively,"rafting, paragliding",friends,4
+951,"Thar Desert, India",desert,"November, October, February, December",hot/dry,moderate,"camel rides, sandboarding",family,7
+947,"Ardennes, Belgium",forest,"January, November, October, December",humid,quiet,"wildlife safari, nature walks",family,12
+797,"Innsbruck, Austria",mountains,"August, July, June, September",cold/mild,quiet,"hiking, trekking",solo,6
+502,"Leh Ladakh, India",mountains,"September, July, August, April",cold/mild,quiet,"hiking, trekking",friends,9
+465,"Namib Desert, Namibia",desert,"February, January, November, December",hot/dry,moderate,"camel rides, sandboarding",family,3
+363,"Edinburgh, UK",culture,"October, April, March, May",mild,moderate,"museum tours, heritage walks",solo,12
+469,"Dasht-e Kavir, Iran",desert,"February, January, December, October",hot/dry,moderate,"camel rides, sandboarding",family,7
+936,"Kruger National Park, South Africa",forest,"December, October, January, November",humid,quiet,"wildlife safari, nature walks",friends,12
+429,"Gir Forest, India",forest,"November, January, December, October",humid,quiet,"wildlife safari, nature walks",solo,10
+8,"Ooty, India",mountains,"September, May, April, July",cold/mild,quiet,"hiking, trekking",solo,4
+156,"Phuket, Thailand",islands,"March, January, February, December",tropical,quiet,"boat rides, snorkeling",couple,7
+542,"Atlas Mountains, Morocco",mountains,"July, May, September, August",cold/mild,quiet,"hiking, trekking",family,6
+441,"Fiordland, New Zealand",forest,"November, October, January, December",humid,quiet,"wildlife safari, nature walks",friends,3
+483,"Queenstown, New Zealand",adventure,"May, September, April, June",variable,lively,"rafting, paragliding",couple,3
+423,"Sabah, Malaysia",islands,"January, March, December, February",tropical,quiet,"boat rides, snorkeling",family,4
+779,"Te Anau, New Zealand",mountains,"July, August, April, June",cold/mild,quiet,"hiking, trekking",couple,11
+950,"Bwindi Forest, Uganda",forest,"November, December, January, October",humid,quiet,"wildlife safari, nature walks",couple,8
+335,"Cannes, France",beaches,"April, November, January, February",tropical/warm,lively,"swimming, snorkeling",solo,4
+577,"Honolulu, Hawaii",beaches,"November, February, April, March",tropical/warm,lively,"swimming, snorkeling",couple,6
+935,"Jasper National Park, Canada",forest,"November, December, January, October",humid,quiet,"wildlife safari, nature walks",solo,3
+568,"Maafushi, Maldives",beaches,"April, November, March, December",tropical/warm,lively,"swimming, snorkeling",friends,7
+595,"Sardinia, Italy",beaches,"December, January, April, February",tropical/warm,lively,"swimming, snorkeling",solo,8
+531,"La Paz, Bolivia",mountains,"August, June, April, May",cold/mild,quiet,"hiking, trekking",friends,5
+582,"Cape Town, South Africa",beaches,"December, November, March, April",tropical/warm,lively,"swimming, snorkeling",solo,10
+708,"Gobi Desert, Mongolia",desert,"October, January, November, February",hot/dry,moderate,"camel rides, sandboarding",friends,11
+449,"Chitwan National Park, Nepal",forest,"December, October, January, November",humid,quiet,"wildlife safari, nature walks",solo,9
+454,"Wadi Rum, Jordan",desert,"October, January, February, December",hot/dry,moderate,"camel rides, sandboarding",family,12
+229,"Meghalaya, India",adventure,"October, May, April, June",variable,lively,"rafting, paragliding",friends,5
+353,"Venice, Italy",culture,"April, November, May, March",mild,moderate,"museum tours, heritage walks",couple,8
+729,"Meghalaya, India",adventure,"May, September, April, October",variable,lively,"rafting, paragliding",friends,12
+213,"Simpson Desert, Australia",desert,"October, January, November, December",hot/dry,moderate,"camel rides, sandboarding",couple,4
+80,"Rio de Janeiro, Brazil",beaches,"January, February, March, November",tropical/warm,lively,"swimming, snorkeling",friends,7
+149,"Samarkand, Uzbekistan",culture,"March, May, November, April",mild,moderate,"museum tours, heritage walks",friends,7
+303,"Kovalam, India",beaches,"March, December, November, April",tropical/warm,lively,"swimming, snorkeling",friends,12
+629,"Copenhagen, Denmark",culture,"May, March, November, April",mild,moderate,"museum tours, heritage walks",family,11
+778,"Queenstown, New Zealand",mountains,"May, September, June, August",cold/mild,quiet,"hiking, trekking",solo,4
+507,"Darjeeling, India",mountains,"August, April, June, September",cold/mild,quiet,"hiking, trekking",friends,9
+343,"Algarve, Portugal",beaches,"January, December, February, March",tropical/warm,lively,"swimming, snorkeling",family,4
+486,"Interlaken, Switzerland",adventure,"April, September, May, June",variable,lively,"rafting, paragliding",friends,7
+712,"Death Valley, USA",desert,"October, December, November, January",hot/dry,moderate,"camel rides, sandboarding",family,4
+134,"Madrid, Spain",culture,"November, May, October, April",mild,moderate,"museum tours, heritage walks",friends,9
+704,"Wadi Rum, Jordan",desert,"November, January, December, October",hot/dry,moderate,"camel rides, sandboarding",family,11
+312,"Phuket, Thailand",beaches,"January, March, February, November",tropical/warm,lively,"swimming, snorkeling",family,11
+723,"Tabernas Desert, Spain",desert,"November, January, February, October",hot/dry,moderate,"camel rides, sandboarding",couple,5
+630,"Stockholm, Sweden",culture,"March, May, October, November",mild,moderate,"museum tours, heritage walks",couple,10
+1,"Manali, India",mountains,"July, April, June, August",cold/mild,quiet,"hiking, trekking",friends,7
+317,"Male, Maldives",beaches,"January, April, March, February",tropical/warm,lively,"swimming, snorkeling",couple,7
+707,"Atacama Desert, Chile",desert,"December, November, October, February",hot/dry,moderate,"camel rides, sandboarding",couple,6
+548,"Salzburg, Austria",mountains,"May, July, September, August",cold/mild,quiet,"hiking, trekking",friends,3
+873,"Warsaw, Poland",culture,"October, April, May, November",mild,moderate,"museum tours, heritage walks",family,7
+533,"Arequipa, Peru",mountains,"June, April, July, May",cold/mild,quiet,"hiking, trekking",friends,5
+478,"Coorg, India",adventure,"October, September, June, April",variable,lively,"rafting, paragliding",solo,12
+405,Seychelles,islands,"December, March, February, January",tropical,quiet,"boat rides, snorkeling",couple,4
+173,"Sabah, Malaysia",islands,"January, December, March, February",tropical,quiet,"boat rides, snorkeling",solo,4
+126,"Bruges, Belgium",culture,"April, May, March, November",mild,moderate,"museum tours, heritage walks",couple,7
+395,"Abu Dhabi, UAE",culture,"November, April, March, October",mild,moderate,"museum tours, heritage walks",couple,7
+421,Cyprus,islands,"December, January, March, February",tropical,quiet,"boat rides, snorkeling",solo,3
+553,"Kovalam, India",beaches,"November, December, February, March",tropical/warm,lively,"swimming, snorkeling",family,4
+904,Mauritius,islands,"December, March, February, January",tropical,quiet,"boat rides, snorkeling",couple,4
+91,"Barcelona Beaches, Spain",beaches,"April, March, February, January",tropical/warm,lively,"swimming, snorkeling",solo,12
+940,"Daintree Forest, Australia",forest,"November, December, January, October",humid,quiet,"wildlife safari, nature walks",family,12
+182,"Yosemite, USA",forest,"November, October, December, January",humid,quiet,"wildlife safari, nature walks",family,9
+275,"Grindelwald, Switzerland",mountains,"April, May, September, August",cold/mild,quiet,"hiking, trekking",friends,10
+896,"Doha, Qatar",culture,"April, November, March, October",mild,moderate,"museum tours, heritage walks",solo,10
+70,"Da Nang, Vietnam",beaches,"February, March, January, November",tropical/warm,lively,"swimming, snorkeling",family,6
+292,"Atlas Mountains, Morocco",mountains,"September, June, July, May",cold/mild,quiet,"hiking, trekking",couple,5
+132,"Lisbon, Portugal",culture,"November, March, April, May",mild,moderate,"museum tours, heritage walks",couple,6
+301,"Goa, India",beaches,"January, March, December, April",tropical/warm,lively,"swimming, snorkeling",solo,5
+425,"Oahu, Hawaii",islands,"December, January, March, February",tropical,quiet,"boat rides, snorkeling",couple,9
+327,"Honolulu, Hawaii",beaches,"November, April, December, February",tropical/warm,lively,"swimming, snorkeling",solo,9
+145,"Abu Dhabi, UAE",culture,"November, October, April, March",mild,moderate,"museum tours, heritage walks",family,9
+424,"Maui, Hawaii",islands,"March, February, January, December",tropical,quiet,"boat rides, snorkeling",solo,12
+581,"Salvador, Brazil",beaches,"April, December, January, March",tropical/warm,lively,"swimming, snorkeling",solo,9
+136,"Granada, Spain",culture,"November, May, March, October",mild,moderate,"museum tours, heritage walks",couple,8
+451,"Thar Desert, India",desert,"November, February, December, October",hot/dry,moderate,"camel rides, sandboarding",friends,11
+165,Madagascar,islands,"March, February, January, December",tropical,quiet,"boat rides, snorkeling",friends,5
+29,"Te Anau, New Zealand",mountains,"June, April, September, August",cold/mild,quiet,"hiking, trekking",family,5
+774,"Lucerne, Switzerland",mountains,"April, September, June, May",cold/mild,quiet,"hiking, trekking",friends,8
+194,"Great Smoky Mountains, USA",forest,"January, October, November, December",humid,quiet,"wildlife safari, nature walks",couple,6
+389,"Cairo, Egypt",culture,"March, November, April, May",mild,moderate,"museum tours, heritage walks",friends,12
+853,"Venice, Italy",culture,"March, October, April, May",mild,moderate,"museum tours, heritage walks",couple,7
+170,"Crete, Greece",islands,"December, March, February, January",tropical,quiet,"boat rides, snorkeling",family,9
+706,"Merzouga, Morocco",desert,"January, February, October, December",hot/dry,moderate,"camel rides, sandboarding",friends,6
+141,"Istanbul, Turkey",culture,"March, October, November, May",mild,moderate,"museum tours, heritage walks",family,9
+174,"Maui, Hawaii",islands,"March, December, January, February",tropical,quiet,"boat rides, snorkeling",couple,10
+7,"Darjeeling, India",mountains,"May, June, August, July",cold/mild,quiet,"hiking, trekking",solo,11
+746,"Madeira, Portugal",adventure,"October, September, April, June",variable,lively,"rafting, paragliding",family,10
+479,"Meghalaya, India",adventure,"April, September, October, May",variable,lively,"rafting, paragliding",couple,4
+74,"Perth, Australia",beaches,"December, January, November, April",tropical/warm,lively,"swimming, snorkeling",friends,4
+911,Bora Bora,islands,"December, January, February, March",tropical,quiet,"boat rides, snorkeling",friends,7
+814,"Langkawi, Malaysia",beaches,"December, November, January, February",tropical/warm,lively,"swimming, snorkeling",couple,5
+239,"Banff, Canada",adventure,"October, April, May, September",variable,lively,"rafting, paragliding",solo,10
+146,"Doha, Qatar",culture,"March, October, April, May",mild,moderate,"museum tours, heritage walks",family,7
+793,"Mount Kilimanjaro, Tanzania",mountains,"April, May, August, September",cold/mild,quiet,"hiking, trekking",solo,11
+235,"Victoria Falls, Zambia",adventure,"May, April, October, September",variable,lively,"rafting, paragliding",solo,10
+221,"Chihuahuan Desert, Mexico",desert,"October, January, February, November",hot/dry,moderate,"camel rides, sandboarding",family,8
+924,"Maui, Hawaii",islands,"February, January, December, March",tropical,quiet,"boat rides, snorkeling",friends,3
+501,"Manali, India",mountains,"April, May, June, August",cold/mild,quiet,"hiking, trekking",solo,3
+133,"Porto, Portugal",culture,"November, October, April, May",mild,moderate,"museum tours, heritage walks",family,4
+991,"Torres del Paine, Chile",adventure,"September, April, May, October",variable,lively,"rafting, paragliding",solo,7
+775,"Grindelwald, Switzerland",mountains,"September, April, July, August",cold/mild,quiet,"hiking, trekking",solo,10
+186,"Kruger National Park, South Africa",forest,"December, January, October, November",humid,quiet,"wildlife safari, nature walks",couple,12
+42,"Atlas Mountains, Morocco",mountains,"July, May, September, August",cold/mild,quiet,"hiking, trekking",solo,6
+697,"Ardennes, Belgium",forest,"November, October, December, January",humid,quiet,"wildlife safari, nature walks",friends,12
+109,"Beijing, China",culture,"March, April, October, May",mild,moderate,"museum tours, heritage walks",family,9
+589,"Ibiza, Spain",beaches,"March, January, April, December",tropical/warm,lively,"swimming, snorkeling",family,4
+57,"Gokarna, India",beaches,"February, January, April, March",tropical/warm,lively,"swimming, snorkeling",friends,4
+406,"Phuket, Thailand",islands,"February, December, January, March",tropical,quiet,"boat rides, snorkeling",couple,3
+443,"Blue Mountains, Australia",forest,"January, October, November, December",humid,quiet,"wildlife safari, nature walks",solo,11
+758,"Ooty, India",mountains,"August, May, June, September",cold/mild,quiet,"hiking, trekking",family,6
+998,Iceland,adventure,"October, June, April, May",variable,lively,"rafting, paragliding",family,6
+25,"Grindelwald, Switzerland",mountains,"September, July, June, April",cold/mild,quiet,"hiking, trekking",solo,10
+468,"Sinai Desert, Egypt",desert,"December, January, February, October",hot/dry,moderate,"camel rides, sandboarding",friends,10
+540,"Gudauri, Georgia",mountains,"June, July, August, September",cold/mild,quiet,"hiking, trekking",family,5
+532,"Cusco, Peru",mountains,"June, August, September, July",cold/mild,quiet,"hiking, trekking",couple,11
+619,"Hamburg, Germany",culture,"March, April, May, November",mild,moderate,"museum tours, heritage walks",solo,5
+695,"Plitvice Lakes, Croatia",forest,"October, January, November, December",humid,quiet,"wildlife safari, nature walks",couple,5
+927,"Kaziranga, India",forest,"October, November, December, January",humid,quiet,"wildlife safari, nature walks",friends,6
+339,"Ibiza, Spain",beaches,"January, April, December, February",tropical/warm,lively,"swimming, snorkeling",solo,11
+52,"Varkala, India",beaches,"December, March, February, April",tropical/warm,lively,"swimming, snorkeling",friends,10
+508,"Ooty, India",mountains,"July, June, May, August",cold/mild,quiet,"hiking, trekking",friends,3
+517,"Spiti Valley, India",mountains,"September, April, July, June",cold/mild,quiet,"hiking, trekking",friends,7
+921,Cyprus,islands,"December, February, January, March",tropical,quiet,"boat rides, snorkeling",family,12
+782,"Cusco, Peru",mountains,"June, May, July, August",cold/mild,quiet,"hiking, trekking",couple,6
+265,"Srinagar, India",mountains,"June, July, September, August",cold/mild,quiet,"hiking, trekking",friends,7
+818,"Maafushi, Maldives",beaches,"January, March, April, December",tropical/warm,lively,"swimming, snorkeling",solo,10
+711,"Nevada Desert, USA",desert,"December, January, November, February",hot/dry,moderate,"camel rides, sandboarding",solo,8
+683,"Yellowstone, USA",forest,"November, December, January, October",humid,quiet,"wildlife safari, nature walks",solo,3
+833,"Durban, South Africa",beaches,"January, March, November, February",tropical/warm,lively,"swimming, snorkeling",family,3
+519,"Mount Fuji, Japan",mountains,"July, September, May, April",cold/mild,quiet,"hiking, trekking",solo,4
+448,"Sinharaja Forest, Sri Lanka",forest,"October, January, December, November",humid,quiet,"wildlife safari, nature walks",family,5
+19,"Mount Fuji, Japan",mountains,"May, August, September, July",cold/mild,quiet,"hiking, trekking",couple,5
+716,"Doha Desert, Qatar",desert,"January, February, November, October",hot/dry,moderate,"camel rides, sandboarding",friends,12
+484,"Rotorua, New Zealand",adventure,"September, June, May, October",variable,lively,"rafting, paragliding",friends,12
+569,"Cebu, Philippines",beaches,"March, November, December, January",tropical/warm,lively,"swimming, snorkeling",family,3
+434,"Banff National Park, Canada",forest,"January, October, November, December",humid,quiet,"wildlife safari, nature walks",couple,9
+368,"Munich, Germany",culture,"November, May, April, March",mild,moderate,"museum tours, heritage walks",solo,9
+84,"Nice, France",beaches,"November, April, March, January",tropical/warm,lively,"swimming, snorkeling",couple,5
+62,"Phuket, Thailand",beaches,"November, March, February, April",tropical/warm,lively,"swimming, snorkeling",friends,9
+639,"Cairo, Egypt",culture,"November, October, May, March",mild,moderate,"museum tours, heritage walks",couple,3
+273,"Interlaken, Switzerland",mountains,"July, June, May, August",cold/mild,quiet,"hiking, trekking",solo,3
+286,"Thimphu, Bhutan",mountains,"September, August, May, April",cold/mild,quiet,"hiking, trekking",solo,8
+361,"Xi'an, China",culture,"November, May, April, March",mild,moderate,"museum tours, heritage walks",friends,5
+355,"Athens, Greece",culture,"October, November, March, April",mild,moderate,"museum tours, heritage walks",couple,6
+457,"Atacama Desert, Chile",desert,"December, January, February, October",hot/dry,moderate,"camel rides, sandboarding",couple,6
+279,"Te Anau, New Zealand",mountains,"August, April, June, September",cold/mild,quiet,"hiking, trekking",family,12
+13,"Auli, India",mountains,"April, May, August, June",cold/mild,quiet,"hiking, trekking",friends,11
+183,"Yellowstone, USA",forest,"November, October, December, January",humid,quiet,"wildlife safari, nature walks",couple,4
+369,"Hamburg, Germany",culture,"March, October, April, November",mild,moderate,"museum tours, heritage walks",friends,12
+882,"Lisbon, Portugal",culture,"November, April, October, May",mild,moderate,"museum tours, heritage walks",solo,7
+616,"Versailles, France",culture,"October, November, May, April",mild,moderate,"museum tours, heritage walks",solo,10
+224,"Wadi Al Dawasir, Saudi Arabia",desert,"January, November, February, October",hot/dry,moderate,"camel rides, sandboarding",friends,12
+573,"Sydney, Australia",beaches,"March, January, April, February",tropical/warm,lively,"swimming, snorkeling",solo,7
+971,"Chihuahuan Desert, Mexico",desert,"January, October, November, December",hot/dry,moderate,"camel rides, sandboarding",friends,3
+654,Mauritius,islands,"January, February, December, March",tropical,quiet,"boat rides, snorkeling",friends,11
+546,"Dolomites, Italy",mountains,"April, May, September, July",cold/mild,quiet,"hiking, trekking",couple,10
+583,"Durban, South Africa",beaches,"April, January, December, February",tropical/warm,lively,"swimming, snorkeling",family,7
+634,"Madrid, Spain",culture,"April, November, March, October",mild,moderate,"museum tours, heritage walks",friends,11
+177,"Kaziranga, India",forest,"November, December, January, October",humid,quiet,"wildlife safari, nature walks",solo,6
+666,"Jeju Island, South Korea",islands,"March, January, February, December",tropical,quiet,"boat rides, snorkeling",solo,8
+674,"Maui, Hawaii",islands,"February, January, March, December",tropical,quiet,"boat rides, snorkeling",solo,5
+586,"Santorini, Greece",beaches,"February, April, November, January",tropical/warm,lively,"swimming, snorkeling",family,9
+874,"Krakow, Poland",culture,"May, October, November, April",mild,moderate,"museum tours, heritage walks",friends,7
+394,"Dubai, UAE",culture,"April, March, October, November",mild,moderate,"museum tours, heritage walks",solo,3
+164,"Zanzibar, Tanzania",islands,"March, January, February, December",tropical,quiet,"boat rides, snorkeling",solo,7
+249,"Newfoundland, Canada",adventure,"May, April, October, September",variable,lively,"rafting, paragliding",friends,9
+635,"Seville, Spain",culture,"May, November, April, October",mild,moderate,"museum tours, heritage walks",friends,12
+886,"Granada, Spain",culture,"October, March, May, November",mild,moderate,"museum tours, heritage walks",family,8
+670,"Crete, Greece",islands,"January, December, March, February",tropical,quiet,"boat rides, snorkeling",family,5
+376,"Bruges, Belgium",culture,"April, May, March, November",mild,moderate,"museum tours, heritage walks",family,10
+413,Sri Lanka,islands,"December, February, March, January",tropical,quiet,"boat rides, snorkeling",couple,10
+75,"Cairns, Australia",beaches,"January, March, February, December",tropical/warm,lively,"swimming, snorkeling",couple,11
+114,"Oxford, UK",culture,"April, May, March, November",mild,moderate,"museum tours, heritage walks",family,4
+599,Mauritius,beaches,"April, December, January, February",tropical/warm,lively,"swimming, snorkeling",solo,9
+962,"Death Valley, USA",desert,"December, October, January, November",hot/dry,moderate,"camel rides, sandboarding",solo,10
+391,"Istanbul, Turkey",culture,"April, November, March, May",mild,moderate,"museum tours, heritage walks",solo,5
+105,"Athens, Greece",culture,"March, October, November, May",mild,moderate,"museum tours, heritage walks",friends,10
+115,"Paris, France",culture,"March, November, April, May",mild,moderate,"museum tours, heritage walks",family,10
+418,"Sicily, Italy",islands,"January, December, February, March",tropical,quiet,"boat rides, snorkeling",family,11
+526,"Aspen, USA",mountains,"August, July, May, June",cold/mild,quiet,"hiking, trekking",couple,9
+458,"Gobi Desert, Mongolia",desert,"October, December, November, February",hot/dry,moderate,"camel rides, sandboarding",solo,4
+410,Tahiti,islands,"March, December, January, February",tropical,quiet,"boat rides, snorkeling",couple,3
+93,"Algarve, Portugal",beaches,"February, March, January, April",tropical/warm,lively,"swimming, snorkeling",couple,10
+931,"Amazon Rainforest, Brazil",forest,"November, January, October, December",humid,quiet,"wildlife safari, nature walks",family,7
+90,"Valencia, Spain",beaches,"February, January, April, December",tropical/warm,lively,"swimming, snorkeling",solo,8
+337,"Mykonos, Greece",beaches,"January, February, December, November",tropical/warm,lively,"swimming, snorkeling",family,12
+989,"Banff, Canada",adventure,"May, September, April, June",variable,lively,"rafting, paragliding",solo,7
+922,"Palawan, Philippines",islands,"January, December, February, March",tropical,quiet,"boat rides, snorkeling",family,5
+934,"Banff National Park, Canada",forest,"October, December, January, November",humid,quiet,"wildlife safari, nature walks",solo,4
+606,"Kyoto, Japan",culture,"March, November, October, April",mild,moderate,"museum tours, heritage walks",solo,12
+594,"Sicily, Italy",beaches,"November, February, April, December",tropical/warm,lively,"swimming, snorkeling",couple,11
+612,"London, UK",culture,"April, November, May, March",mild,moderate,"museum tours, heritage walks",couple,7
+95,"Sardinia, Italy",beaches,"November, April, March, January",tropical/warm,lively,"swimming, snorkeling",friends,11
+12,"Kedarnath, India",mountains,"July, May, April, August",cold/mild,quiet,"hiking, trekking",solo,8
+397,"Muscat, Oman",culture,"April, March, October, May",mild,moderate,"museum tours, heritage walks",solo,9
+534,"Kathmandu, Nepal",mountains,"September, August, April, June",cold/mild,quiet,"hiking, trekking",solo,11
+44,Armenia Mountains,mountains,"August, September, June, July",cold/mild,quiet,"hiking, trekking",family,5
+43,"Mount Kilimanjaro, Tanzania",mountains,"April, May, September, June",cold/mild,quiet,"hiking, trekking",friends,5
+330,"Rio de Janeiro, Brazil",beaches,"February, April, January, November",tropical/warm,lively,"swimming, snorkeling",solo,7
+168,"Sicily, Italy",islands,"January, December, March, February",tropical,quiet,"boat rides, snorkeling",family,11
+498,Iceland,adventure,"May, October, June, April",variable,lively,"rafting, paragliding",solo,4
+877,"Amsterdam, Netherlands",culture,"April, November, October, March",mild,moderate,"museum tours, heritage walks",family,7
+598,Seychelles,beaches,"March, February, April, November",tropical/warm,lively,"swimming, snorkeling",couple,9
+757,"Darjeeling, India",mountains,"August, June, September, July",cold/mild,quiet,"hiking, trekking",family,10
+101,"Rome, Italy",culture,"April, November, March, October",mild,moderate,"museum tours, heritage walks",friends,3
+427,"Kaziranga, India",forest,"November, January, October, December",humid,quiet,"wildlife safari, nature walks",couple,6
+179,"Gir Forest, India",forest,"October, December, January, November",humid,quiet,"wildlife safari, nature walks",solo,5
+445,"Plitvice Lakes, Croatia",forest,"October, January, December, November",humid,quiet,"wildlife safari, nature walks",couple,6
+417,"Hokkaido, Japan",islands,"January, March, December, February",tropical,quiet,"boat rides, snorkeling",couple,11
+871,"Prague, Czech Republic",culture,"November, October, May, March",mild,moderate,"museum tours, heritage walks",family,9
+883,"Porto, Portugal",culture,"March, October, May, November",mild,moderate,"museum tours, heritage walks",solo,4
+681,"Amazon Rainforest, Brazil",forest,"January, November, December, October",humid,quiet,"wildlife safari, nature walks",family,12
+178,"Periyar, India",forest,"January, November, December, October",humid,quiet,"wildlife safari, nature walks",solo,11
+396,"Doha, Qatar",culture,"April, May, March, October",mild,moderate,"museum tours, heritage walks",solo,12
+912,Maldives,islands,"January, December, March, February",tropical,quiet,"boat rides, snorkeling",couple,11
+794,Armenia Mountains,mountains,"April, May, September, July",cold/mild,quiet,"hiking, trekking",couple,12
+961,"Nevada Desert, USA",desert,"October, February, December, November",hot/dry,moderate,"camel rides, sandboarding",friends,9
+685,"Jasper National Park, Canada",forest,"December, November, January, October",humid,quiet,"wildlife safari, nature walks",solo,8
+384,"Madrid, Spain",culture,"March, May, November, April",mild,moderate,"museum tours, heritage walks",friends,6
+957,"Atacama Desert, Chile",desert,"February, January, November, October",hot/dry,moderate,"camel rides, sandboarding",solo,6
+752,"Leh Ladakh, India",mountains,"May, April, August, June",cold/mild,quiet,"hiking, trekking",friends,5
+258,"Ooty, India",mountains,"July, September, May, June",cold/mild,quiet,"hiking, trekking",friends,12
+539,"Tbilisi, Georgia",mountains,"June, September, May, July",cold/mild,quiet,"hiking, trekking",family,7
+336,"Santorini, Greece",beaches,"April, March, November, February",tropical/warm,lively,"swimming, snorkeling",solo,9
+16,"Kasol, India",mountains,"July, August, September, June",cold/mild,quiet,"hiking, trekking",friends,6
+325,"Cairns, Australia",beaches,"January, April, March, November",tropical/warm,lively,"swimming, snorkeling",couple,3
+759,"Munnar, India",mountains,"September, July, April, May",cold/mild,quiet,"hiking, trekking",couple,8
+223,"Tabernas Desert, Spain",desert,"November, January, December, October",hot/dry,moderate,"camel rides, sandboarding",friends,9
+180,"Sundarbans, India",forest,"December, October, November, January",humid,quiet,"wildlife safari, nature walks",couple,4
+984,"Rotorua, New Zealand",adventure,"October, May, September, June",variable,lively,"rafting, paragliding",couple,10
+23,"Interlaken, Switzerland",mountains,"May, August, July, June",cold/mild,quiet,"hiking, trekking",solo,12
+357,"Tokyo, Japan",culture,"May, March, October, November",mild,moderate,"museum tours, heritage walks",friends,12
+667,"Hokkaido, Japan",islands,"March, December, January, February",tropical,quiet,"boat rides, snorkeling",family,12
+862,"London, UK",culture,"March, October, May, April",mild,moderate,"museum tours, heritage walks",family,5
+341,"Barcelona Beaches, Spain",beaches,"March, December, February, April",tropical/warm,lively,"swimming, snorkeling",solo,5
+432,"Yosemite, USA",forest,"October, November, December, January",humid,quiet,"wildlife safari, nature walks",solo,12
+552,"Varkala, India",beaches,"November, February, January, December",tropical/warm,lively,"swimming, snorkeling",friends,6
+834,"Nice, France",beaches,"March, February, April, December",tropical/warm,lively,"swimming, snorkeling",solo,3
+204,"Wadi Rum, Jordan",desert,"October, November, January, December",hot/dry,moderate,"camel rides, sandboarding",solo,12
+631,"Helsinki, Finland",culture,"October, May, March, November",mild,moderate,"museum tours, heritage walks",friends,6
+94,"Sicily, Italy",beaches,"December, March, April, November",tropical/warm,lively,"swimming, snorkeling",friends,8
+559,"Digha, India",beaches,"January, February, April, March",tropical/warm,lively,"swimming, snorkeling",solo,12
+69,"Cebu, Philippines",beaches,"December, March, January, April",tropical/warm,lively,"swimming, snorkeling",family,3
+623,"Warsaw, Poland",culture,"October, April, May, November",mild,moderate,"museum tours, heritage walks",family,4
+285,"Pokhara, Nepal",mountains,"April, July, August, September",cold/mild,quiet,"hiking, trekking",couple,5
+845,"Sardinia, Italy",beaches,"February, March, April, December",tropical/warm,lively,"swimming, snorkeling",couple,11
+435,"Jasper National Park, Canada",forest,"January, December, October, November",humid,quiet,"wildlife safari, nature walks",friends,8
+154,Mauritius,islands,"December, March, February, January",tropical,quiet,"boat rides, snorkeling",couple,11
+76,"Miami, USA",beaches,"March, February, January, April",tropical/warm,lively,"swimming, snorkeling",family,11
+731,"Bali, Indonesia",adventure,"May, October, June, September",variable,lively,"rafting, paragliding",couple,4
+447,"Ardennes, Belgium",forest,"October, January, November, December",humid,quiet,"wildlife safari, nature walks",friends,7
+189,"Borneo Forest, Malaysia",forest,"January, November, December, October",humid,quiet,"wildlife safari, nature walks",friends,11
+272,"Zermatt, Switzerland",mountains,"September, July, August, May",cold/mild,quiet,"hiking, trekking",couple,4
+237,"Chamonix, France",adventure,"May, April, June, September",variable,lively,"rafting, paragliding",solo,8
+488,"Whistler, Canada",adventure,"June, April, May, October",variable,lively,"rafting, paragliding",couple,3
+118,"Munich, Germany",culture,"October, May, April, November",mild,moderate,"museum tours, heritage walks",family,4
+944,"Great Smoky Mountains, USA",forest,"October, January, November, December",humid,quiet,"wildlife safari, nature walks",couple,5
+513,"Auli, India",mountains,"July, September, April, August",cold/mild,quiet,"hiking, trekking",friends,3
+826,"Miami, USA",beaches,"November, April, December, March",tropical/warm,lively,"swimming, snorkeling",couple,11
+592,"Porto, Portugal",beaches,"November, April, March, January",tropical/warm,lively,"swimming, snorkeling",solo,12
+127,"Amsterdam, Netherlands",culture,"May, March, October, November",mild,moderate,"museum tours, heritage walks",friends,12
+117,"Berlin, Germany",culture,"November, October, April, March",mild,moderate,"museum tours, heritage walks",friends,8
+474,"Wadi Al Dawasir, Saudi Arabia",desert,"January, February, December, November",hot/dry,moderate,"camel rides, sandboarding",family,12
+694,"Great Smoky Mountains, USA",forest,"October, November, December, January",humid,quiet,"wildlife safari, nature walks",family,10
+58,"Alibaug, India",beaches,"December, November, March, February",tropical/warm,lively,"swimming, snorkeling",solo,11
+864,"Oxford, UK",culture,"October, November, April, May",mild,moderate,"museum tours, heritage walks",solo,9
+913,Sri Lanka,islands,"December, January, February, March",tropical,quiet,"boat rides, snorkeling",couple,10
+370,"Vienna, Austria",culture,"March, April, May, November",mild,moderate,"museum tours, heritage walks",couple,8
+269,"Mount Fuji, Japan",mountains,"August, July, April, September",cold/mild,quiet,"hiking, trekking",couple,5
+47,"Innsbruck, Austria",mountains,"June, July, September, May",cold/mild,quiet,"hiking, trekking",solo,3
+350,Fiji Islands,beaches,"December, March, February, November",tropical/warm,lively,"swimming, snorkeling",family,4
+196,"Black Forest, Germany",forest,"November, January, December, October",humid,quiet,"wildlife safari, nature walks",solo,3
+1000,"Alaska, USA",adventure,"September, April, October, June",variable,lively,"rafting, paragliding",couple,11
+835,"Cannes, France",beaches,"November, February, December, January",tropical/warm,lively,"swimming, snorkeling",couple,10
+737,"Chamonix, France",adventure,"June, May, April, October",variable,lively,"rafting, paragliding",friends,7
+264,"Pahalgam, India",mountains,"August, May, July, June",cold/mild,quiet,"hiking, trekking",family,11
+444,"Great Smoky Mountains, USA",forest,"January, October, December, November",humid,quiet,"wildlife safari, nature walks",solo,12
+676,"Jim Corbett, India",forest,"December, January, October, November",humid,quiet,"wildlife safari, nature walks",couple,9
+305,"Pondicherry, India",beaches,"January, February, March, April",tropical/warm,lively,"swimming, snorkeling",friends,7
+342,"Porto, Portugal",beaches,"April, November, December, January",tropical/warm,lively,"swimming, snorkeling",friends,4
+967,"Dubai Desert, UAE",desert,"October, January, November, February",hot/dry,moderate,"camel rides, sandboarding",couple,3
+150,"Yerevan, Armenia",culture,"October, April, March, November",mild,moderate,"museum tours, heritage walks",friends,10
+125,"Brussels, Belgium",culture,"October, November, March, April",mild,moderate,"museum tours, heritage walks",couple,4
+787,"Paro, Bhutan",mountains,"August, May, April, July",cold/mild,quiet,"hiking, trekking",family,8
+51,"Goa, India",beaches,"December, February, March, November",tropical/warm,lively,"swimming, snorkeling",couple,10
+354,"Milan, Italy",culture,"November, April, May, March",mild,moderate,"museum tours, heritage walks",couple,7
+928,"Periyar, India",forest,"October, December, November, January",humid,quiet,"wildlife safari, nature walks",friends,3
+143,"Petra, Jordan",culture,"November, April, March, May",mild,moderate,"museum tours, heritage walks",family,12
+471,"Chihuahuan Desert, Mexico",desert,"February, December, November, January",hot/dry,moderate,"camel rides, sandboarding",solo,6
+400,"Yerevan, Armenia",culture,"October, November, April, March",mild,moderate,"museum tours, heritage walks",friends,12
+626,"Bruges, Belgium",culture,"October, May, March, November",mild,moderate,"museum tours, heritage walks",friends,11
+321,"Nha Trang, Vietnam",beaches,"January, December, February, April",tropical/warm,lively,"swimming, snorkeling",family,5
+20,"Banff, Canada",mountains,"June, May, July, September",cold/mild,quiet,"hiking, trekking",family,8
+810,"Chennai, India",beaches,"February, March, December, January",tropical/warm,lively,"swimming, snorkeling",solo,11
+791,"Cappadocia, Turkey",mountains,"June, September, August, May",cold/mild,quiet,"hiking, trekking",couple,3
+809,"Digha, India",beaches,"November, March, February, January",tropical/warm,lively,"swimming, snorkeling",friends,12
+408,"Bali, Indonesia",islands,"January, December, February, March",tropical,quiet,"boat rides, snorkeling",friends,11
+538,"Mount Cook, New Zealand",mountains,"June, May, August, July",cold/mild,quiet,"hiking, trekking",couple,3
+621,"Prague, Czech Republic",culture,"October, May, November, March",mild,moderate,"museum tours, heritage walks",couple,11
+39,"Tbilisi, Georgia",mountains,"September, June, April, May",cold/mild,quiet,"hiking, trekking",friends,6
+176,"Jim Corbett, India",forest,"December, January, November, October",humid,quiet,"wildlife safari, nature walks",solo,8
+246,"Madeira, Portugal",adventure,"June, April, May, September",variable,lively,"rafting, paragliding",couple,7
+829,"Tulum, Mexico",beaches,"April, January, November, February",tropical/warm,lively,"swimming, snorkeling",solo,9
+668,"Sicily, Italy",islands,"January, March, February, December",tropical,quiet,"boat rides, snorkeling",friends,9
+755,"Nainital, India",mountains,"September, July, May, August",cold/mild,quiet,"hiking, trekking",family,4
+859,"Beijing, China",culture,"April, October, May, March",mild,moderate,"museum tours, heritage walks",friends,11
+155,Seychelles,islands,"January, December, February, March",tropical,quiet,"boat rides, snorkeling",family,10
+288,"Mount Cook, New Zealand",mountains,"June, September, May, August",cold/mild,quiet,"hiking, trekking",family,8
+603,"Venice, Italy",culture,"October, November, March, May",mild,moderate,"museum tours, heritage walks",friends,3
+570,"Da Nang, Vietnam",beaches,"November, April, January, December",tropical/warm,lively,"swimming, snorkeling",friends,4
+744,"Iguazu Falls, Brazil",adventure,"April, September, October, June",variable,lively,"rafting, paragliding",family,4
+18,"Kodaikanal, India",mountains,"July, May, August, June",cold/mild,quiet,"hiking, trekking",friends,6
+128,"Rotterdam, Netherlands",culture,"April, March, May, October",mild,moderate,"museum tours, heritage walks",couple,5
+323,"Sydney, Australia",beaches,"March, April, November, February",tropical/warm,lively,"swimming, snorkeling",friends,11
+256,"Mount Abu, India",mountains,"May, April, September, August",cold/mild,quiet,"hiking, trekking",solo,9
+658,"Bali, Indonesia",islands,"February, March, January, December",tropical,quiet,"boat rides, snorkeling",friends,6
+965,"Namib Desert, Namibia",desert,"November, December, October, February",hot/dry,moderate,"camel rides, sandboarding",friends,7
+191,"Fiordland, New Zealand",forest,"November, December, October, January",humid,quiet,"wildlife safari, nature walks",friends,3
+116,"Versailles, France",culture,"November, March, May, October",mild,moderate,"museum tours, heritage walks",couple,7
+617,"Berlin, Germany",culture,"May, October, March, November",mild,moderate,"museum tours, heritage walks",family,5
+607,"Tokyo, Japan",culture,"October, May, March, April",mild,moderate,"museum tours, heritage walks",friends,12
+181,"Amazon Rainforest, Brazil",forest,"November, January, October, December",humid,quiet,"wildlife safari, nature walks",solo,7
+302,"Varkala, India",beaches,"January, December, April, November",tropical/warm,lively,"swimming, snorkeling",solo,7
+760,"Gangtok, India",mountains,"May, June, September, April",cold/mild,quiet,"hiking, trekking",family,10
+713,"Simpson Desert, Australia",desert,"January, October, December, February",hot/dry,moderate,"camel rides, sandboarding",couple,11
+724,"Wadi Al Dawasir, Saudi Arabia",desert,"January, November, December, February",hot/dry,moderate,"camel rides, sandboarding",friends,6
+686,"Kruger National Park, South Africa",forest,"October, January, November, December",humid,quiet,"wildlife safari, nature walks",family,6
+980,"Sikkim, India",adventure,"October, May, June, April",variable,lively,"rafting, paragliding",couple,9
+518,"Kodaikanal, India",mountains,"September, August, May, June",cold/mild,quiet,"hiking, trekking",solo,3
+985,"Victoria Falls, Zambia",adventure,"September, June, October, April",variable,lively,"rafting, paragliding",family,3
+46,"Dolomites, Italy",mountains,"August, September, April, July",cold/mild,quiet,"hiking, trekking",couple,9
+910,Tahiti,islands,"January, February, March, December",tropical,quiet,"boat rides, snorkeling",couple,3
+158,"Bali, Indonesia",islands,"March, January, December, February",tropical,quiet,"boat rides, snorkeling",solo,12
+852,"Florence, Italy",culture,"April, November, October, March",mild,moderate,"museum tours, heritage walks",couple,8
+172,"Palawan, Philippines",islands,"March, January, December, February",tropical,quiet,"boat rides, snorkeling",solo,3
+17,"Spiti Valley, India",mountains,"May, July, August, April",cold/mild,quiet,"hiking, trekking",friends,3
+512,"Kedarnath, India",mountains,"April, May, July, September",cold/mild,quiet,"hiking, trekking",friends,8
+49,"Andermatt, Switzerland",mountains,"July, April, August, June",cold/mild,quiet,"hiking, trekking",friends,7
+972,"Sonoran Desert, USA",desert,"February, January, October, December",hot/dry,moderate,"camel rides, sandboarding",family,10
+941,"Fiordland, New Zealand",forest,"December, November, October, January",humid,quiet,"wildlife safari, nature walks",couple,8
+516,"Kasol, India",mountains,"September, June, August, July",cold/mild,quiet,"hiking, trekking",solo,11
+953,"Pushkar, India",desert,"January, February, October, November",hot/dry,moderate,"camel rides, sandboarding",friends,10
+481,"Bali, Indonesia",adventure,"October, June, April, May",variable,lively,"rafting, paragliding",family,10
+284,"Kathmandu, Nepal",mountains,"May, September, June, July",cold/mild,quiet,"hiking, trekking",couple,12
+719,"Dasht-e Kavir, Iran",desert,"January, December, November, October",hot/dry,moderate,"camel rides, sandboarding",couple,8
+878,"Rotterdam, Netherlands",culture,"May, October, April, March",mild,moderate,"museum tours, heritage walks",solo,7
+226,"Rishikesh, India",adventure,"October, September, May, April",variable,lively,"rafting, paragliding",solo,9
+27,"Denver, USA",mountains,"June, May, August, July",cold/mild,quiet,"hiking, trekking",family,10
+955,"Sahara, Morocco",desert,"February, November, October, January",hot/dry,moderate,"camel rides, sandboarding",couple,7
+438,"Serengeti, Tanzania",forest,"November, October, December, January",humid,quiet,"wildlife safari, nature walks",family,10
+952,"Jaisalmer, India",desert,"January, November, October, December",hot/dry,moderate,"camel rides, sandboarding",solo,6
+365,"Paris, France",culture,"April, October, November, March",mild,moderate,"museum tours, heritage walks",friends,10
+230,"Sikkim, India",adventure,"September, April, October, June",variable,lively,"rafting, paragliding",family,12
+38,"Mount Cook, New Zealand",mountains,"May, July, April, June",cold/mild,quiet,"hiking, trekking",family,9
+966,"Doha Desert, Qatar",desert,"November, October, December, January",hot/dry,moderate,"camel rides, sandboarding",solo,8
+375,"Brussels, Belgium",culture,"March, May, November, October",mild,moderate,"museum tours, heritage walks",solo,8
+470,"Dasht-e Lut, Iran",desert,"February, November, January, December",hot/dry,moderate,"camel rides, sandboarding",friends,7
+968,"Sinai Desert, Egypt",desert,"December, January, February, November",hot/dry,moderate,"camel rides, sandboarding",couple,12
+851,"Rome, Italy",culture,"May, November, April, March",mild,moderate,"museum tours, heritage walks",solo,8
+705,"Sahara, Morocco",desert,"November, January, October, December",hot/dry,moderate,"camel rides, sandboarding",couple,7
+842,"Porto, Portugal",beaches,"January, December, March, November",tropical/warm,lively,"swimming, snorkeling",couple,11
+195,"Plitvice Lakes, Croatia",forest,"December, January, October, November",humid,quiet,"wildlife safari, nature walks",couple,7
+855,"Athens, Greece",culture,"March, May, October, April",mild,moderate,"museum tours, heritage walks",family,4
+865,"Paris, France",culture,"November, April, March, May",mild,moderate,"museum tours, heritage walks",solo,10
+504,"Mussoorie, India",mountains,"September, May, April, July",cold/mild,quiet,"hiking, trekking",couple,7
+970,"Dasht-e Lut, Iran",desert,"October, February, January, December",hot/dry,moderate,"camel rides, sandboarding",solo,4
+831,"Salvador, Brazil",beaches,"March, February, January, April",tropical/warm,lively,"swimming, snorkeling",solo,3
+580,"Rio de Janeiro, Brazil",beaches,"February, December, April, January",tropical/warm,lively,"swimming, snorkeling",friends,12
+969,"Dasht-e Kavir, Iran",desert,"January, December, November, February",hot/dry,moderate,"camel rides, sandboarding",couple,6
+163,Sri Lanka,islands,"December, March, February, January",tropical,quiet,"boat rides, snorkeling",family,11
+909,Fiji,islands,"February, March, January, December",tropical,quiet,"boat rides, snorkeling",family,6
+153,"Neil Island, India",islands,"March, January, December, February",tropical,quiet,"boat rides, snorkeling",solo,7
+802,"Varkala, India",beaches,"February, January, April, March",tropical/warm,lively,"swimming, snorkeling",couple,6
+994,"Iguazu Falls, Brazil",adventure,"October, April, May, June",variable,lively,"rafting, paragliding",friends,4
+756,"Mount Abu, India",mountains,"August, June, September, July",cold/mild,quiet,"hiking, trekking",couple,10
+112,"London, UK",culture,"May, March, November, October",mild,moderate,"museum tours, heritage walks",solo,6
+227,"Goa, India",adventure,"May, April, June, October",variable,lively,"rafting, paragliding",friends,7
+689,"Borneo Forest, Malaysia",forest,"November, January, October, December",humid,quiet,"wildlife safari, nature walks",couple,3
+104,"Milan, Italy",culture,"May, April, October, March",mild,moderate,"museum tours, heritage walks",family,6
+422,"Palawan, Philippines",islands,"January, March, February, December",tropical,quiet,"boat rides, snorkeling",couple,11
+420,"Crete, Greece",islands,"February, December, January, March",tropical,quiet,"boat rides, snorkeling",solo,12
+751,"Manali, India",mountains,"July, June, April, September",cold/mild,quiet,"hiking, trekking",couple,5
+587,"Mykonos, Greece",beaches,"April, March, December, November",tropical/warm,lively,"swimming, snorkeling",friends,9
+781,"La Paz, Bolivia",mountains,"August, July, September, April",cold/mild,quiet,"hiking, trekking",friends,9
+673,"Sabah, Malaysia",islands,"February, March, December, January",tropical,quiet,"boat rides, snorkeling",family,6
+120,"Vienna, Austria",culture,"March, April, May, November",mild,moderate,"museum tours, heritage walks",friends,4
+54,"Andaman Islands, India",beaches,"January, March, April, February",tropical/warm,lively,"swimming, snorkeling",friends,10
+152,"Havelock Island, India",islands,"March, February, December, January",tropical,quiet,"boat rides, snorkeling",friends,5
+404,Mauritius,islands,"March, January, February, December",tropical,quiet,"boat rides, snorkeling",friends,3
+946,"Black Forest, Germany",forest,"January, November, October, December",humid,quiet,"wildlife safari, nature walks",couple,5
+208,"Gobi Desert, Mongolia",desert,"February, October, November, December",hot/dry,moderate,"camel rides, sandboarding",family,12
+659,Fiji,islands,"January, February, March, December",tropical,quiet,"boat rides, snorkeling",couple,6
+844,"Sicily, Italy",beaches,"March, December, February, January",tropical/warm,lively,"swimming, snorkeling",friends,10
+763,"Auli, India",mountains,"September, May, April, July",cold/mild,quiet,"hiking, trekking",friends,6
+9,"Munnar, India",mountains,"June, May, September, July",cold/mild,quiet,"hiking, trekking",solo,7
+808,"Alibaug, India",beaches,"April, February, March, January",tropical/warm,lively,"swimming, snorkeling",couple,3
+37,"Paro, Bhutan",mountains,"September, July, June, May",cold/mild,quiet,"hiking, trekking",solo,5
+453,"Pushkar, India",desert,"November, January, October, December",hot/dry,moderate,"camel rides, sandboarding",solo,5
+652,"Havelock Island, India",islands,"March, January, February, December",tropical,quiet,"boat rides, snorkeling",family,11
+254,"Mussoorie, India",mountains,"August, April, May, September",cold/mild,quiet,"hiking, trekking",solo,6
+304,"Andaman Islands, India",beaches,"January, November, February, December",tropical/warm,lively,"swimming, snorkeling",family,6
+747,"Canary Islands, Spain",adventure,"April, June, September, October",variable,lively,"rafting, paragliding",family,7
+572,"Gold Coast, Australia",beaches,"February, March, November, December",tropical/warm,lively,"swimming, snorkeling",family,8
+624,"Krakow, Poland",culture,"November, April, March, May",mild,moderate,"museum tours, heritage walks",solo,6
+733,"Queenstown, New Zealand",adventure,"May, April, September, October",variable,lively,"rafting, paragliding",friends,11
+892,"Jerusalem, Israel",culture,"March, October, April, May",mild,moderate,"museum tours, heritage walks",couple,7
+263,"Auli, India",mountains,"June, May, April, August",cold/mild,quiet,"hiking, trekking",couple,6
+611,"Xi'an, China",culture,"April, May, October, March",mild,moderate,"museum tours, heritage walks",solo,7
+298,"Salzburg, Austria",mountains,"September, April, July, May",cold/mild,quiet,"hiking, trekking",couple,4
+415,Madagascar,islands,"March, December, January, February",tropical,quiet,"boat rides, snorkeling",friends,12
+151,"Andaman Islands, India",islands,"March, January, December, February",tropical,quiet,"boat rides, snorkeling",friends,4
+789,"Tbilisi, Georgia",mountains,"June, May, April, September",cold/mild,quiet,"hiking, trekking",couple,6
+641,"Istanbul, Turkey",culture,"March, April, October, November",mild,moderate,"museum tours, heritage walks",solo,6
+890,"Luxor, Egypt",culture,"April, October, March, November",mild,moderate,"museum tours, heritage walks",family,12
+551,"Goa, India",beaches,"April, December, March, November",tropical/warm,lively,"swimming, snorkeling",friends,7
+887,"Marrakech, Morocco",culture,"May, April, November, March",mild,moderate,"museum tours, heritage walks",solo,10
+489,"Banff, Canada",adventure,"April, May, June, October",variable,lively,"rafting, paragliding",solo,10
+148,"Bukhara, Uzbekistan",culture,"November, May, April, October",mild,moderate,"museum tours, heritage walks",couple,4
+147,"Muscat, Oman",culture,"April, May, October, March",mild,moderate,"museum tours, heritage walks",couple,4
+721,"Chihuahuan Desert, Mexico",desert,"October, January, December, February",hot/dry,moderate,"camel rides, sandboarding",couple,9
+932,"Yosemite, USA",forest,"January, October, November, December",humid,quiet,"wildlife safari, nature walks",family,3
+740,"Patagonia, Argentina",adventure,"September, May, June, April",variable,lively,"rafting, paragliding",couple,11
+660,Tahiti,islands,"February, January, December, March",tropical,quiet,"boat rides, snorkeling",friends,4
+349,Mauritius,beaches,"December, January, March, April",tropical/warm,lively,"swimming, snorkeling",solo,10
+464,"Kalahari Desert, Botswana",desert,"December, October, January, November",hot/dry,moderate,"camel rides, sandboarding",family,5
+326,"Miami, USA",beaches,"January, November, December, March",tropical/warm,lively,"swimming, snorkeling",friends,6
+187,"Masai Mara, Kenya",forest,"December, January, November, October",humid,quiet,"wildlife safari, nature walks",solo,7
+124,"Krakow, Poland",culture,"April, October, March, May",mild,moderate,"museum tours, heritage walks",family,11
+854,"Milan, Italy",culture,"May, April, November, October",mild,moderate,"museum tours, heritage walks",family,5
+609,"Beijing, China",culture,"October, November, May, March",mild,moderate,"museum tours, heritage walks",solo,10
+144,"Dubai, UAE",culture,"October, May, April, November",mild,moderate,"museum tours, heritage walks",couple,8
+959,"Arabian Desert, UAE",desert,"December, February, January, November",hot/dry,moderate,"camel rides, sandboarding",couple,10
+198,"Sinharaja Forest, Sri Lanka",forest,"December, November, January, October",humid,quiet,"wildlife safari, nature walks",family,12
+610,"Shanghai, China",culture,"November, April, October, March",mild,moderate,"museum tours, heritage walks",solo,10
+280,"Patagonia, Chile",mountains,"June, April, September, May",cold/mild,quiet,"hiking, trekking",friends,4
+294,Armenia Mountains,mountains,"June, September, August, April",cold/mild,quiet,"hiking, trekking",family,3
+401,"Andaman Islands, India",islands,"December, January, February, March",tropical,quiet,"boat rides, snorkeling",couple,7
+123,"Warsaw, Poland",culture,"April, March, November, October",mild,moderate,"museum tours, heritage walks",couple,10
+184,"Banff National Park, Canada",forest,"November, October, December, January",humid,quiet,"wildlife safari, nature walks",friends,5
+203,"Pushkar, India",desert,"December, November, February, January",hot/dry,moderate,"camel rides, sandboarding",family,6
+439,"Borneo Forest, Malaysia",forest,"November, October, January, December",humid,quiet,"wildlife safari, nature walks",friends,4
+247,"Canary Islands, Spain",adventure,"October, June, April, September",variable,lively,"rafting, paragliding",solo,8
+416,"Jeju Island, South Korea",islands,"December, January, March, February",tropical,quiet,"boat rides, snorkeling",family,9
+933,"Yellowstone, USA",forest,"January, December, November, October",humid,quiet,"wildlife safari, nature walks",solo,8
+766,"Kasol, India",mountains,"May, April, June, August",cold/mild,quiet,"hiking, trekking",friends,8
+907,"Langkawi, Malaysia",islands,"January, December, February, March",tropical,quiet,"boat rides, snorkeling",couple,11
+836,"Santorini, Greece",beaches,"April, March, January, December",tropical/warm,lively,"swimming, snorkeling",solo,8
+888,"Fes, Morocco",culture,"November, May, October, March",mild,moderate,"museum tours, heritage walks",family,8
+130,"Stockholm, Sweden",culture,"March, October, November, April",mild,moderate,"museum tours, heritage walks",friends,10
+638,"Fes, Morocco",culture,"May, November, October, April",mild,moderate,"museum tours, heritage walks",couple,4
+403,"Neil Island, India",islands,"February, March, December, January",tropical,quiet,"boat rides, snorkeling",family,4
+785,"Pokhara, Nepal",mountains,"July, April, May, June",cold/mild,quiet,"hiking, trekking",couple,6
+771,"Whistler, Canada",mountains,"April, July, May, September",cold/mild,quiet,"hiking, trekking",friends,12
+736,"Interlaken, Switzerland",adventure,"May, September, April, October",variable,lively,"rafting, paragliding",family,8
+914,"Zanzibar, Tanzania",islands,"February, January, March, December",tropical,quiet,"boat rides, snorkeling",friends,7
+220,"Dasht-e Lut, Iran",desert,"December, January, February, November",hot/dry,moderate,"camel rides, sandboarding",couple,8
+642,"Jerusalem, Israel",culture,"October, November, May, March",mild,moderate,"museum tours, heritage walks",solo,12
+916,"Jeju Island, South Korea",islands,"March, January, December, February",tropical,quiet,"boat rides, snorkeling",family,12
+753,"Shimla, India",mountains,"May, July, August, April",cold/mild,quiet,"hiking, trekking",family,9
+807,"Gokarna, India",beaches,"January, April, November, February",tropical/warm,lively,"swimming, snorkeling",solo,9
+920,"Crete, Greece",islands,"March, December, February, January",tropical,quiet,"boat rides, snorkeling",friends,4
+625,"Brussels, Belgium",culture,"May, November, October, March",mild,moderate,"museum tours, heritage walks",couple,12
+875,"Brussels, Belgium",culture,"May, November, October, March",mild,moderate,"museum tours, heritage walks",family,12
+761,"Rishikesh, India",mountains,"July, August, September, May",cold/mild,quiet,"hiking, trekking",couple,4
+387,"Marrakech, Morocco",culture,"May, October, April, November",mild,moderate,"museum tours, heritage walks",friends,3
+973,"Tabernas Desert, Spain",desert,"October, February, December, November",hot/dry,moderate,"camel rides, sandboarding",family,7
+510,"Gangtok, India",mountains,"September, April, August, July",cold/mild,quiet,"hiking, trekking",couple,4
+268,"Kodaikanal, India",mountains,"September, July, June, April",cold/mild,quiet,"hiking, trekking",friends,12
+820,"Da Nang, Vietnam",beaches,"January, November, February, December",tropical/warm,lively,"swimming, snorkeling",family,12
+442,"Tongariro, New Zealand",forest,"December, January, October, November",humid,quiet,"wildlife safari, nature walks",couple,6
+497,"Canary Islands, Spain",adventure,"September, June, October, May",variable,lively,"rafting, paragliding",family,5
+113,"Edinburgh, UK",culture,"May, November, March, April",mild,moderate,"museum tours, heritage walks",couple,7
+692,"Tongariro, New Zealand",forest,"November, October, January, December",humid,quiet,"wildlife safari, nature walks",couple,4
+233,"Queenstown, New Zealand",adventure,"April, October, May, June",variable,lively,"rafting, paragliding",couple,9
+870,"Vienna, Austria",culture,"October, March, November, April",mild,moderate,"museum tours, heritage walks",friends,10
+608,"Osaka, Japan",culture,"May, March, October, November",mild,moderate,"museum tours, heritage walks",family,12
+672,"Palawan, Philippines",islands,"January, December, March, February",tropical,quiet,"boat rides, snorkeling",family,9
+374,"Krakow, Poland",culture,"May, November, April, October",mild,moderate,"museum tours, heritage walks",couple,5
+982,"Chiang Mai, Thailand",adventure,"May, September, October, April",variable,lively,"rafting, paragliding",friends,3
+843,"Algarve, Portugal",beaches,"December, March, April, November",tropical/warm,lively,"swimming, snorkeling",couple,7
+234,"Rotorua, New Zealand",adventure,"May, April, June, September",variable,lively,"rafting, paragliding",couple,10
+786,"Thimphu, Bhutan",mountains,"June, April, May, August",cold/mild,quiet,"hiking, trekking",solo,10
+677,"Kaziranga, India",forest,"January, November, December, October",humid,quiet,"wildlife safari, nature walks",friends,11
+318,"Maafushi, Maldives",beaches,"February, March, November, January",tropical/warm,lively,"swimming, snorkeling",couple,8
+649,"Samarkand, Uzbekistan",culture,"October, March, November, May",mild,moderate,"museum tours, heritage walks",friends,10
+411,Bora Bora,islands,"December, March, January, February",tropical,quiet,"boat rides, snorkeling",solo,8
+899,"Samarkand, Uzbekistan",culture,"May, April, November, October",mild,moderate,"museum tours, heritage walks",family,9
+710,Oman Desert,desert,"November, January, February, October",hot/dry,moderate,"camel rides, sandboarding",friends,3
+359,"Beijing, China",culture,"May, March, November, April",mild,moderate,"museum tours, heritage walks",friends,3
+259,"Munnar, India",mountains,"May, August, June, July",cold/mild,quiet,"hiking, trekking",friends,7
+745,Reunion Island,adventure,"June, September, October, April",variable,lively,"rafting, paragliding",friends,4
+628,"Rotterdam, Netherlands",culture,"October, March, April, May",mild,moderate,"museum tours, heritage walks",solo,6
+633,"Porto, Portugal",culture,"November, March, May, April",mild,moderate,"museum tours, heritage walks",couple,8
+283,"Arequipa, Peru",mountains,"August, May, April, June",cold/mild,quiet,"hiking, trekking",couple,11
+377,"Amsterdam, Netherlands",culture,"May, October, March, April",mild,moderate,"museum tours, heritage walks",family,4
+385,"Seville, Spain",culture,"April, October, March, November",mild,moderate,"museum tours, heritage walks",family,4
+225,"Rub' al Khali, Saudi Arabia",desert,"January, November, December, February",hot/dry,moderate,"camel rides, sandboarding",friends,9
+954,"Wadi Rum, Jordan",desert,"November, October, January, February",hot/dry,moderate,"camel rides, sandboarding",solo,5
+815,"Boracay, Philippines",beaches,"April, February, December, March",tropical/warm,lively,"swimming, snorkeling",solo,6
+473,"Tabernas Desert, Spain",desert,"February, October, December, January",hot/dry,moderate,"camel rides, sandboarding",couple,8
+348,Seychelles,beaches,"January, November, February, April",tropical/warm,lively,"swimming, snorkeling",friends,3
+506,"Mount Abu, India",mountains,"July, June, August, September",cold/mild,quiet,"hiking, trekking",family,9
+640,"Luxor, Egypt",culture,"March, April, May, October",mild,moderate,"museum tours, heritage walks",friends,6
+988,"Whistler, Canada",adventure,"May, October, June, September",variable,lively,"rafting, paragliding",solo,6
+929,"Gir Forest, India",forest,"January, November, October, December",humid,quiet,"wildlife safari, nature walks",friends,9
+906,"Phuket, Thailand",islands,"January, February, March, December",tropical,quiet,"boat rides, snorkeling",couple,5
+620,"Vienna, Austria",culture,"November, April, March, October",mild,moderate,"museum tours, heritage walks",solo,10
+856,"Kyoto, Japan",culture,"May, April, March, November",mild,moderate,"museum tours, heritage walks",family,10
+804,"Andaman Islands, India",beaches,"April, November, February, December",tropical/warm,lively,"swimming, snorkeling",solo,5
+646,"Doha, Qatar",culture,"October, November, April, May",mild,moderate,"museum tours, heritage walks",couple,10
+847,"Diani Beach, Kenya",beaches,"April, January, March, February",tropical/warm,lively,"swimming, snorkeling",couple,7
+557,"Gokarna, India",beaches,"December, February, April, March",tropical/warm,lively,"swimming, snorkeling",friends,12
+958,"Gobi Desert, Mongolia",desert,"October, November, December, January",hot/dry,moderate,"camel rides, sandboarding",family,12
+578,"Cancun, Mexico",beaches,"March, April, December, November",tropical/warm,lively,"swimming, snorkeling",family,3
+796,"Dolomites, Italy",mountains,"May, April, June, September",cold/mild,quiet,"hiking, trekking",couple,6
+86,"Santorini, Greece",beaches,"March, December, January, April",tropical/warm,lively,"swimming, snorkeling",couple,7
+243,"Mendoza, Argentina",adventure,"September, October, April, May",variable,lively,"rafting, paragliding",solo,10
+699,"Chitwan National Park, Nepal",forest,"November, October, January, December",humid,quiet,"wildlife safari, nature walks",solo,4
+160,Tahiti,islands,"March, December, February, January",tropical,quiet,"boat rides, snorkeling",solo,10
+525,"Grindelwald, Switzerland",mountains,"September, August, April, May",cold/mild,quiet,"hiking, trekking",friends,12
+36,"Thimphu, Bhutan",mountains,"June, May, September, August",cold/mild,quiet,"hiking, trekking",family,9
+541,"Cappadocia, Turkey",mountains,"August, July, September, June",cold/mild,quiet,"hiking, trekking",family,9
+171,Cyprus,islands,"December, January, March, February",tropical,quiet,"boat rides, snorkeling",solo,7
+655,Seychelles,islands,"December, February, January, March",tropical,quiet,"boat rides, snorkeling",friends,5
+891,"Istanbul, Turkey",culture,"November, April, May, October",mild,moderate,"museum tours, heritage walks",friends,6
+858,"Osaka, Japan",culture,"October, March, May, April",mild,moderate,"museum tours, heritage walks",solo,3
+848,Seychelles,beaches,"December, March, January, February",tropical/warm,lively,"swimming, snorkeling",friends,6
+945,"Plitvice Lakes, Croatia",forest,"October, January, November, December",humid,quiet,"wildlife safari, nature walks",solo,10
+734,"Rotorua, New Zealand",adventure,"September, October, April, June",variable,lively,"rafting, paragliding",solo,5
+96,"Zanzibar, Tanzania",beaches,"January, April, December, November",tropical/warm,lively,"swimming, snorkeling",family,3
+564,"Langkawi, Malaysia",beaches,"December, January, March, April",tropical/warm,lively,"swimming, snorkeling",friends,4
+241,"Torres del Paine, Chile",adventure,"October, June, April, September",variable,lively,"rafting, paragliding",solo,11
+743,"Mendoza, Argentina",adventure,"April, October, May, September",variable,lively,"rafting, paragliding",couple,8
+575,"Cairns, Australia",beaches,"December, November, April, January",tropical/warm,lively,"swimming, snorkeling",couple,12
+691,"Fiordland, New Zealand",forest,"January, December, October, November",humid,quiet,"wildlife safari, nature walks",friends,10
+461,"Nevada Desert, USA",desert,"February, December, January, November",hot/dry,moderate,"camel rides, sandboarding",solo,6
+554,"Andaman Islands, India",beaches,"November, December, January, February",tropical/warm,lively,"swimming, snorkeling",couple,11
+889,"Cairo, Egypt",culture,"October, April, May, March",mild,moderate,"museum tours, heritage walks",couple,9
+207,"Atacama Desert, Chile",desert,"October, December, January, November",hot/dry,moderate,"camel rides, sandboarding",couple,5
+393,"Petra, Jordan",culture,"April, October, November, May",mild,moderate,"museum tours, heritage walks",family,11
+795,"Pyrenees, France",mountains,"June, September, May, July",cold/mild,quiet,"hiking, trekking",family,6
+398,"Bukhara, Uzbekistan",culture,"November, April, March, May",mild,moderate,"museum tours, heritage walks",family,6
+767,"Spiti Valley, India",mountains,"September, August, July, May",cold/mild,quiet,"hiking, trekking",solo,6
+849,Mauritius,beaches,"April, February, December, November",tropical/warm,lively,"swimming, snorkeling",couple,7
+218,"Sinai Desert, Egypt",desert,"December, November, January, February",hot/dry,moderate,"camel rides, sandboarding",family,12
+5,"Nainital, India",mountains,"August, June, July, April",cold/mild,quiet,"hiking, trekking",couple,11
+769,"Mount Fuji, Japan",mountains,"April, May, August, July",cold/mild,quiet,"hiking, trekking",friends,12
+643,"Petra, Jordan",culture,"November, October, April, May",mild,moderate,"museum tours, heritage walks",family,7
+930,"Sundarbans, India",forest,"January, October, November, December",humid,quiet,"wildlife safari, nature walks",friends,7
+613,"Edinburgh, UK",culture,"May, November, October, April",mild,moderate,"museum tours, heritage walks",solo,9
+739,"Banff, Canada",adventure,"October, September, May, June",variable,lively,"rafting, paragliding",solo,7
+547,"Innsbruck, Austria",mountains,"July, April, May, August",cold/mild,quiet,"hiking, trekking",family,12
+726,"Rishikesh, India",adventure,"May, April, October, June",variable,lively,"rafting, paragliding",couple,7
+684,"Banff National Park, Canada",forest,"December, October, January, November",humid,quiet,"wildlife safari, nature walks",solo,9
+99,Mauritius,beaches,"November, December, April, January",tropical/warm,lively,"swimming, snorkeling",friends,3
+805,"Pondicherry, India",beaches,"November, April, February, January",tropical/warm,lively,"swimming, snorkeling",couple,10
+728,"Coorg, India",adventure,"May, June, October, September",variable,lively,"rafting, paragliding",couple,6
+574,"Perth, Australia",beaches,"December, January, November, March",tropical/warm,lively,"swimming, snorkeling",friends,9
+407,"Langkawi, Malaysia",islands,"March, December, January, February",tropical,quiet,"boat rides, snorkeling",solo,10
+503,"Shimla, India",mountains,"July, August, September, June",cold/mild,quiet,"hiking, trekking",friends,11
+48,"Salzburg, Austria",mountains,"April, May, August, June",cold/mild,quiet,"hiking, trekking",solo,5
+33,"Arequipa, Peru",mountains,"August, May, June, April",cold/mild,quiet,"hiking, trekking",friends,12
+780,"Patagonia, Chile",mountains,"June, July, April, August",cold/mild,quiet,"hiking, trekking",friends,6
+840,"Valencia, Spain",beaches,"December, February, November, January",tropical/warm,lively,"swimming, snorkeling",solo,6
+201,"Thar Desert, India",desert,"October, January, February, December",hot/dry,moderate,"camel rides, sandboarding",couple,6
+135,"Seville, Spain",culture,"October, November, March, May",mild,moderate,"museum tours, heritage walks",couple,9
+28,"Queenstown, New Zealand",mountains,"June, August, April, July",cold/mild,quiet,"hiking, trekking",family,9
+881,"Helsinki, Finland",culture,"November, April, October, May",mild,moderate,"museum tours, heritage walks",solo,12
+231,"Bali, Indonesia",adventure,"October, September, June, April",variable,lively,"rafting, paragliding",couple,5
+490,"Patagonia, Argentina",adventure,"May, April, October, September",variable,lively,"rafting, paragliding",family,5
+773,"Interlaken, Switzerland",mountains,"May, June, April, August",cold/mild,quiet,"hiking, trekking",friends,8
+379,"Copenhagen, Denmark",culture,"May, March, November, October",mild,moderate,"museum tours, heritage walks",family,7
+289,"Tbilisi, Georgia",mountains,"June, May, August, July",cold/mild,quiet,"hiking, trekking",friends,5
+419,"Sardinia, Italy",islands,"March, December, February, January",tropical,quiet,"boat rides, snorkeling",solo,10
+675,"Oahu, Hawaii",islands,"February, January, March, December",tropical,quiet,"boat rides, snorkeling",solo,11
+392,"Jerusalem, Israel",culture,"March, November, April, May",mild,moderate,"museum tours, heritage walks",couple,5
+593,"Algarve, Portugal",beaches,"November, March, January, April",tropical/warm,lively,"swimming, snorkeling",friends,7
+499,"Newfoundland, Canada",adventure,"April, September, June, October",variable,lively,"rafting, paragliding",couple,9
+139,"Cairo, Egypt",culture,"March, April, May, November",mild,moderate,"museum tours, heritage walks",couple,11
+63,"Krabi, Thailand",beaches,"April, March, November, December",tropical/warm,lively,"swimming, snorkeling",friends,12
+472,"Sonoran Desert, USA",desert,"November, December, January, October",hot/dry,moderate,"camel rides, sandboarding",family,4
+648,"Bukhara, Uzbekistan",culture,"April, March, October, May",mild,moderate,"museum tours, heritage walks",family,12
+129,"Copenhagen, Denmark",culture,"March, May, October, April",mild,moderate,"museum tours, heritage walks",solo,11
+977,"Goa, India",adventure,"September, October, April, May",variable,lively,"rafting, paragliding",couple,4
+521,"Whistler, Canada",mountains,"August, June, July, September",cold/mild,quiet,"hiking, trekking",couple,12
+839,"Ibiza, Spain",beaches,"March, February, January, April",tropical/warm,lively,"swimming, snorkeling",couple,4
+963,"Simpson Desert, Australia",desert,"February, November, January, October",hot/dry,moderate,"camel rides, sandboarding",friends,3
+65,"Boracay, Philippines",beaches,"April, February, December, March",tropical/warm,lively,"swimming, snorkeling",solo,9
+813,"Krabi, Thailand",beaches,"February, April, November, December",tropical/warm,lively,"swimming, snorkeling",solo,8
+15,"Srinagar, India",mountains,"July, June, May, April",cold/mild,quiet,"hiking, trekking",couple,12
+157,"Langkawi, Malaysia",islands,"March, February, January, December",tropical,quiet,"boat rides, snorkeling",solo,5
+41,"Cappadocia, Turkey",mountains,"April, June, September, July",cold/mild,quiet,"hiking, trekking",friends,8
+493,"Mendoza, Argentina",adventure,"June, September, April, May",variable,lively,"rafting, paragliding",friends,5
+380,"Stockholm, Sweden",culture,"April, October, May, March",mild,moderate,"museum tours, heritage walks",friends,3
+188,"Serengeti, Tanzania",forest,"December, October, January, November",humid,quiet,"wildlife safari, nature walks",family,10
+764,"Pahalgam, India",mountains,"August, September, May, July",cold/mild,quiet,"hiking, trekking",couple,6
+217,"Dubai Desert, UAE",desert,"February, October, November, January",hot/dry,moderate,"camel rides, sandboarding",couple,12
+792,"Atlas Mountains, Morocco",mountains,"April, May, July, August",cold/mild,quiet,"hiking, trekking",family,12
+53,"Kovalam, India",beaches,"April, November, February, March",tropical/warm,lively,"swimming, snorkeling",couple,9
+879,"Copenhagen, Denmark",culture,"April, March, May, October",mild,moderate,"museum tours, heritage walks",family,8
+338,"Crete, Greece",beaches,"January, April, March, February",tropical/warm,lively,"swimming, snorkeling",family,7
+749,"Newfoundland, Canada",adventure,"April, June, October, September",variable,lively,"rafting, paragliding",friends,3
+720,"Dasht-e Lut, Iran",desert,"December, October, February, November",hot/dry,moderate,"camel rides, sandboarding",friends,12
+725,"Rub' al Khali, Saudi Arabia",desert,"October, December, November, February",hot/dry,moderate,"camel rides, sandboarding",solo,6
+296,"Dolomites, Italy",mountains,"May, June, July, August",cold/mild,quiet,"hiking, trekking",solo,3
+702,"Jaisalmer, India",desert,"November, December, October, February",hot/dry,moderate,"camel rides, sandboarding",solo,3
+252,"Leh Ladakh, India",mountains,"July, September, August, May",cold/mild,quiet,"hiking, trekking",friends,5
+727,"Goa, India",adventure,"May, April, June, September",variable,lively,"rafting, paragliding",family,12
+462,"Death Valley, USA",desert,"November, February, January, December",hot/dry,moderate,"camel rides, sandboarding",solo,12
+456,"Merzouga, Morocco",desert,"November, January, February, December",hot/dry,moderate,"camel rides, sandboarding",family,6
+997,"Canary Islands, Spain",adventure,"September, October, May, April",variable,lively,"rafting, paragliding",couple,9
+816,"Palawan, Philippines",beaches,"March, February, April, January",tropical/warm,lively,"swimming, snorkeling",family,9
+863,"Edinburgh, UK",culture,"November, October, April, March",mild,moderate,"museum tours, heritage walks",solo,4
+270,"Banff, Canada",mountains,"August, July, May, April",cold/mild,quiet,"hiking, trekking",friends,4
+202,"Jaisalmer, India",desert,"December, January, October, November",hot/dry,moderate,"camel rides, sandboarding",solo,10
+162,Maldives,islands,"December, January, February, March",tropical,quiet,"boat rides, snorkeling",solo,4
+556,"Lakshadweep, India",beaches,"November, January, March, February",tropical/warm,lively,"swimming, snorkeling",friends,7
+730,"Sikkim, India",adventure,"April, September, October, June",variable,lively,"rafting, paragliding",family,6
+402,"Havelock Island, India",islands,"December, February, January, March",tropical,quiet,"boat rides, snorkeling",friends,5
+703,"Pushkar, India",desert,"October, February, November, December",hot/dry,moderate,"camel rides, sandboarding",family,9
+477,"Goa, India",adventure,"October, April, June, May",variable,lively,"rafting, paragliding",friends,8
+822,"Gold Coast, Australia",beaches,"December, February, November, March",tropical/warm,lively,"swimming, snorkeling",solo,8
+772,"Zermatt, Switzerland",mountains,"April, September, July, June",cold/mild,quiet,"hiking, trekking",family,11
+106,"Kyoto, Japan",culture,"November, May, April, October",mild,moderate,"museum tours, heritage walks",friends,9
+566,"Palawan, Philippines",beaches,"February, December, January, March",tropical/warm,lively,"swimming, snorkeling",solo,11
+390,"Luxor, Egypt",culture,"March, April, November, October",mild,moderate,"museum tours, heritage walks",solo,10
+2,"Leh Ladakh, India",mountains,"April, June, May, August",cold/mild,quiet,"hiking, trekking",couple,8
+938,"Serengeti, Tanzania",forest,"December, November, January, October",humid,quiet,"wildlife safari, nature walks",couple,10
+983,"Queenstown, New Zealand",adventure,"May, June, September, October",variable,lively,"rafting, paragliding",family,3
+562,"Phuket, Thailand",beaches,"November, March, January, December",tropical/warm,lively,"swimming, snorkeling",solo,4
+81,"Salvador, Brazil",beaches,"April, February, December, January",tropical/warm,lively,"swimming, snorkeling",friends,7
+206,"Merzouga, Morocco",desert,"December, October, November, February",hot/dry,moderate,"camel rides, sandboarding",couple,9
+35,"Pokhara, Nepal",mountains,"August, July, June, April",cold/mild,quiet,"hiking, trekking",family,8
+776,"Aspen, USA",mountains,"June, April, May, July",cold/mild,quiet,"hiking, trekking",family,8
+509,"Munnar, India",mountains,"June, May, August, September",cold/mild,quiet,"hiking, trekking",family,3
+428,"Periyar, India",forest,"October, November, December, January",humid,quiet,"wildlife safari, nature walks",friends,7
+455,"Sahara, Morocco",desert,"December, January, November, February",hot/dry,moderate,"camel rides, sandboarding",couple,4
+367,"Berlin, Germany",culture,"October, November, May, March",mild,moderate,"museum tours, heritage walks",couple,5
+92,"Porto, Portugal",beaches,"November, February, April, January",tropical/warm,lively,"swimming, snorkeling",friends,12
+340,"Valencia, Spain",beaches,"November, March, February, January",tropical/warm,lively,"swimming, snorkeling",friends,8
+898,"Bukhara, Uzbekistan",culture,"April, March, May, October",mild,moderate,"museum tours, heritage walks",friends,11
+565,"Boracay, Philippines",beaches,"February, March, November, December",tropical/warm,lively,"swimming, snorkeling",family,9
+346,"Zanzibar, Tanzania",beaches,"April, January, December, February",tropical/warm,lively,"swimming, snorkeling",family,4
+777,"Denver, USA",mountains,"April, June, August, September",cold/mild,quiet,"hiking, trekking",couple,5
+242,"Cusco, Peru",adventure,"April, June, October, May",variable,lively,"rafting, paragliding",family,10
+14,"Pahalgam, India",mountains,"July, June, April, May",cold/mild,quiet,"hiking, trekking",family,3
+316,"Palawan, Philippines",beaches,"February, January, November, April",tropical/warm,lively,"swimming, snorkeling",solo,8
+601,"Rome, Italy",culture,"April, October, March, May",mild,moderate,"museum tours, heritage walks",friends,4
+388,"Fes, Morocco",culture,"May, April, November, March",mild,moderate,"museum tours, heritage walks",couple,9
+274,"Lucerne, Switzerland",mountains,"September, August, June, July",cold/mild,quiet,"hiking, trekking",family,11
+167,"Hokkaido, Japan",islands,"February, March, December, January",tropical,quiet,"boat rides, snorkeling",friends,4
+841,"Barcelona Beaches, Spain",beaches,"April, February, November, March",tropical/warm,lively,"swimming, snorkeling",friends,4
+993,"Mendoza, Argentina",adventure,"June, September, April, October",variable,lively,"rafting, paragliding",solo,6
+647,"Muscat, Oman",culture,"April, November, March, May",mild,moderate,"museum tours, heritage walks",solo,4
+819,"Cebu, Philippines",beaches,"February, November, March, January",tropical/warm,lively,"swimming, snorkeling",friends,10
+485,"Victoria Falls, Zambia",adventure,"September, May, June, October",variable,lively,"rafting, paragliding",couple,3
+981,"Bali, Indonesia",adventure,"June, May, September, October",variable,lively,"rafting, paragliding",family,4
+505,"Nainital, India",mountains,"September, May, August, June",cold/mild,quiet,"hiking, trekking",couple,4
+832,"Cape Town, South Africa",beaches,"March, February, January, November",tropical/warm,lively,"swimming, snorkeling",couple,11
+244,"Iguazu Falls, Brazil",adventure,"October, May, June, April",variable,lively,"rafting, paragliding",solo,8
+567,"Male, Maldives",beaches,"November, March, February, December",tropical/warm,lively,"swimming, snorkeling",family,12
+876,"Bruges, Belgium",culture,"November, March, April, October",mild,moderate,"museum tours, heritage walks",solo,5
+563,"Krabi, Thailand",beaches,"April, December, November, March",tropical/warm,lively,"swimming, snorkeling",friends,6
+687,"Masai Mara, Kenya",forest,"November, January, December, October",humid,quiet,"wildlife safari, nature walks",friends,7
+190,"Daintree Forest, Australia",forest,"December, November, October, January",humid,quiet,"wildlife safari, nature walks",family,9
+783,"Arequipa, Peru",mountains,"May, July, September, August",cold/mild,quiet,"hiking, trekking",friends,5
+700,"Bwindi Forest, Uganda",forest,"November, December, January, October",humid,quiet,"wildlife safari, nature walks",family,9
+476,"Rishikesh, India",adventure,"September, October, May, June",variable,lively,"rafting, paragliding",solo,3
+682,"Yosemite, USA",forest,"November, December, October, January",humid,quiet,"wildlife safari, nature walks",solo,9
+511,"Rishikesh, India",mountains,"April, July, August, May",cold/mild,quiet,"hiking, trekking",friends,12
+59,"Digha, India",beaches,"February, April, March, November",tropical/warm,lively,"swimming, snorkeling",solo,4
+475,"Rub' al Khali, Saudi Arabia",desert,"November, October, December, February",hot/dry,moderate,"camel rides, sandboarding",family,10
+561,"Bali, Indonesia",beaches,"March, January, November, February",tropical/warm,lively,"swimming, snorkeling",friends,7
+857,"Tokyo, Japan",culture,"November, October, April, March",mild,moderate,"museum tours, heritage walks",solo,12
+748,Iceland,adventure,"October, May, June, September",variable,lively,"rafting, paragliding",couple,9
+253,"Shimla, India",mountains,"September, May, June, July",cold/mild,quiet,"hiking, trekking",solo,7
+22,"Zermatt, Switzerland",mountains,"May, September, July, August",cold/mild,quiet,"hiking, trekking",friends,3
+314,"Langkawi, Malaysia",beaches,"November, January, April, March",tropical/warm,lively,"swimming, snorkeling",couple,11
+460,Oman Desert,desert,"February, December, October, January",hot/dry,moderate,"camel rides, sandboarding",solo,9
+161,Bora Bora,islands,"February, March, January, December",tropical,quiet,"boat rides, snorkeling",solo,6
+277,"Denver, USA",mountains,"September, August, June, April",cold/mild,quiet,"hiking, trekking",couple,4
+956,"Merzouga, Morocco",desert,"November, February, December, January",hot/dry,moderate,"camel rides, sandboarding",solo,3
+192,"Tongariro, New Zealand",forest,"November, October, December, January",humid,quiet,"wildlife safari, nature walks",family,7
+386,"Granada, Spain",culture,"November, May, October, April",mild,moderate,"museum tours, heritage walks",solo,5
+806,"Lakshadweep, India",beaches,"March, December, February, January",tropical/warm,lively,"swimming, snorkeling",friends,7
+414,"Zanzibar, Tanzania",islands,"March, December, January, February",tropical,quiet,"boat rides, snorkeling",solo,4
+492,"Cusco, Peru",adventure,"May, September, October, April",variable,lively,"rafting, paragliding",friends,5
+344,"Sicily, Italy",beaches,"December, November, February, January",tropical/warm,lively,"swimming, snorkeling",friends,5
+770,"Banff, Canada",mountains,"August, June, September, May",cold/mild,quiet,"hiking, trekking",friends,5
+309,"Digha, India",beaches,"December, January, April, November",tropical/warm,lively,"swimming, snorkeling",couple,5
+662,Maldives,islands,"December, February, March, January",tropical,quiet,"boat rides, snorkeling",friends,5
+131,"Helsinki, Finland",culture,"March, May, April, November",mild,moderate,"museum tours, heritage walks",solo,9
+664,"Zanzibar, Tanzania",islands,"February, March, January, December",tropical,quiet,"boat rides, snorkeling",friends,9
+872,"Budapest, Hungary",culture,"April, October, November, March",mild,moderate,"museum tours, heritage walks",solo,5
+100,Fiji Islands,beaches,"December, March, January, February",tropical/warm,lively,"swimming, snorkeling",solo,10
+373,"Warsaw, Poland",culture,"May, November, March, April",mild,moderate,"museum tours, heritage walks",solo,4
+88,"Crete, Greece",beaches,"December, March, January, April",tropical/warm,lively,"swimming, snorkeling",friends,5
+459,"Arabian Desert, UAE",desert,"October, November, February, January",hot/dry,moderate,"camel rides, sandboarding",family,9
+331,"Salvador, Brazil",beaches,"December, November, January, March",tropical/warm,lively,"swimming, snorkeling",couple,7
+215,"Namib Desert, Namibia",desert,"February, October, December, November",hot/dry,moderate,"camel rides, sandboarding",family,12
+467,"Dubai Desert, UAE",desert,"February, January, December, November",hot/dry,moderate,"camel rides, sandboarding",couple,12
+122,"Budapest, Hungary",culture,"April, November, October, May",mild,moderate,"museum tours, heritage walks",solo,8
+615,"Paris, France",culture,"April, November, March, October",mild,moderate,"museum tours, heritage walks",friends,12
+21,"Whistler, Canada",mountains,"April, August, September, June",cold/mild,quiet,"hiking, trekking",couple,6
+701,"Thar Desert, India",desert,"December, November, February, January",hot/dry,moderate,"camel rides, sandboarding",couple,6
+72,"Gold Coast, Australia",beaches,"December, March, February, November",tropical/warm,lively,"swimming, snorkeling",couple,8
+107,"Tokyo, Japan",culture,"October, April, May, March",mild,moderate,"museum tours, heritage walks",couple,11
+271,"Whistler, Canada",mountains,"July, May, August, April",cold/mild,quiet,"hiking, trekking",couple,8
+861,"Xi'an, China",culture,"October, May, March, April",mild,moderate,"museum tours, heritage walks",couple,7
+436,"Kruger National Park, South Africa",forest,"January, December, November, October",humid,quiet,"wildlife safari, nature walks",friends,3
+103,"Venice, Italy",culture,"May, October, April, March",mild,moderate,"museum tours, heritage walks",family,7
